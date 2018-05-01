@@ -37,6 +37,7 @@ class ABCController extends Controller
             $maxDate = Post::where('id_cate', $cate)
                 ->max('updated_at');
             $result = Post::where('updated_at', $maxDate)
+                ->where('id_cate', $cate)
                 ->first();
             return response()->json(['result' => true, 'data' => $result]);
         }
@@ -45,8 +46,17 @@ class ABCController extends Controller
                 ->where('id_sub', $sub)
                 ->max('updated_at');
             $result = Post::where('updated_at', $maxDate)
+                ->where('id_sub', $sub)
                 ->first();
             return response()->json(['result' => true, 'data' => $result]);
         }
+    }
+
+    public function getLatestPosts ()
+    {
+        $result = Post::orderBy('updated_at', 'desc')
+            ->limit(4)
+            ->get();
+        return response()->json(['result' => true, 'data' => $result]);
     }
 }

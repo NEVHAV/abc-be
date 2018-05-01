@@ -22,3 +22,4 @@ Route::get('home', function (){
 Route::get('categories', 'ABCController@getCategories');
 Route::get('subcategories/{cate}', 'ABCController@getSubcategories');
 Route::get('post/{cate}/{sub?}', 'ABCController@getPost');
+Route::get('latestPosts', 'ABCController@getLatestPosts');
