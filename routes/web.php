@@ -16,7 +16,11 @@ Route::get('test', function () {
 });
 
 Route::get('home', function (){
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/', function () {
+    return view('index');
 });
 
 Route::get('categories', 'ABCController@getCategories');
