@@ -28,3 +28,11 @@ Route::get('subcategories/{cate}', 'ABCController@getSubcategories');
 Route::get('post/{cate}/{sub?}', 'ABCController@getPost');
 Route::get('latestPosts', 'ABCController@getLatestPosts');
 
+Route::get('admin', 'AdminController@index'); 
+Route::get('admin/login', 'Auth\LoginController@showLogin'); 
+Route::get('admin/logout', 'Auth\LoginController@logout'); 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

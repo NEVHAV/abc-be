@@ -15,7 +15,7 @@ class PostsTableSeeder extends Seeder
         DB::table('posts')->delete();
         $idSub = DB::select('select id_sub from subcategories');
        	$idPost=0; 
-        $titleLength = 10;
+        $titleLength = 20;
         $coverLength = 30;
         $contentLength = 200;
     	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
