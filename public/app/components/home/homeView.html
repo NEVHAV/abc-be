@@ -1,0 +1,277 @@
+<title>{{ title }}</title>
+<main>
+    <div class="header">
+        <nav class="nav_1 u-height35">
+            <div class="nav-content u-flex u-maxWidth1200">
+                <div class="left-content u-flex1">
+                </div>
+                <div class="right-content">
+                    <div class="phone-number menu-item">
+                        <i class="fa fa-phone fa-1x"> </i>
+                        {{ phoneNumber }}
+                    </div>
+                    <div class="vertical-separator menu-item">
+                        |
+                    </div>
+                    <div class="language menu-item">
+                        Ngôn ngữ
+                        <a class="flag-language active">
+                            <img class="flag u-height15" src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg"
+                                 alt="Vietnam Flag">
+
+                        </a>
+                        <a class="flag-language" href="#">
+                            <img class="flag u-height15" src="https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg"
+                                 alt="Japan Flag">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="nav_2">
+            <div class="nav-content u-flex u-maxWidth1200">
+                <div class="brand-container u-flex">
+                    <div class="logo u-height65 u-marginRight8">
+                        <img class="u-width50 u-verticalAlignMiddle" src="app/components/home/favicon.png">
+                    </div>
+                    <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
+                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">CÔNG TY TNHH
+                            KTM
+                        </div>
+                        <div class="brand-description u-lineHeight13 u-fontWeightThin">UY TÍN - TRÁCH NHIỆM - HIỆU QUẢ
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu u-flex1 u-block">
+                    <ul>
+                        <li class="u-marginLeft10 u-floatRight u-marginRightNegative12"
+                            ng-repeat="category in categories">
+                            <a href="#cate{{ category.id_cate }}" class="menu-item">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--body-->
+    <div class="body center-align">
+        <!--slider-->
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img ng-src="app/components/home/cover.jpg">
+                </li>
+                <li>
+                    <img ng-src="app/components/home/cover2.jpg">
+                </li>
+                <li>
+                    <img ng-src="app/components/home/cover3.jpg">
+                </li>
+            </ul>
+        </div>
+
+        <!--post + latest post + advertisement-->
+        <div class="body-container u-maxWidth1200 u-marginAuto">
+            <div class="body-content u-flex">
+                <div class="content-left u-flex1">
+                    <div class="u-maxWidth780">
+                        <!--<div class="col s7" ng-hide="show()">-->
+                        <!--<table class="borderless white">-->
+                        <!--<tbody>-->
+                        <!--<tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">-->
+                        <!--<td class="row">-->
+                        <!--<div class="col s12">-->
+                        <!--<ul class="tabs u-borderBottomGrayLight">-->
+                        <!--<li class="tab u-fontSize16"><a class="category black-text active"-->
+                        <!--href="#cate{{ category.id_cate }}"-->
+                        <!--ng-click="getPost(category.id_cate, 0); changeShow()">{{-->
+                        <!--category.name }}</a></li>-->
+                        <!--<li class="tab"-->
+                        <!--ng-repeat="subcategory in subcategories[category.id_cate]">-->
+                        <!--<a-->
+                        <!--class="subcategory black-text"-->
+                        <!--href="#sub{{subcategory.id_sub}}"-->
+                        <!--ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{-->
+                        <!--subcategory.name }}</a></li>-->
+                        <!--</ul>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--&lt;!&ndash;post category&ndash;&gt;-->
+                        <!--<div id="cate{{ category.id_cate }}" class="row">-->
+                        <!--<div class="col s4">-->
+                        <!--<img class="cover_img" style="width: 200px; height: 200px"-->
+                        <!--src="{{ catePosts[category.id_cate].cover }}">-->
+                        <!--</div>-->
+                        <!--<div class="col s8">-->
+                        <!--&lt;!&ndash;<p class="post-title">cate {{ category.id_cate}}</p>&ndash;&gt;-->
+                        <!--<p class="post-title">{{ catePosts[category.id_cate].title }}</p>-->
+                        <!--<p class="">{{ catePosts[category.id_cate].content }}</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;post subcategory&ndash;&gt;-->
+                        <!--<div id="sub{{ subcategory.id_sub }}"-->
+                        <!--ng-repeat="subcategory in subcategories[category.id_cate]" class="row">-->
+                        <!--<div class="col s4">-->
+                        <!--<img class="cover_img" style="width: 200px; height: 200px"-->
+                        <!--src="{{ posts[subcategory.id_sub].cover }}">-->
+                        <!--</div>-->
+                        <!--<div class="col s8">-->
+                        <!--&lt;!&ndash;<p class="post-title">sub {{ subcategory.id_sub }}</p>&ndash;&gt;-->
+                        <!--<p class="post-title">{{ posts[subcategory.id_sub].title }}</p>-->
+                        <!--<p class="">{{ posts[subcategory.id_sub].content }}</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--</div>-->
+
+                        <!--show: true-->
+                        <div class="col s7" ng-show="show()">
+                            <!--show: true-->
+                            <table class="borderless white">
+                                <tbody>
+                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
+                                    <td class="row">
+                                        <div class="col s12">
+                                            <ul class="tabs u-borderBottomGrayLight">
+                                                <li class="tab"><a class="black-text category active"
+                                                                   href="#show{{ category.id_cate }}"
+                                                                   ng-init="getPost(category.id_cate, 0)"
+                                                                   ng-click="changeShow()">{{
+                                                    category.name }}</a></li>
+                                                <li class="tab"
+                                                    ng-repeat="subcategory in subcategories[category.id_cate]">
+                                                    <a
+                                                            class="black-text subcategory"
+                                                            href="#sub{{subcategory.id_sub}}"
+                                                            ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
+                                                        subcategory.name }}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <!--post category-->
+                                            <div id="show{{ category.id_cate }}" class="row">
+                                                <div class="col s4">
+                                                    <img class="cover_img" style="width: 200px; height: 200px"
+                                                         src="{{ catePosts[category.id_cate].cover }}">
+                                                </div>
+                                                <div class="col s8">
+                                                    <p class="post-title">{{ catePosts[category.id_cate].title }}</p>
+                                                    <p>{{ catePosts[category.id_cate].content }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="content-right u-width320">
+                    <!--latest post + advertisement-->
+                    <!--latest post-->
+                    <div class="news-container">
+                        <div style="background-color: #e8eaf6">
+                            <div style="height: 10px; background-color: #3f51b5"></div>
+                            <div class="black-text">
+                                <h6 class="u-fontWeightBold u-fontSize16">TIN MỚI CẬP NHẬT</h6>
+                                <hr style="width: 200px">
+                                <table class="borderless" style="background-color: #e8eaf6">
+                                    <tbody>
+                                    <tr ng-repeat="latestPost in latestPosts">
+                                        <th class="u-fontSize36 u-textAlignCenter" style="color: #3f51b5">0{{
+                                            $index +
+                                            1}}
+                                        </th>
+                                        <th>
+                                            <div class="u-fontSize16">{{ latestPost.title }}</div>
+                                            <div class="u-textColorDark u-fontWeightThin">{{
+                                                latestPost.updated_at }}
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--advertisement-->
+                    <div class="info-container u-marginTop50">
+                        <div>
+                            <div style="height: 10px; background-color: red">
+                            </div>
+                            <div class="black-text">
+                                <h6 class="u-fontWeightBold u-fontSize16">HỖ TRỢ TRỰC TUYẾN</h6>
+                                <hr style="width: 200px">
+                                <h5 style="font-weight: bold">Hotline</h5>
+                                <h4 style="font-weight: bold; color: red">0912345678</h4>
+                                <hr style="width: 200px">
+                                <table class="borderless u-maxWidth300 u-marginAuto">
+                                    <tbody>
+                                    <tr>
+                                        <th class="u-width100 u-textAlignCenter">
+                                            <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
+                                        </th>
+                                        <th>
+                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">Hoàng Vân (Ms)</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">0123456789</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">hoangvan@gmail.com</p>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--footer-->
+    <footer class="u-marginTop50">
+        <div class="footer-content u-flex u-padding20 u-paddingBottom2 u-maxWidth1200 u-marginAuto u-textColorWhite">
+            <div class="left-content u-flex1 u-fontSize14">
+                <p class="u-margin0">
+                    Trường Trung cấp Kinh tế - Tài nguyên và Môi trường
+                </p>
+                <p class="u-marginTop0 u-marginBottom0">
+                    CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM
+                </p>
+                <p class="u-marginBottom0 u-marginTop10 u-fontSize12">
+                    Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội
+                </p>
+                <p class="u-marginTop0 u-fontSize12">
+                    Điện thoại: {{ phoneNumber }} | Email: congtyktm@gmail.com | Website:
+                    <a class="link u-textColorWhite" href="http://www.ktmgroup.com.vn" target="_blank">www.ktmgroup.com.vn</a>
+                </p>
+
+                <div class="u-marginTop30 u-borderLeft4 u-paddingLeft8">
+                    <p class="u-marginBottom0">
+                        GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP
+                    </p>
+                    <p class="u-marginTop0">
+                        GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT
+                    </p>
+                </div>
+            </div>
+            <div class="u-width300">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                        width="300" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                        allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+    </footer>
+</main>
