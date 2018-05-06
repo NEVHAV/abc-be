@@ -59,4 +59,32 @@ class ABCController extends Controller
             ->get();
         return response()->json(['result' => true, 'data' => $result]);
     }
+
+    public function getBreadcrumbs ($subcate)
+    {
+        $cateName = Category::join('subcategories', 'subcategories.id_cate', '=', 'categories.id_cate')
+            ->where('subcategories.id_sub', $subcate)
+            ->select('categories.name')
+            ->get();
+        $subcateName = Subcategory::where('id_sub', $subcate)
+            ->select('name')
+            ->get();
+        $result = ['cate' => $cateName, 'subcate' => $subcateName, 'id_sub' => $subcate];
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
+    public function getPostDetail ($postId)
+    {
+        $result = Post::where('id_post', $postId)
+            ->get();
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
+    public function getSubmenu ($subId)
+    {
+        $result = Post::where('id_sub', $subId)
+            ->get();
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
 }
