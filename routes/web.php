@@ -28,18 +28,15 @@ Route::get('subcategories/{cate}', 'ABCController@getSubcategories');
 Route::get('post/{cate}/{sub?}', 'ABCController@getPost');
 Route::get('latestPosts', 'ABCController@getLatestPosts');
 
-Route::get('admin', 'AdminController@index'); 
+Route::get('admin', 'Admin\AdminController@index');
 Route::get('admin/login', 'Auth\LoginController@showLogin'); 
 Route::get('admin/logout', 'Auth\LoginController@logout');
 
-Route::get('admin/categories', 'AdminController@showCategory');
-Route::get('admin/categories/add', 'AdminController@addCategory');
-Route::get('admin/categories/edit', 'AdminController@editCategory');
+Route::resource('admin/categories', 'Admin\CategoryController');
 
-Route::get('admin/users', 'AdminController@showUser');
-Route::get('admin/users/add', 'AdminController@addUser');
-Route::get('admin/users/edit', 'AdminController@editUser');
+Route::resource('admin/users', 'Admin\UserController');
 
+Route::resource('admin/posts', 'Admin\PostController');
 
 Auth::routes();
 
