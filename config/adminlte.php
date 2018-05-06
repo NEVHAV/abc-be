@@ -108,32 +108,42 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'THƯỜNG DÙNG',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Tin nhắn',
+            'url'         => 'admin/message',
             'icon'        => 'file',
             'label'       => 4,
-            'label_color' => 'success',
-        ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
+            'label_color' => 'info',
         ],
         [
-            'text' => 'Change Password',
+            'text'        => 'Bài viết',
+            'url'         => 'admin/posts',
+            'icon'        => 'file',
+        ],
+        [
+            'text'        => 'Category',
+            'url'         => 'admin/categories',
+            'icon'        => 'file',
+        ],
+        [
+            'text'        => 'Người dùng',
+            'url'         => 'admin/users',
+            'icon'        => 'user',
+        ],
+        'CÀI ĐẶT',
+        [
+            'text' => 'Đổi mật khẩu',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
         [
-            'text'    => 'Multilevel',
+            'text' => 'Ngôn ngữ giao diện',
+            'url'  => 'admin/languages',
+            'icon' => 'global',
+        ],
+        [
+            'text'    => 'Quảng cáo',
             'icon'    => 'share',
             'submenu' => [
                 [
@@ -169,19 +179,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 

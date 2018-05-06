@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Edit category')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Edit category</h1>
 @stop
 
 @section('content')
