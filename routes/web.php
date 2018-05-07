@@ -23,17 +23,17 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('api/categories', 'ABCController@getCategories');
-Route::get('api/subcategories/{cate}', 'ABCController@getSubcategories');
-Route::get('api/posts/{cate}/{sub?}', 'ABCController@getPosts');
-Route::get('api/latestPosts', 'ABCController@getLatestPosts');
+Route::get('api/{lang}/categories', 'ABCController@getCategories');
+Route::get('api/{lang}/subcategories/{cate}', 'ABCController@getSubcategories');
+Route::get('api/{lang}/posts/{cate}/{sub?}', 'ABCController@getPosts');
+Route::get('api/{lang}/latestPosts', 'ABCController@getLatestPosts');
 
 //postView
-Route::get('api/postDetail/{postId}', 'ABCController@getPostDetail');
-Route::get('api/breadcrumbs/{subcate}', 'ABCController@getBreadcrumbs');
+Route::get('api/{lang}/postDetail/{postId}', 'ABCController@getPostDetail');
+Route::get('api/{lang}/breadcrumbs/{subcate}', 'ABCController@getBreadcrumbs');
 
 //submenuView
-Route::get('api/submenu/{subId}', 'ABCController@getSubmenu');
+Route::get('api/{lang}/submenu/{subId}', 'ABCController@getSubmenu');
 
 
 Route::get('admin', 'Admin\AdminController@index');
