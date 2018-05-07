@@ -12,23 +12,67 @@ class SubCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         DB::table('subcategories')->delete();
-        $idCate = DB::select('select id_cate from categories');
-       	$idSub = 0;
-        $length = 10;
-    	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    	$data=[];
-    	for($i = 0; $i <5; $i ++) {
-    		$idSub++;
-    		$data[]=[
-    			'id_sub' => $idSub,
-    			'id_cate' =>rand($idCate[0]->id_cate, $idCate[4]->id_cate),
-    			'name' => substr(str_shuffle(str_repeat($pool, $length)), 0, $length),
-    			'created_at' => Carbon::now()->toDateString(),  
-    			'updated_at' => Carbon::now()->toDateString(),
-    			];
-    	}
-    	DB::table('subcategories')->insert($data);
+
+        $data = [
+            [
+                'id_cate' => 1,
+                'name_vn' => 'Thông tin chung',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 1,
+                'name_vn' => 'Thông điệp Tổng giám đốc',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 1,
+                'name_vn' => 'Văn bản pháp lý',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 1,
+                'name_vn' => 'Cơ cấu tổ chức',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 2,
+                'name_vn' => 'Tin công ty',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 2,
+                'name_vn' => 'Tin khác',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 3,
+                'name_vn' => 'Nhật Bản',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 3,
+                'name_vn' => 'Đài Loan',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+        ];
+
+        DB::table('subcategories')->insert($data);
     }
 }
