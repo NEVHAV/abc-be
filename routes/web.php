@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('categories', 'ABCController@getCategories');
 Route::get('subcategories/{cate}', 'ABCController@getSubcategories');
-Route::get('post/{cate}/{sub?}', 'ABCController@getPost');
+Route::get('posts/{cate}/{sub?}', 'ABCController@getPosts');
 Route::get('latestPosts', 'ABCController@getLatestPosts');
 
 Route::get('admin', 'Admin\AdminController@index');
@@ -41,5 +41,9 @@ Route::resource('admin/posts', 'Admin\PostController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//postView
+Route::get('postDetail/{postId}', 'ABCController@getPostDetail');
 Route::get('breadcrumbs/{subcate}', 'ABCController@getBreadcrumbs');
 
+//submenuView
+Route::get('submenu/{subId}', 'ABCController@getSubmenu');

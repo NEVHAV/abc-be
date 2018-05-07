@@ -31,7 +31,7 @@ class ABCController extends Controller
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-    public function getPost($cate, $sub = null)
+    public function getPosts($cate, $sub = null)
     {
         if ($sub == null) {
             $maxDate = Post::where('id_cate', $cate)
