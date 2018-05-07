@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Post;
+use App\User;
+use App\Subcategory;
 
 class PostController extends Controller
 {
@@ -11,8 +14,14 @@ class PostController extends Controller
     public function index()
     {
         if (Auth::check()) {
-
-            return view('admin/post/index');
+            $posts = Post::orderBy('updated_at', 'asc')->get();
+            foreach ($posts as $post) {
+                $post['user'] = User::find($post->id_user);
+                $post['sub'] = Subcategory::find($post->id_sub);
+            }
+            return view('admin/post/index', [
+                'posts' => $posts,
+            ]);
         }
 
         return redirect('admin/login');
