@@ -84,58 +84,90 @@
             <div class="body-content u-flex">
                 <div class="content-left u-flex1">
                     <div class="u-maxWidth780">
-                        <!--<div class="col s7" ng-hide="show()">-->
-                        <!--<table class="borderless white">-->
-                        <!--<tbody>-->
-                        <!--<tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">-->
-                        <!--<td class="row">-->
-                        <!--<div class="col s12">-->
-                        <!--<ul class="tabs u-borderBottomGrayLight">-->
-                        <!--<li class="tab u-fontSize16"><a class="category black-text active"-->
-                        <!--href="#cate{{ category.id_cate }}"-->
-                        <!--ng-click="getPost(category.id_cate, 0); changeShow()">{{-->
-                        <!--category.name }}</a></li>-->
-                        <!--<li class="tab"-->
-                        <!--ng-repeat="subcategory in subcategories[category.id_cate]">-->
-                        <!--<a-->
-                        <!--class="subcategory black-text"-->
-                        <!--href="#sub{{subcategory.id_sub}}"-->
-                        <!--ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{-->
-                        <!--subcategory.name }}</a></li>-->
-                        <!--</ul>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                        <!--&lt;!&ndash;post category&ndash;&gt;-->
-                        <!--<div id="cate{{ category.id_cate }}" class="row">-->
-                        <!--<div class="col s4">-->
-                        <!--<img class="cover_img" style="width: 200px; height: 200px"-->
-                        <!--src="{{ catePosts[category.id_cate].cover }}">-->
-                        <!--</div>-->
-                        <!--<div class="col s8">-->
-                        <!--&lt;!&ndash;<p class="post-title">cate {{ category.id_cate}}</p>&ndash;&gt;-->
-                        <!--<p class="post-title">{{ catePosts[category.id_cate].title }}</p>-->
-                        <!--<p class="">{{ catePosts[category.id_cate].content }}</p>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;post subcategory&ndash;&gt;-->
-                        <!--<div id="sub{{ subcategory.id_sub }}"-->
-                        <!--ng-repeat="subcategory in subcategories[category.id_cate]" class="row">-->
-                        <!--<div class="col s4">-->
-                        <!--<img class="cover_img" style="width: 200px; height: 200px"-->
-                        <!--src="{{ posts[subcategory.id_sub].cover }}">-->
-                        <!--</div>-->
-                        <!--<div class="col s8">-->
-                        <!--&lt;!&ndash;<p class="post-title">sub {{ subcategory.id_sub }}</p>&ndash;&gt;-->
-                        <!--<p class="post-title">{{ posts[subcategory.id_sub].title }}</p>-->
-                        <!--<p class="">{{ posts[subcategory.id_sub].content }}</p>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
+                        <div class="col s7" ng-hide="show()">
+                            <table class="borderless white">
+                                <tbody>
+                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
+                                    <td class="row">
+                                        <div class="col s12">
+                                            <ul class="tabs u-borderBottomGrayLight">
+                                                <li class="tab"><a class="black-text category"
+                                                                   href="#cate{{ category.id_cate }}"
+                                                                   ng-click="getPost(category.id_cate, 0); changeShow()">{{
+                                                    category.name }}</a></li>
+                                                <li class="tab"
+                                                    ng-repeat="subcategory in subcategories[category.id_cate]"><a
+                                                        class="black-text subcategory" href="#sub{{subcategory.id_sub}}"
+                                                        ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
+                                                    subcategory.name }}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <!--post category-->
+                                            <div id="cate{{ category.id_cate }}" class="row">
+                                                <div class="col s4">
+                                                    <img class="cover_img" style="width: 200px; height: 200px"
+                                                         src="{{ catePosts[category.id_cate].cover }}">
+                                                </div>
+                                                <div class="col s8" style="height: 12em; overflow: hidden">
+                                                    <p class="pointer post-title"
+                                                       ng-click="showPost(catePosts[category.id_cate].id_post, catePosts[category.id_cate].title, catePosts[category.id_cate].id_sub)"
+                                                       href="#">{{ catePosts[category.id_cate].title }}</p>
+                                                    <p class="">{{ catePosts[category.id_cate].content }}</p>
+                                                </div>
+                                            </div>
+                                            <!--post subcategory-->
+                                            <div id="sub{{ subcategory.id_sub }}"
+                                                 ng-repeat="subcategory in subcategories[category.id_cate]" class="row">
+                                                <div class="col s4">
+                                                    <img class="cover_img" style="width: 200px; height: 200px"
+                                                         src="{{ posts[subcategory.id_sub].cover }}">
+                                                </div>
+                                                <div class="col s8" style="height: 12em; overflow: hidden">
+                                                    <p class="pointer post-title"
+                                                       ng-click="showPost(posts[subcategory.id_sub].id_post, posts[subcategory.id_sub].title, subcategory.id_sub)"
+                                                       href="#">{{ posts[subcategory.id_sub].title }}</p>
+                                                    <p>{{ posts[subcategory.id_sub].content }}</p>
+                                                </div>
+                                                <div class="col s4"></div>
+                                                <div class="col s8" style="padding-top: 1em">
+                                                    <a class="pointer left-align blue-text" href="#"
+                                                       ng-click="showSubmenu(subcategory.id_sub, subcategory.name)">Xem
+                                                        thêm {{ subcategory.name }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--show: true-->
+                        <div class="col s7" ng-show="show()">
+                            <table class="borderless white">
+                                <tbody>
+                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
+                                    <td class="row">
+                                        <div class="col s12">
+                                            <ul class="tabs u-borderBottomGrayLight">
+                                                <li class="tab">
+                                                    <a class="black-text category"
+                                                                   href="#show{{ category.id_cate }}"
+                                                                   ng-init="getPost(category.id_cate, 0)"
+                                                                   ng-click="changeShow()">{{ category.name }}</a></li>
+                                                <li class="tab"
+                                                    ng-repeat="subcategory in subcategories[category.id_cate]"><a
+                                                        class="black-text subcategory" href="#sub{{subcategory.id_sub}}"
+                                                        ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
+                                                    subcategory.name }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <!--show: true-->
                         <div class="col s7" ng-show="show()">
