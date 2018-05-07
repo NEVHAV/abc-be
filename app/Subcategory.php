@@ -19,6 +19,9 @@ class Subcategory extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id_cate', 'id_sub', 'name'
+        'id_cate',
+        'id_sub',
+        'name_vn',
+        'name_jp',
     ];
 }

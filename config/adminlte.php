@@ -110,75 +110,42 @@ return [
     'menu' => [
         'THƯỜNG DÙNG',
         [
-            'text'        => 'Tin nhắn',
-            'url'         => 'admin/message',
-            'icon'        => 'file',
-            'label'       => 4,
+            'text' => 'Tin nhắn',
+            'url' => 'admin/message',
+            'icon' => 'wechat',
+            'label' => 4,
             'label_color' => 'info',
         ],
         [
-            'text'        => 'Bài viết',
-            'url'         => 'admin/posts',
-            'icon'        => 'file',
+            'text' => 'Bài viết',
+            'url' => 'admin/posts',
+            'icon' => 'file',
         ],
         [
-            'text'        => 'Category',
-            'url'         => 'admin/categories',
-            'icon'        => 'file',
+            'text' => 'Category',
+            'url' => 'admin/categories',
+            'icon' => 'th-list',
         ],
         [
-            'text'        => 'Người dùng',
-            'url'         => 'admin/users',
-            'icon'        => 'user',
+            'text' => 'Người dùng',
+            'url' => 'admin/users',
+            'icon' => 'user',
         ],
         'CÀI ĐẶT',
         [
             'text' => 'Đổi mật khẩu',
-            'url'  => 'admin/settings',
+            'url' => 'admin/settings',
             'icon' => 'lock',
         ],
         [
-            'text' => 'Ngôn ngữ giao diện',
-            'url'  => 'admin/languages',
-            'icon' => 'global',
+            'text' => 'Thông tin công ty',
+            'url' => 'admin/company-info',
+            'icon' => 'building',
         ],
         [
-            'text'    => 'Quảng cáo',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'Banner quảng cáo',
+            'url' => 'admin/advertisements',
+            'icon' => 'image',
         ],
     ],
 
@@ -215,7 +182,7 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2' => true,
+        'chartjs' => true,
     ],
 ];

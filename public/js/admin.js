@@ -7,6 +7,7 @@ ADMIN.init = function () {
 ADMIN.bindUIAction = function () {
     this.bindCategoryDataTable();
     this.bindUserDataTable();
+    this.bindPostDataTable();
 };
 
 ADMIN.bindCategoryDataTable = function () {
@@ -20,6 +21,14 @@ ADMIN.bindCategoryDataTable = function () {
 ADMIN.bindUserDataTable = function () {
     $(document).ready(function() {
         $('#user-dt').DataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        } );
+    } );
+};
+
+ADMIN.bindPostDataTable = function () {
+    $(document).ready(function() {
+        $('#post-dt').DataTable( {
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
         } );
     } );

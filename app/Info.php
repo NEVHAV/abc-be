@@ -9,7 +9,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Advertisement extends Authenticatable
+class Info extends Authenticatable
 {
     use Notifiable;
 
@@ -19,7 +19,17 @@ class Advertisement extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'url_vn',
-        'url_jp',
+        'phone_number',
+        'hotline',
+        'logo_url',
+        'company_name_vn',
+        'company_slogan_vn',
+        'company_name_jp',
+        'company_slogan_jp',
+        'footer_vn',
+        'footer_jp',
+        'supporter_name',
+        'supporter_phone_number',
+        'supporter_email',
     ];
 }

@@ -19,6 +19,8 @@ class Category extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id_cate', 'name'
+        'id_cate',
+        'name_vn',
+        'name_jp',
     ];
 }

@@ -22,8 +22,8 @@ class CreateInfoTable extends Migration
             $table->string('company_slogan_vn');
             $table->string('company_name_jp')->nullable();
             $table->string('company_slogan_jp')->nullable();
-            $table->string('footer_vn');
-            $table->string('footer_jp')->nullable();
+            $table->text('footer_vn');
+            $table->text('footer_jp')->nullable();
             $table->string('supporter_name');
             $table->string('supporter_phone_number');
             $table->string('supporter_email');
