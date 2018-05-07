@@ -7,5 +7,9 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <form action="/admin/posts" method="post">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+
+    </form>
 @stop
