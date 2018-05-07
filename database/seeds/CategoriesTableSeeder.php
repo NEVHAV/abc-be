@@ -12,18 +12,41 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('categories')->delete();
+        DB::table('categories')->delete();
 
-    	$length = 10;
-    	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    	$data=[];
-    	for($i = 0; $i <5; $i ++) {
-    		$data[]=[
-    			'name' => substr(str_shuffle(str_repeat($pool, $length)), 0, $length),
-    			'created_at' => Carbon::now()->toDateString(),  
-    			'updated_at' => Carbon::now()->toDateString(),
-    			];
-    	}
-    	DB::table('categories')->insert($data);
+        $data = [
+            [
+                'name_vn' => 'GIỚI THIỆU CHUNG',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'name_vn' => 'TIN TỨC - SỰ KIỆN',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'name_vn' => 'XUẤT KHẨU LAO ĐỘNG',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'name_vn' => 'DU HỌC',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'name_vn' => 'CẨM NANG',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+        ];
+
+        DB::table('categories')->insert($data);
     }
 }

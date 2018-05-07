@@ -15,8 +15,8 @@ class CreateAdvertisementsTable extends Migration
     {
         Schema::create('advertisements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link');
-            $table->string('lang');
+            $table->string('url_vn');
+            $table->string('url_jp')->nullable();
             $table->timestamps();
         });
     }

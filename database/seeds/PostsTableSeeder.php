@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+
 class PostsTableSeeder extends Seeder
 {
     /**
@@ -13,25 +14,26 @@ class PostsTableSeeder extends Seeder
     {
         //
         DB::table('posts')->delete();
-        $idSub = DB::select('select id_sub from subcategories');
-       	$idPost=0; 
-        $titleLength = 20;
-        $coverLength = 30;
-        $contentLength = 200;
-    	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    	$data=[];
-    	for($i = 0; $i <5; $i ++) {
-    		$idPost++;
-    		$data[]=[
-    			'id_post' => $idPost,
-    			'id_sub' =>rand($idSub[0]->id_sub, $idSub[4]->id_sub),
-    			'title' => substr(str_shuffle(str_repeat($pool, $titleLength)), 0, $titleLength),
-    			'cover' => substr(str_shuffle(str_repeat($pool, $coverLength)), 0, $coverLength),
-    			'content' => substr(str_shuffle(str_repeat($pool, $contentLength)), 0, $contentLength),
-    			'created_at' => Carbon::now()->toDateString(),  
-    			'updated_at' => Carbon::now()->toDateString(),
-    			];
-    	}
-    	DB::table('posts')->insert($data);
+
+        $data = [
+            [
+                'id_sub' => 1,
+                'id_cate' => 1,
+                'title' => 'Thông tin chung về công ty TNHH KTM',
+                'cover' => 'https://png.pngtree.com/element_origin_min_pic/17/04/12/a8eddbc43655cda88f18512f4ca59b39.jpg',
+                'content' => 'Tổng thống Putin khẳng định niềm tin rằng Nga sẽ đạt được bước đột phá khi cả đất nước hợp sức và có thể “giải quyết bất kỳ vấn đề nào”.
+
+“Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.
+
+“Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.
+
+Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
+                'language' => 'vi',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+        ];
+
+        DB::table('posts')->insert($data);
     }
 }

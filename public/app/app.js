@@ -13,13 +13,13 @@ angular.module('abc-fe', [
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: 'components/home/homeView.html',
+                templateUrl: 'app/components/home/homeView.html',
                 controller: 'homeController',
                 resolve: {
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load (
                             {
-                                files: ['components/home/homeController.js']
+                                files: ['app/components/home/homeController.js']
                             }
                         )
                     }
@@ -29,13 +29,13 @@ angular.module('abc-fe', [
             .state('post', {
                 abstract: true,
                 url: '/post',
-                templateUrl: 'components/post/postView.html',
+                templateUrl: 'app/components/post/postView.html',
                 controller: 'postController',
                 resolve: {
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load (
                             {
-                                files: ['components/post/postController.js']
+                                files: ['app/components/post/postController.js']
                             }
                         )
                     }
@@ -43,13 +43,13 @@ angular.module('abc-fe', [
             })
             .state('post.detail', {
                 url: '/:title',
-                templateUrl: 'components/post/postView.html',
+                templateUrl: 'app/components/post/postView.html',
                 controller: 'postController',
                 resolve: {
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load (
                             {
-                                files: ['components/post/postController.js']
+                                files: ['app/components/post/postController.js']
                             }
                         )
                     }
@@ -59,13 +59,13 @@ angular.module('abc-fe', [
             .state('submenu', {
                 abstract: true,
                 url: '/submenu',
-                templateUrl: 'components/submenu/submenuView.html',
+                templateUrl: 'app/components/submenu/submenuView.html',
                 controller: 'submenuController',
                 resolve: {
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load (
                             {
-                                files: ['components/submenu/submenuController.js']
+                                files: ['app/components/submenu/submenuController.js']
                             }
                         )
                     }
@@ -74,13 +74,13 @@ angular.module('abc-fe', [
             .state('submenu.detail', {
                 url: '/:subcate',
                 cache: false,
-                templateUrl: 'components/submenu/submenuView.html',
+                templateUrl: 'app/components/submenu/submenuView.html',
                 controller: 'submenuController',
                 resolve: {
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load (
                             {
-                                files: ['components/submenu/submenuController.js']
+                                files: ['app/components/submenu/submenuController.js']
                             }
                         )
                     }
