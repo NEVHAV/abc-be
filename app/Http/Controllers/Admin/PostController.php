@@ -7,6 +7,7 @@ use Auth;
 use App\Post;
 use App\User;
 use App\Subcategory;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -31,8 +32,11 @@ class PostController extends Controller
     public function create()
     {
         if (Auth::check()) {
+            $sub_categories = Subcategory::orderBy('name_vn', 'asc')->get();
 
-            return view('admin/post/create');
+            return view('admin/post/create', [
+                'sub_categories' => $sub_categories,
+            ]);
         }
 
         return redirect('admin/login');
@@ -42,6 +46,9 @@ class PostController extends Controller
     public function store()
     {
         if (Auth::check()) {
+
+            print_r('aaaa');
+            die();
 
             return view('admin/post/index');
         }

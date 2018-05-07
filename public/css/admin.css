@@ -1,3 +1,12 @@
 .user-header {
     display: inline;
 }
+
+.btn-border {
+    border: solid 1px #d2d6de;
+    background: white;
+}
+
+.btn-border.active {
+    border: solid 2px #2196F3;
+}

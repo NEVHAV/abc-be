@@ -9,6 +9,8 @@ ADMIN.bindUIAction = function () {
     this.bindCategoryDataTable();
     this.bindUserDataTable();
     this.bindPostDataTable();
+
+    this.POST.bindUIAction();
 };
 
 ADMIN.bindCategoryDataTable = function () {
@@ -36,13 +38,58 @@ ADMIN.bindPostDataTable = function () {
 };
 
 ADMIN.POST.bindUIAction = function () {
+    let postEditor = new MediumEditor('#post-editor', {
+        placeholder: {
+            /* This example includes the default options for placeholder,
+               if nothing is passed this is what it used */
+            text: 'Type your text',
+            hideOnClick: true,
+        },
+        keyboardCommands: {
+            /* This example includes the default options for keyboardCommands,
+               if nothing is passed this is what it used */
+            commands: [
+                {
+                    command: 'bold',
+                    key: 'B',
+                    meta: true,
+                    shift: false,
+                    alt: false,
+                },
+                {
+                    command: 'italic',
+                    key: 'I',
+                    meta: true,
+                    shift: false,
+                    alt: false,
+                },
+                {
+                    command: 'underline',
+                    key: 'U',
+                    meta: true,
+                    shift: false,
+                    alt: false,
+                },
+            ],
+        },
+        autoLink: true,
+    });
 
+    $('#post-editor').mediumInsert({
+        editor: postEditor,
+    });
+
+    $('.select2').select2();
+
+    $('.datepicker').datepicker();
+
+    $('.timepicker').timepicker();
 };
 
 ADMIN.confirmAndDelete = function (id) {
     let caller = $(`#${id}`);
     let message = caller.attr('data-message');
-    let confirm_func = caller.attr('data-function');
+    let confirmFunc = caller.attr('data-function');
     let modal = $('#modal-default');
 
     modal
@@ -51,7 +98,7 @@ ADMIN.confirmAndDelete = function (id) {
         .html(message);
     modal
         .find('.modal-confirmed')
-        .attr('onclick', confirm_func);
+        .attr('onclick', confirmFunc);
 };
 
 ADMIN.POST.delete = function (id) {
