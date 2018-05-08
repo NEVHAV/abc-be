@@ -50,7 +50,7 @@
                     <button class="btn btn-danger btn-xs btn-delete"
                                 data-toggle="modal"
                                 data-target="#modal-default"
-                                data-message="Bạn muốn xóa category?? <b>{{ $category->name_vn }}</b>?"
+                                data-message="Bạn muốn xóa category<b>{{ $category->name_vn }}</b>?"
                                 id="{{ $category->id }}"
                                 data-function="ADMIN.CATEGORY.delete({{ $category->id }})"
                                 onclick="ADMIN.confirmAndDelete({{ $category->id }})">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Category;
+use App\Subcategory;
+use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -83,7 +85,9 @@ class CategoryController extends Controller
     {
         if (Auth::check()) {
             Category::where('id',$id)->delete();
-           $categories = Category::orderBy('id', 'asc')->get();
+            Subcategory::where('id_cate', $id)->delete();
+            Post::where('id_cate', $id)->delete();
+            $categories = Category::orderBy('id', 'asc')->get();
             return view('admin/category/index', [
                 'categories' => $categories,
             ]); 

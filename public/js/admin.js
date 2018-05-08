@@ -1,6 +1,6 @@
 const ADMIN = {};
 ADMIN.POST = {};
-
+ADMIN.CATEGORY = {};
 ADMIN.init = function () {
     this.bindUIAction();
 };
@@ -138,6 +138,19 @@ ADMIN.confirmAndDelete = function (id) {
 
 ADMIN.POST.delete = function (id) {
     let url = '/admin/posts/' + id;
+    $.ajax({
+        url: url,
+        type: 'delete',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        },
+    }).done((data) => {
+        window.location.reload();
+    });
+};
+
+ADMIN.CATEGORY.delete = function (id) {
+    let url = '/admin/categories/' + id;
     $.ajax({
         url: url,
         type: 'delete',
