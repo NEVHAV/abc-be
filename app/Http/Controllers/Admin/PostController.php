@@ -8,6 +8,8 @@ use App\Post;
 use App\User;
 use App\Subcategory;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class PostController extends Controller
 {
@@ -43,14 +45,42 @@ class PostController extends Controller
     }
 
     // POST /posts
-    public function store()
+    public function store(Request $request)
     {
         if (Auth::check()) {
+            $data = $this->validate($request, [
+                'title' => 'required',
+                'state' => 'required',
+                'cover' => 'required',
+                'content' => 'required',
+                'language' => 'required',
+                'id_sub' => 'required',
+            ]);
 
-            print_r('aaaa');
-            die();
+            $data['published_date'] = join(' ', $request->input('published_date'));
 
-            return view('admin/post/index');
+            $post = new Post;
+
+            $post->title = $data['title'];
+            $post->state = $data['state'];
+            $post->id_user = Auth::user()->id;
+
+            if ($post->state == 1) {
+                $post->published_date = Carbon::createFromFormat('d/m/Y H:i:s', $data['published_date'])
+                    ->format('Y-m-d H:i:s');
+            }
+
+            $post->cover = $data['cover'];
+            $post->content = $data['content'];
+            $post->language = $data['language'];
+            $post->id_sub = $data['id_sub'];
+
+            $sub_category = Subcategory::find($post->id_sub);
+
+            $post->id_cate = $sub_category->id_cate;
+            $post->save();
+
+            return redirect('/admin/posts');
         }
 
         return redirect('admin/login');
