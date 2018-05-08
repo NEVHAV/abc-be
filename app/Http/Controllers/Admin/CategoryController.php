@@ -1,87 +1,93 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Auth;
 
 class CategoryController extends Controller
 {
     // GET /categories
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
-
-            return view('admin/category/index');
+            $categories = Category::orderBy('id', 'asc')->get();
+            return view('admin/category/index', [
+                'categories' => $categories,
+            ]);
         }
 
         return redirect('admin/login');
     }
 
     // GET /categories/create
-    public function create()
+    public function create(Request $request)
     {
         if (Auth::check()) {
-
-            return view('admin/category/create');
+                return view('admin/category/create');
         }
-
         return redirect('admin/login');
     }
 
-    // POST /categories
-    public function store()
-    {
-        if (Auth::check()) {
-
-            return view('admin/category/index');
+    // POST /categories/store
+    public function store(Request $request){
+        if (Auth::check()) {      
+            $input = $request->all();
+            $category = new Category();
+            $create = Category::create($input);
+            $categories = Category::orderBy('id', 'asc')->get();
+            return view('admin/category/index', [
+                'categories' => $categories,
+            ]);
         }
-
         return redirect('admin/login');
     }
 
 
     // GET /categories/{category}
-    public function show()
+    public function show($id)
     {
         if (Auth::check()) {
-
             return view('admin/category/show');
         }
-
-        return redirect('admin/login');
     }
 
     // GET /categories/{category}/edit
-    public function edit()
+    public function edit($id)
     {
-        if (Auth::check()) {
-
-            return view('admin/category/edit');
+          if (Auth::check()) {
+            $category=Category::find($id);
+            return view('admin/category/edit', ['category'=>$category]);
         }
 
         return redirect('admin/login');
     }
 
     // PATCH /categories/{category}
-    public function update()
+    public function update(Request $request, $id)
     {
         if (Auth::check()) {
-
-            return view('admin/category/update');
+            $input = $request->all();
+            $category=Category::find($id);
+            $category->update($input);
+            $categories = Category::orderBy('id', 'asc')->get();
+            return view('admin/category/index', [
+                'categories' => $categories,
+            ]);
         }
-
-        return redirect('admin/login');
     }
 
     // DELETE /categories/{category}
-    public function destroy()
+    public function destroy($id)
     {
         if (Auth::check()) {
-
-            return view('admin/category/destroy');
+            Category::where('id',$id)->delete();
+           $categories = Category::orderBy('id', 'asc')->get();
+            return view('admin/category/index', [
+                'categories' => $categories,
+            ]); 
         }
-
-        return redirect('admin/login');
+         return redirect('admin/login');
     }
 }
