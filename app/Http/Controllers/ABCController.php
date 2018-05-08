@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
@@ -23,38 +24,34 @@ class ABCController extends Controller
 
     public function getCategories($lang)
     {
-        $result = Category::select('id_cate', 'name_'.$lang)
+        $result = Category::select('id', 'name_' . $lang)
             ->get();
         foreach ($result as $data) {
-            $data['name'] = $data['name_'.$lang];
+            $data['name'] = $data['name_' . $lang];
         }
-        return response()->json(['result' => true, 'lang'=>$lang, 'data' => $result]);
+        return response()->json(['result' => true, 'lang' => $lang, 'data' => $result]);
     }
 
-    public function getSubcategories($cate, $lang)
+    public function getSubcategories($lang, $cate)
     {
         $result = Subcategory::where('id_cate', $cate)
-            ->select('id_sub','id_cate', 'name_'.$lang)
+            ->select('id', 'id_cate', 'name_' . $lang)
             ->get();
         foreach ($result as $data) {
-            $data['name'] = $data['name'.$lang];
+            $data['name'] = $data['name_' . $lang];
         }
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-    public function getPosts($cate, $sub = null, $lang)
+    public function getPosts($lang, $cate, $sub = null)
     {
         if ($sub == null) {
-            $maxDate = Post::where('id_cate', $cate)
+            $result = Post::where('id_cate', $cate)
                 ->where('language', $lang)
-                ->max('updated_at');
-            $result = Post::where('updated_at', $maxDate)
-                ->where('id_cate', $cate)
-                ->where('language', $lang)
+                ->orderBy('published_date', 'asc')
                 ->first();
             return response()->json(['result' => true, 'data' => $result]);
-        }
-        else {
+        } else {
             $maxDate = Post::where('id_cate', $cate)
                 ->where('id_sub', $sub)
                 ->where('language', $lang)
@@ -67,7 +64,7 @@ class ABCController extends Controller
         }
     }
 
-    public function getLatestPosts ($lang)
+    public function getLatestPosts($lang)
     {
         $result = Post::orderBy('updated_at', 'desc')
             ->where('language', $lang)
@@ -76,30 +73,30 @@ class ABCController extends Controller
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-    public function getBreadcrumbs ($subcate, $lang)
+    public function getBreadcrumbs($lang, $subcate)
     {
-        $cateName = Category::join('subcategories', 'subcategories.id_cate', '=', 'categories.id_cate')
-            ->where('subcategories.id_sub', $subcate)
-            ->select('categories.name_'.$lang)
+        $cateName = Category::join('subcategories', 'subcategories.id_cate', '=', 'categories.id')
+            ->where('subcategories.id', $subcate)
+            ->select('categories.name_' . $lang)
             ->get();
-        $subcateName = Subcategory::where('id_sub', $subcate)
-            ->select('name_'.$lang)
+        $subcateName = Subcategory::where('id', $subcate)
+            ->select('name_' . $lang)
             ->get();
         foreach ($subcateName as $data) {
-            $data['name'] = $data['name'.$lang];
+            $data['name'] = $data['name_' . $lang];
         }
-        $result = ['cate' => $cateName, 'subcate' => $subcateName, 'id_sub' => $subcate];
+        $result = ['cate' => $cateName, 'subcate' => $subcateName, 'id' => $subcate];
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-    public function getPostDetail ($postId, $lang)
+    public function getPostDetail($postId, $lang)
     {
-        $result = Post::where('id_post', $postId)
+        $result = Post::where('id', $postId)
             ->get();
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-    public function getSubmenu ($subId, $lang)
+    public function getSubmenu($lang, $subId)
     {
         $result = Post::where('id_sub', $subId)
             ->where('language', $lang)

@@ -73,7 +73,6 @@ angular.module('abc-fe', [
             })
             .state('submenu.detail', {
                 url: '/:subcate',
-                cache: false,
                 templateUrl: 'app/components/submenu/submenuView.html',
                 controller: 'submenuController',
                 resolve: {

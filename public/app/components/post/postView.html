@@ -1,40 +1,91 @@
 <title>{{ title }}</title>
 <main>
     <div class="header">
-        <nav class="nav_1">
-            <div class="right">
-                <div class="" style="height: 35px; line-height: 0">
-                    <a style="padding-top: 0"><i class="material-icons" style="padding-top: 10px; line-height: 30px; width: 30px; display: inline; font-size: 15px">local_phone</i>{{ phoneNumber }}</a>
-                    <a>|</a>
-                    <a>Ngôn ngữ:</a>
+        <nav class="nav_1 u-height35">
+            <div class="nav-content u-flex u-maxWidth1200">
+                <div class="left-content u-flex1">
+                </div>
+                <div class="right-content">
+                    <div class="phone-number menu-item">
+                        <i class="fa fa-phone fa-1x"> </i>
+                        {{ phoneNumber }}
+                    </div>
+                    <div class="vertical-separator menu-item">
+                        |
+                    </div>
+                    <div class="language menu-item">
+                        Ngôn ngữ
+                        <a class="flag-language u-cursorPointer active" ng-click="changeLang('vn')">
+                            <img class="flag u-height15" src="/images/vn.svg"
+                                 alt="Vietnam Flag">
+
+                        </a>
+                        <a class="flag-language u-cursorPointer " ng-click="changeLang('jp')">
+                            <img class="flag u-height15" src="/images/jp.svg"
+                                 alt="Japan Flag">
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
         <nav class="nav_2">
-            <div class="row">
-                <div class="col s1"></div>
-                <div class="col s3" style="cursor: pointer" ui-sref="home" ui-sref-active="">
-                    <h5 style="font-weight: bold">CÔNG TY TNHH ABC</h5>
-                    <h6 style="font-size: 10px">UY TÍN - TRÁCH NHIỆM - HIỆU QUẢ</h6>
+            <div class="nav-content u-flex u-maxWidth1200">
+                <div class="brand-container u-flex">
+                    <div class="logo u-height65 u-marginRight8">
+                        <img class="u-width50 u-verticalAlignMiddle" src="/images/favicon.png">
+                    </div>
+                    <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
+                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">CÔNG TY TNHH
+                            KTM
+                        </div>
+                        <div class="brand-description u-lineHeight13 u-fontWeightThin">UY TÍN - TRÁCH NHIỆM - HIỆU QUẢ
+                        </div>
+                    </div>
                 </div>
-                <div class="right">
-                    <ul class="tabs header-tab navbar-right">
-                        <li class="" style="color: #c5d2e1" ng-repeat="category in categories"><a class="white-text" href="#cate{{ category.id_cate }}">{{ category.name }}</a>
+
+                <div class="menu u-flex1 u-block">
+                    <ul>
+                        <li class="u-marginLeft10 u-floatRight u-marginRightNegative12"
+                            ng-repeat="category in categories">
+                            <a href="#cate{{ category.id_cate }}" class="menu-item">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                        <li class="u-marginLeft10 u-floatRight u-marginRightNegative12">
+                            <a href="/" class="menu-item active">
+                                TRANG CHỦ
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col s8"></div>
             </div>
         </nav>
     </div>
 
     <!--body-->
     <div class="body center-align">
-        <!--post-->
-        <div class="row main">
-            <div class="col s1"></div>
-            <!--post-->
-            <div class="col s7">
+        <!--slider-->
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img ng-src="/images/ads/cover.jpg">
+                </li>
+                <li>
+                    <img ng-src="/images/ads/cover2.jpg">
+                </li>
+                <li>
+                    <img ng-src="/images/ads/cover3.jpg">
+                </li>
+            </ul>
+        </div>
+
+        <!--post + latest post + advertisement-->
+        <div class="body-container u-maxWidth1200 u-marginAuto">
+            <div class="body-content u-flex">
+                <div class="content-left u-flex1">
+                    <div class="u-maxWidth780">
+                        <!--post-->
+                        <div class="col s7">
                 <nav style="height: 50px; padding-top: 0; background-color: white; box-shadow: none">
                     <div class="nav-wrapper">
                         <div class="left-align">
@@ -52,24 +103,31 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
 
-            <!--latest post + advertisement-->
-            <div class="col s3">
-                <!--latest post-->
-                <div class="row" style="padding-top: 30px">
-                    <div class="col s11" >
+
+                <div class="content-right u-width320">
+                    <!--latest post + advertisement-->
+                    <!--latest post-->
+                    <div class="news-container">
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
-                            <div class="black-text" style="height: 120px">
-                                <h6 style="font-weight: bold">TIN MỚI CẬP NHẬT</h6>
+                            <div class="black-text">
+                                <h6 class="u-fontWeightBold u-fontSize16">TIN MỚI CẬP NHẬT</h6>
                                 <hr style="width: 200px">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
                                     <tr ng-repeat="latestPost in latestPosts">
-                                        <th style="font-size: 200%;padding-left: 20px; color: #3f51b5">0{{ $index + 1}}</th>
+                                        <th class="u-fontSize36 u-textAlignCenter" style="color: #3f51b5">0{{
+                                            $index +
+                                            1}}
+                                        </th>
                                         <th>
-                                            <a class="black-text" style="cursor: pointer" ng-click="showPost(latestPost.id_post, latestPost.title, latestPost.id_sub)">{{ latestPost.title }}</a><br>
-                                            <a style="font-size: 70%; font-weight: normal; color: lightslategrey">{{ latestPost.updated_at }}</a>
+                                            <div class="u-fontSize16">{{ latestPost.title }}</div>
+                                            <div class="u-textColorDark u-fontWeightThin">{{
+                                                latestPost.updated_at }}
+                                            </div>
                                         </th>
                                     </tr>
                                     </tbody>
@@ -77,29 +135,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s1"></div>
-                </div>
 
-                <!--advertisement-->
-                <div class="row" style="padding-top: 250px">
-                    <div class="col s11" >
-                        <div style="background-color: #fce4ec; height: 200px">
+                    <!--advertisement-->
+                    <div class="info-container u-marginTop50">
+                        <div>
                             <div style="height: 10px; background-color: red">
                             </div>
-                            <div class="black-text" style="height: 120px">
-                                <h6 style="font-weight: bold">HỖ TRỢ TRỰC TUYẾN</h6>
+                            <div class="black-text">
+                                <h6 class="u-fontWeightBold u-fontSize16">HỖ TRỢ TRỰC TUYẾN</h6>
                                 <hr style="width: 200px">
                                 <h5 style="font-weight: bold">Hotline</h5>
-                                <h5 style="font-weight: bold; color: red">0912345678</h5>
+                                <h4 style="font-weight: bold; color: red">0912345678</h4>
                                 <hr style="width: 200px">
-                                <table class="borderless" style="background-color: #fce4ec">
+                                <table class="borderless u-maxWidth300 u-marginAuto">
                                     <tbody>
                                     <tr>
-                                        <th><i class="material-icons">account_circle</i></th>
+                                        <th class="u-width100 u-textAlignCenter">
+                                            <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
+                                        </th>
                                         <th>
-                                            Hoàng Vân (Ms)<br>
-                                            <a style="font-size: 70%; font-weight: normal; color: lightslategrey">0123456789</a>
-                                            <a style="font-size: 70%; font-weight: normal; color: lightslategrey">hoangvan@gmail.com</a>
+                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">Hoàng Vân (Ms)</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">0123456789</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">hoangvan@gmail.com</p>
                                         </th>
                                     </tr>
                                     </tbody>
@@ -109,34 +166,35 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col s1"></div>
         </div>
 
     </div>
 
     <!--footer-->
-    <div class="footer">
-        <nav class="nav_footer">
-            <div class="row">
-                <div class="col s1"></div>
-                <div class="col s6">
-                    <div style="font-size: 80%;line-height: 1.6; padding-top: 10px">Trường Trung cấp Kinh tế - Tài nguyên và Môi trường<br>
-                        CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM<br>
-                        <br>
-                        Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội<br>
-                        Điện thoại: (024)22.121.140 | Email: congtyktm@gmail.com | Website: www.ktmgroup.com.vn<br>
-                    </div>
-                </div>
-                <div class="col s1"></div>
-                <div class="col s4" style="padding-top: 35px">
-                    <img style="height: 40px; width: 40px" src="components/home/logoFB.png">
-                    <a href="" ui-sref="test" ng-click="test2()" style="font-size: 120%;padding-top: -10px; font-style: oblique; text-decoration: underline">fb.com/congtyktm</a>
-                </div>
+    <footer class="u-marginTop50">
+        <div class="footer-content u-flex u-padding20 u-paddingBottom2 u-maxWidth1200 u-marginAuto u-textColorWhite">
+            <div class="left-content u-flex1 u-fontSize14">
+                Trường Trung cấp Kinh tế - Tài nguyên và Môi trường
+                <br>
+                CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM
+                <br>
+                <br>
+                Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội
+                <br>
+                Điện thoại: {{ phoneNumber }} | Email: congtyktm@gmail.com | Website:
+                <a class="link u-textColorWhite" href="http://www.ktmgroup.com.vn"
+                   target="_blank">www.ktmgroup.com.vn</a>
+                <br>
+                <br>
+                GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP
+                <br>
+                GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT
             </div>
-            <div style="font-size: 80%;line-height: 1.6"><p class="center-align">GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP<br>
-                GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT</p>
+            <div class="u-width300">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                        width="300" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                        allowTransparency="true" allow="encrypted-media"></iframe>
             </div>
-        </nav>
-    </div>
+        </div>
+    </footer>
 </main>

@@ -133,9 +133,9 @@
                 <div class="col-sm-10">
                     <div class="btn-group-toggle btn-group-with-input">
                         <button type="button"
-                                class="btn btn-flat btn-border {{ $post->language == 'vi' ? 'active' : '' }}"
+                                class="btn btn-flat btn-border {{ $post->language == 'vn' ? 'active' : '' }}"
                                 data-target="#inputLanguage"
-                                value="vi">
+                                value="vn">
                             Tiếng Việt
                         </button>
                         <button type="button"

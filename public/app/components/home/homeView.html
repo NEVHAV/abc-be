@@ -15,13 +15,13 @@
                     </div>
                     <div class="language menu-item">
                         Ngôn ngữ
-                        <a class="flag-language active">
-                            <img class="flag u-height15" src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg"
+                        <a class="flag-language u-cursorPointer active" ng-click="changeLang('vn')">
+                            <img class="flag u-height15" src="/images/vn.svg"
                                  alt="Vietnam Flag">
 
                         </a>
-                        <a class="flag-language" href="#">
-                            <img class="flag u-height15" src="https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg"
+                        <a class="flag-language u-cursorPointer " ng-click="changeLang('jp')">
+                            <img class="flag u-height15" src="/images/jp.svg"
                                  alt="Japan Flag">
                         </a>
                     </div>
@@ -32,7 +32,7 @@
             <div class="nav-content u-flex u-maxWidth1200">
                 <div class="brand-container u-flex">
                     <div class="logo u-height65 u-marginRight8">
-                        <img class="u-width50 u-verticalAlignMiddle" src="app/components/home/favicon.png">
+                        <img class="u-width50 u-verticalAlignMiddle" src="/images/favicon.png">
                     </div>
                     <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
                         <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">CÔNG TY TNHH
@@ -47,13 +47,13 @@
                     <ul>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12"
                             ng-repeat="category in categories">
-                            <a href="#cate{{ category.id_cate }}" class="menu-item">
+                            <a href="#cate{{ category.id }}" class="menu-item">
                                 {{ category.name }}
                             </a>
                         </li>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12">
                             <a href="/" class="menu-item active">
-                                Trang chủ
+                                TRANG CHỦ
                             </a>
                         </li>
                     </ul>
@@ -68,13 +68,13 @@
         <div class="slider">
             <ul class="slides">
                 <li>
-                    <img ng-src="app/components/home/cover.jpg">
+                    <img ng-src="/images/ads/cover.jpg">
                 </li>
                 <li>
-                    <img ng-src="app/components/home/cover2.jpg">
+                    <img ng-src="/images/ads/cover2.jpg">
                 </li>
                 <li>
-                    <img ng-src="app/components/home/cover3.jpg">
+                    <img ng-src="/images/ads/cover3.jpg">
                 </li>
             </ul>
         </div>
@@ -84,55 +84,56 @@
             <div class="body-content u-flex">
                 <div class="content-left u-flex1">
                     <div class="u-maxWidth780">
+                        <!--show: false-->
                         <div class="col s7" ng-hide="show()">
                             <table class="borderless white">
                                 <tbody>
-                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
+                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id)">
                                     <td class="row">
                                         <div class="col s12">
                                             <ul class="tabs u-borderBottomGrayLight">
                                                 <li class="tab"><a class="black-text category"
-                                                                   href="#cate{{ category.id_cate }}"
-                                                                   ng-click="getPost(category.id_cate, 0); changeShow()">{{
+                                                                   href="#cate{{ category.id }}"
+                                                                   ng-click="changeShow()">{{
                                                     category.name }}</a></li>
                                                 <li class="tab"
-                                                    ng-repeat="subcategory in subcategories[category.id_cate]"><a
-                                                        class="black-text subcategory" href="#sub{{subcategory.id_sub}}"
-                                                        ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
+                                                    ng-repeat="subcategory in subcategories[category.id]"><a
+                                                        class="black-text subcategory" href="#sub{{subcategory.id}}"
+                                                        ng-click="getPost(category.id, subcategory.id); changeShow()">{{
                                                     subcategory.name }}</a></li>
                                             </ul>
                                         </div>
                                         <div>
                                             <!--post category-->
-                                            <div id="cate{{ category.id_cate }}" class="row">
+                                            <div id="cate{{ category.id }}" class="row">
                                                 <div class="col s4">
                                                     <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ catePosts[category.id_cate].cover }}">
+                                                         src="{{ catePosts[category.id]? catePosts[category.id].cover : '/images/no-cover.jpg' }}">
                                                 </div>
                                                 <div class="col s8" style="height: 12em; overflow: hidden">
                                                     <p class="pointer post-title"
-                                                       ng-click="showPost(catePosts[category.id_cate].id_post, catePosts[category.id_cate].title, catePosts[category.id_cate].id_sub)"
-                                                       href="#">{{ catePosts[category.id_cate].title }}</p>
-                                                    <p class="">{{ catePosts[category.id_cate].content }}</p>
+                                                       ng-click="showPost(catePosts[category.id].id, catePosts[category.id].title, catePosts[category.id].id)"
+                                                       href="#">{{ catePosts[category.id].title }}</p>
+                                                    <p class="">{{ catePosts[category.id].content }}</p>
                                                 </div>
                                             </div>
                                             <!--post subcategory-->
-                                            <div id="sub{{ subcategory.id_sub }}"
-                                                 ng-repeat="subcategory in subcategories[category.id_cate]" class="row">
+                                            <div id="sub{{ subcategory.id }}"
+                                                 ng-repeat="subcategory in subcategories[category.id]" class="row">
                                                 <div class="col s4">
                                                     <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ posts[subcategory.id_sub].cover }}">
+                                                         src="{{ posts[subcategory.id].cover }}">
                                                 </div>
                                                 <div class="col s8" style="height: 12em; overflow: hidden">
                                                     <p class="pointer post-title"
-                                                       ng-click="showPost(posts[subcategory.id_sub].id_post, posts[subcategory.id_sub].title, subcategory.id_sub)"
-                                                       href="#">{{ posts[subcategory.id_sub].title }}</p>
-                                                    <p>{{ posts[subcategory.id_sub].content }}</p>
+                                                       ng-click="showPost(posts[subcategory.id].id, posts[subcategory.id].title, subcategory.id)"
+                                                       href="#">{{ posts[subcategory.id].title }}</p>
+                                                    <p>{{ posts[subcategory.id].content }}</p>
                                                 </div>
                                                 <div class="col s4"></div>
                                                 <div class="col s8" style="padding-top: 1em">
                                                     <a class="pointer left-align blue-text" href="#"
-                                                       ng-click="showSubmenu(subcategory.id_sub, subcategory.name)">Xem
+                                                       ng-click="showSubmenu(subcategory.id, subcategory.name)">Xem
                                                         thêm {{ subcategory.name }}</a>
                                                 </div>
                                             </div>
@@ -147,61 +148,33 @@
                         <div class="col s7" ng-show="show()">
                             <table class="borderless white">
                                 <tbody>
-                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
+                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id)">
                                     <td class="row">
                                         <div class="col s12">
                                             <ul class="tabs u-borderBottomGrayLight">
-                                                <li class="tab">
-                                                    <a class="black-text category"
-                                                                   href="#show{{ category.id_cate }}"
-                                                                   ng-init="getPost(category.id_cate, 0)"
+                                                <li class="tab"><a class="black-text category"
+                                                                   href="#show{{ category.id }}"
+                                                                   ng-init="getPost(category.id, 0)"
                                                                    ng-click="changeShow()">{{ category.name }}</a></li>
                                                 <li class="tab"
-                                                    ng-repeat="subcategory in subcategories[category.id_cate]"><a
-                                                        class="black-text subcategory" href="#sub{{subcategory.id_sub}}"
-                                                        ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
+                                                    ng-repeat="subcategory in subcategories[category.id]"><a
+                                                        class="black-text subcategory" href="#sub{{subcategory.id}}"
+                                                        ng-click="getPost(category.id, subcategory.id); changeShow()">{{
                                                     subcategory.name }}</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!--show: true-->
-                        <div class="col s7" ng-show="show()">
-                            <!--show: true-->
-                            <table class="borderless white">
-                                <tbody>
-                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id_cate)">
-                                    <td class="row">
-                                        <div class="col s12">
-                                            <ul class="tabs u-borderBottomGrayLight">
-                                                <li class="tab"><a class="black-text category active"
-                                                                   href="#show{{ category.id_cate }}"
-                                                                   ng-init="getPost(category.id_cate, 0)"
-                                                                   ng-click="changeShow()">{{
-                                                    category.name }}</a></li>
-                                                <li class="tab"
-                                                    ng-repeat="subcategory in subcategories[category.id_cate]">
-                                                    <a
-                                                            class="black-text subcategory"
-                                                            href="#sub{{subcategory.id_sub}}"
-                                                            ng-click="getPost(category.id_cate, subcategory.id_sub); changeShow()">{{
-                                                        subcategory.name }}</a></li>
                                             </ul>
                                         </div>
                                         <div>
                                             <!--post category-->
-                                            <div id="show{{ category.id_cate }}" class="row">
+                                            <div id="show{{ category.id }}" class="row">
                                                 <div class="col s4">
                                                     <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ catePosts[category.id_cate].cover }}">
+                                                         src="{{ catePosts[category.id]? catePosts[category.id].cover : '/images/no-cover.jpg' }}">
                                                 </div>
-                                                <div class="col s8">
-                                                    <p class="post-title">{{ catePosts[category.id_cate].title }}</p>
-                                                    <p>{{ catePosts[category.id_cate].content }}</p>
+                                                <div class="col s8" style="height: 12em; overflow: hidden">
+                                                    <p class="pointer post-title"
+                                                       ng-click="showPost(catePosts[category.id].id, catePosts[category.id].title, catePosts[category.id].id)"
+                                                       href="#">{{ catePosts[category.id].title }}</p>
+                                                    <p>{{ catePosts[category.id].content }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -281,20 +254,21 @@
     <footer class="u-marginTop50">
         <div class="footer-content u-flex u-padding20 u-paddingBottom2 u-maxWidth1200 u-marginAuto u-textColorWhite">
             <div class="left-content u-flex1 u-fontSize14">
-                    Trường Trung cấp Kinh tế - Tài nguyên và Môi trường
-                    <br>
-                    CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM
-                    <br>
-                    <br>
-                    Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội
-                    <br>
-                    Điện thoại: {{ phoneNumber }} | Email: congtyktm@gmail.com | Website:
-                    <a class="link u-textColorWhite" href="http://www.ktmgroup.com.vn" target="_blank">www.ktmgroup.com.vn</a>
-                    <br>
-                    <br>
-                    GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP
-                    <br>
-                    GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT
+                Trường Trung cấp Kinh tế - Tài nguyên và Môi trường
+                <br>
+                CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM
+                <br>
+                <br>
+                Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội
+                <br>
+                Điện thoại: {{ phoneNumber }} | Email: congtyktm@gmail.com | Website:
+                <a class="link u-textColorWhite" href="http://www.ktmgroup.com.vn"
+                   target="_blank">www.ktmgroup.com.vn</a>
+                <br>
+                <br>
+                GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP
+                <br>
+                GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT
             </div>
             <div class="u-width300">
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"

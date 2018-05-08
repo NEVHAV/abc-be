@@ -26,7 +26,7 @@ class PostsTableSeeder extends Seeder
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -41,7 +41,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -56,7 +56,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -71,7 +71,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -86,7 +86,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -101,7 +101,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -116,7 +116,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
@@ -131,7 +131,7 @@ Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người d
 “Chúng ta cần những bước đột phá trong tất cả các lĩnh vực của cuộc sống. Tôi tin tưởng sâu sắc rằng bước đột phá đó chỉ có thể đạt được trong một xã hội tự do, sẵn sàng tiếp nhận những điều mới mẻ cũng như hiện đại, đồng thời gạt bỏ tất cả sự bất công, trì trệ, bảo hộ và thói quan liêu”, ông nói.<br>
 “Con đường phía trước không hề dễ dàng, mà đó luôn luôn là cuộc tìm kiếm khó khăn. Lịch sử sẽ không có chỗ đứng cho sự dửng dưng, thói tự mãn, sự thiếu nhất quán. Đặc biệt trong thời đại ngày nay - kỷ nguyên của những sự thay đổi diễn ra trên toàn thế giới”, ông Putin nói thêm.<br>
 Theo ông Putin, “mục tiêu của chúng tôi là nước Nga cho người dân Nga, một đất nước mở ra cơ hội phát triển bản thân cho tất cả mọi người. Tôi tin tưởng sâu sắc rằng luôn có sự gắn kết trực tiếp giữa các nhiệm vụ lớn lao của đất nước với các nhu cầu thường nhật của người dân”.',
-                'language' => 'vi',
+                'language' => 'vn',
                 'published_date' => Carbon::now()->toDateString(),
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
