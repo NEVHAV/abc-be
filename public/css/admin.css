@@ -10,3 +10,12 @@
 .btn-border.active {
     border: solid 2px #2196F3;
 }
+
+.medium-editor-insert-plugin .medium-insert-buttons {
+    left: -20px !important;
+}
+
+.medium-editor-insert-plugin .medium-insert-buttons .medium-insert-buttons-show span {
+    display: block;
+    margin-top: 2px !important;
+}

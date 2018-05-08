@@ -46,6 +46,8 @@ Route::resource('admin/users', 'Admin\UserController');
 
 Route::resource('admin/posts', 'Admin\PostController');
 
+Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -15,6 +15,15 @@
 @stop
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div><br />
+    @endif
     <div class="content-inner">
         @yield('content-inner')
     </div>
@@ -54,6 +63,8 @@
     <script src="/js/jquery-sortable-min.js"></script>
     <script src="/js/jquery.ui.widget.js"></script>
     <script src="/js/jquery.iframe-transport.min.js"></script>
+    <script src="/js/load-image.all.min.js"></script>
+    <script src="/js/canvas-to-blob.min.js"></script>
     <script src="/js/jquery.fileupload.min.js"></script>
     <script src="/js/jquery.fileupload-process.min.js"></script>
     <script src="/js/jquery.fileupload-image.js"></script>
