@@ -15,9 +15,10 @@ class UploadImageController extends Controller
 //            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 //        ]);
 
+        $images = $request->all()['files'];
+
         $files = [];
 
-        $images = $request->file();
         foreach ($images as $image) {
             $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/images/posts');

@@ -7,6 +7,7 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Helpers\ControllerHelper;
 
 class CategoryController extends Controller
 {
@@ -20,7 +21,7 @@ class CategoryController extends Controller
             ]);
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // GET /categories/create
@@ -29,21 +30,24 @@ class CategoryController extends Controller
         if (Auth::check()) {
                 return view('admin/category/create');
         }
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // POST /categories/store
     public function store(Request $request){
         if (Auth::check()) {      
             $input = $request->all();
+            
             $category = new Category();
-            $create = Category::create($input);
-            $categories = Category::orderBy('id', 'asc')->get();
-            return view('admin/category/index', [
-                'categories' => $categories,
-            ]);
+            $category->name_vn = $input['name_vn'];
+            $category->name_jp = $input['name_jp'];
+            $category->slug = ControllerHelper::slug($input['name_vn']);
+            
+            $category->save();
+
+            return redirect('/admin/categories');
         }
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
 
@@ -63,7 +67,7 @@ class CategoryController extends Controller
             return view('admin/category/edit', ['category'=>$category]);
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // PATCH /categories/{category}
@@ -92,6 +96,6 @@ class CategoryController extends Controller
                 'categories' => $categories,
             ]); 
         }
-         return redirect('admin/login');
+         return redirect('/admin/login');
     }
 }
