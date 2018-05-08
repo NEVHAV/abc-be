@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/css/editor.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 @stop
 
 @section('content')
