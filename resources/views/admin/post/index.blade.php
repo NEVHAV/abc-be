@@ -31,7 +31,7 @@
             @foreach($posts as $post)
                 <tr>
                     <td>
-                        <a href="/admin/posts/{{ $post->id }}">
+                        <a href="/admin/posts/{{ $post->id }}/edit">
                             {{ $post->title }}
                         </a>
                     </td>

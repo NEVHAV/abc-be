@@ -140,7 +140,7 @@
             </div>
 
             <div class="box-footer u-backgroundTransparentBlackLightest u-marginBottom50">
-                <input type="submit" class="btn btn-success pull-right u-minWidth80" value="Luu">
+                <input type="submit" class="btn btn-success pull-right u-minWidth80" value="Lưu bài viết">
             </div>
         </form>
     </div>
