@@ -39,7 +39,7 @@
                     <td>{{ $post->sub->name_vn }}</td>
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->published_date }}</td>
-                    <td>{{ $post->language == 'vi' ? 'Tiếng Việt' : 'Tiếng Nhật'  }}</td>
+                    <td>{{ $post->language == 'vn' ? 'Tiếng Việt' : 'Tiếng Nhật'  }}</td>
                     <td>
                         <a class="btn btn-warning btn-xs btn-detail"
                            href="/admin/posts/{{ $post->id }}/edit">

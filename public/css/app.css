@@ -113,3 +113,29 @@ header {
 .info-container {
     background-color: #fce4ec;
 }
+
+.breadcrumb:before {
+    color: grey;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #355876;
+    text-align: left;
+}
+
+.time {
+    font-style: italic;
+    font-size: small;
+    color: #355876;
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 3em;
+}
+
+.post-cover {
+    width: 500px;
+    height: auto;
+    padding-bottom: 10px;
+}
