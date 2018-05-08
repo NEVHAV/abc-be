@@ -31,11 +31,11 @@
             @foreach($posts as $post)
                 <tr>
                     <td>
-                        <a href="/admin/posts/{{ $post->id }}">
+                        <a href="/admin/posts/{{ $post->id }}/edit">
                             {{ $post->title }}
                         </a>
                     </td>
-                    <td>{{ $post->state  == 0 ? 'Bản nháp' : ($post->state == 1 ? 'Đã đăng' : 'Lưu trữ') }}</td>
+                    <td>{{ $post->state  == 0 ? 'Bản nháp' : ($post->state == 1 ? 'Công khai' : 'Lưu trữ') }}</td>
                     <td>{{ $post->sub->name_vn }}</td>
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->published_date }}</td>

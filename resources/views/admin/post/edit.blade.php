@@ -13,7 +13,6 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
-            <input type="hidden" name="id_user" value="{{ $post->id_user }}">
             <div class="form-group">
                 <label for="inputTitle" class="col-sm-2 control-label">Tiêu đề</label>
                 <div class="col-sm-10">
@@ -85,7 +84,7 @@
                             <span class="btn btn-default btn-flat fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span>Upload cover</span>
-                                <input type="file" name="image" id="fileupload">
+                                <input type="file" name="files[]" id="fileupload">
                             </span>
                             <button type="button"
                                     id="cover-remove"

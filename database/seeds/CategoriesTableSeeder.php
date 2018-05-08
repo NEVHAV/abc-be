@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\Http\Helpers\ControllerHelper;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -47,6 +48,12 @@ class CategoriesTableSeeder extends Seeder
             ],
         ];
 
-        DB::table('categories')->insert($data);
+        $new_data = [];
+        foreach ($data as $datum) {
+            $datum['slug'] = ControllerHelper::slug($datum['name_vn']);
+            array_push($new_data, $datum);
+        }
+
+        DB::table('categories')->insert($new_data);
     }
 }

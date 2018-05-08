@@ -14,6 +14,6 @@ class AdminController extends Controller
               return view('admin/dashboard');
           }
 
-          return redirect('admin/login');
+          return redirect('/admin/login');
     }
 }

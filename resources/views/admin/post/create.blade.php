@@ -81,7 +81,7 @@
                             <span class="btn btn-default btn-flat fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span>Upload cover</span>
-                                <input type="file" name="image" id="fileupload">
+                                <input type="file" name="files[]" id="fileupload">
                             </span>
                             <button type="button"
                                     id="cover-remove"

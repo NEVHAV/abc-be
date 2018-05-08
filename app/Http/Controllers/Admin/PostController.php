@@ -9,6 +9,7 @@ use App\User;
 use App\Subcategory;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Http\Helpers\ControllerHelper;
 
 
 class PostController extends Controller
@@ -27,7 +28,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // GET /posts/create
@@ -41,7 +42,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // POST /posts
@@ -62,6 +63,7 @@ class PostController extends Controller
             $post = new Post;
 
             $post->title = $data['title'];
+            $post->slug = ControllerHelper::slug($data['title']);
             $post->state = $data['state'];
             $post->id_user = Auth::user()->id;
 
@@ -83,7 +85,7 @@ class PostController extends Controller
             return redirect('/admin/posts');
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
 
@@ -95,7 +97,7 @@ class PostController extends Controller
             return redirect('/admin/posts');
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // GET /posts/{post}/edit
@@ -119,7 +121,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // PATCH /posts/{post}
@@ -133,7 +135,7 @@ class PostController extends Controller
                 'content' => 'required',
                 'language' => 'required',
                 'id_sub' => 'required',
-                'id_user' => 'required',
+//                'id_user' => 'required',
             ]);
 
             $data['published_date'] = join(' ', $request->input('published_date'));
@@ -142,7 +144,7 @@ class PostController extends Controller
 
             $post->title = $data['title'];
             $post->state = $data['state'];
-            $post->id_user = $data['id_user'];
+//            $post->id_user = $data['id_user'];
 
             if ($post->state == 1) {
                 $post->published_date = Carbon::createFromFormat('d/m/Y H:i:s', $data['published_date'])
@@ -162,7 +164,7 @@ class PostController extends Controller
             return redirect('/admin/posts');
         }
 
-        return redirect('admin/login');
+        return redirect('/admin/login');
     }
 
     // DELETE /posts/{post}
@@ -177,8 +179,8 @@ class PostController extends Controller
         }
 
         return response()->json([
-                'status' => 'error',
-                'message' => 'Ban phai dang nhap',
-            ]);
+            'status' => 'error',
+            'message' => 'Ban phai dang nhap',
+        ]);
     }
 }
