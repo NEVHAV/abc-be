@@ -127,6 +127,11 @@ return [
             'icon' => 'th-list',
         ],
         [
+            'text' => 'Sub Category',
+            'url' => 'admin/subcategories',
+            'icon' => 'th-list',
+        ],
+        [
             'text' => 'Người dùng',
             'url' => 'admin/users',
             'icon' => 'user',
