@@ -11,14 +11,6 @@ angular.module('abc-fe')
             });
         });
 
-        setTimeout(function () {
-            $(document).ready(function () {
-                $('.tabs').tabs({
-                    swipeable: false,
-                });
-            });
-        }, 100);
-
         $scope.title = 'ABC - Trang chủ';
         $scope.phoneNumber = '(+84) 24-888-888';
 
@@ -48,6 +40,11 @@ angular.module('abc-fe')
         //get data
         $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
             $scope.data = response.data.data;
+            $(document).ready(function () {
+                $('.tabs').tabs({
+                    swipeable: false,
+                });
+            });
         }, function (error) {
             console.log('Get data', error);
         });
@@ -61,12 +58,12 @@ angular.module('abc-fe')
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', {slug: $slug});
+            $state.go('topic', { slug: $slug });
         };
 
         //show post
         $scope.showPost = function ($slug) {
-            $state.go('post', {slug: $slug});
+            $state.go('post', { slug: $slug });
         };
 
         //test
