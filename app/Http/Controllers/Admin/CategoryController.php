@@ -87,10 +87,9 @@ class CategoryController extends Controller
             Category::where('id',$id)->delete();
             Subcategory::where('id_cate', $id)->delete();
             Post::where('id_cate', $id)->delete();
-            $categories = Category::orderBy('id', 'asc')->get();
-            return view('admin/category/index', [
-                'categories' => $categories,
-            ]); 
+            return response()->json([
+                'status' => 'ok',
+            ]);
         }
          return redirect('/admin/login');
     }

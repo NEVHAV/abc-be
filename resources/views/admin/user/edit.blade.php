@@ -6,7 +6,7 @@
     <h1>Chỉnh sửa người dùng</h1>
 @stop
 
-@section('content')
+@section('content-inner')
     <div class="u-maxWidth450 u-marginAuto u-marginTop30">
         <form action="/admin/users/{{$user->id}}" method="post">
             {{ csrf_field() }}
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" id="password" name="password" value="{{$user->password}}" required="true">
+                <input type="password" class="form-control" id="password" name="password">
             </div>
             <div class="form-group">
                 <label for="mode">Quyền hạn</label>

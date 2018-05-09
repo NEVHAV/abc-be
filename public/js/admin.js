@@ -18,6 +18,19 @@ ADMIN.bindUIAction = function () {
 
     this.POST.bindUIAction();
     this.btnGroupInput();
+
+    $('.select2').select2();
+
+    $('.datepicker').datepicker({
+        format: 'd/m/Y',
+    });
+
+    $('.timepicker').timepicker({
+        minuteStep: 1,
+        showSeconds: true,
+        showMeridian: false,
+        defaultTime: '0:00:00',
+    });
 };
 
 ADMIN.bindCategoryDataTable = function () {
@@ -92,19 +105,6 @@ ADMIN.POST.bindUIAction = function () {
                 },
             },
         },
-    });
-
-    $('.select2').select2();
-
-    $('.datepicker').datepicker({
-        format: 'd/m/Y',
-    });
-
-    $('.timepicker').timepicker({
-        minuteStep: 1,
-        showSeconds: true,
-        showMeridian: false,
-        defaultTime: '0:00:00',
     });
 
     $('button[data-target="#inputState"]').on('click', function () {
@@ -189,6 +189,7 @@ ADMIN.ADVERTISEMENT.delete = function (id) {
             _token: $('meta[name="csrf-token"]').attr('content'),
         },
     }).done((data) => {
+        console.log(data);
         window.location.reload();
     });
 };
