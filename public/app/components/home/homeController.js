@@ -17,7 +17,7 @@ angular.module('abc-fe')
                     swipeable: false
                 });
             });
-        }, 1000);
+        }, 100);
 
         $scope.title = 'ABC - Trang chủ';
         $scope.phoneNumber = '(+84) 24-888-888';
@@ -40,51 +40,18 @@ angular.module('abc-fe')
 
         //content
         //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'categories').then(function (response) {
+        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
             $scope.categories = response.data.data;
         }, function (error) {
             console.log('Categories error!');
         });
 
-        //getsubcategories
-        $scope.subcategories = [];
-        $scope.getSubcategories = function (cateId) {
-            $http.get(API_URL + $scope.lang + '/' + 'subcategories/' + cateId).then(function (response) {
-                $scope.subcategories[cateId] = response.data.data;
-            }, function (error) {
-                console.log('SubCategories error!');
-            });
-        };
-
-        // getPosts
-        $scope.posts = [];
-        $scope.catePosts = [];
-        $scope.getPost = function (cateId, sub) {
-            // console.log(cateId + ',' + sub);
-            if (sub !== 0) {
-                $http.get(API_URL + $scope.lang + '/' + 'posts/' + cateId + '/' + sub).then(function (response) {
-                    $scope.posts[sub] = response.data.data;
-
-                }, function (error) {
-                    console.log('Posts error!');
-                });
-            }
-            else {
-                $http.get(API_URL + $scope.lang + '/' + 'posts/' + cateId).then(function (response) {
-                    $scope.catePosts[cateId] = response.data.data;
-                }, function (error) {
-                    console.log('Posts error!');
-                });
-            }
-        };
-        $scope.show = function () {
-            return true;
-        };
-        $scope.changeShow = function () {
-            $scope.show = function () {
-                return false;
-            };
-        };
+        //get data
+        $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
+            $scope.data = response.data.data;
+        }, function (error) {
+            console.log('Get data', error);
+        });
 
         // getLatestPosts
         $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
@@ -93,19 +60,14 @@ angular.module('abc-fe')
             console.log('Latest posts error!');
         });
 
-        //show post
-        $scope.showPost = function ($postId, $title, $subId) {
-            $cookieStore.put('postId', $postId);
-            $cookieStore.put('postTitle', $title);
-            $cookieStore.put('subId', $subId);
-            $state.go('post.detail', { title: $title });
+        //show topic
+        $scope.showTopic = function ($slug) {
+            $state.go('topic', {slug: $slug});
         };
 
-        //show submenu
-        $scope.showSubmenu = function ($subId, $subname) {
-            $cookieStore.put('subId', $subId);
-            $cookieStore.put('subname', $subname);
-            $state.go('submenu.detail', { subcate: $subname });
+        //show post
+        $scope.showPost = function ($slug) {
+            $state.go('post', {slug: $slug});
         };
 
         //test
@@ -113,6 +75,6 @@ angular.module('abc-fe')
             console.log(test.value);
             test.value = 'value';
             console.log(test.value);
-            $state.go('post.detail', { cate: 1, subcate: 1 });
+            $state.go('post', { cate: 1, subcate: 1 });
         };
     });

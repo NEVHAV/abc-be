@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Auth;
+use App\Http\Helpers\ControllerHelper;
 
 class UserController extends Controller
 {
@@ -11,10 +13,10 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::check()) {
-
-            return view('admin/user/index');
+            $users = User::orderBy('id', 'asc')->get();
+            return view('admin/user/index',
+                ['users' => $users,]);
         }
-
         return redirect('admin/login');
     }
 
@@ -30,11 +32,17 @@ class UserController extends Controller
     }
 
     // POST /users
-    public function store()
+    public function store(Request $request)
     {
         if (Auth::check()) {
-
-            return view('admin/user/index');
+            $input = $request->all();          
+            $user = new User();
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->password = $input['password'];
+            $user->mode = $input['mode'];
+            $user->save();
+            return redirect('/admin/users');
         }
 
         return redirect('admin/login');
@@ -53,22 +61,24 @@ class UserController extends Controller
     }
 
     // GET /users/{user}/edit
-    public function edit()
+    public function edit($id)
     {
         if (Auth::check()) {
-
-            return view('admin/user/edit');
+            $user = User::find($id);
+            return view('admin/user/edit',['user'=>$user,]);
         }
 
         return redirect('admin/login');
     }
 
     // PATCH /users/{user}
-    public function update()
+    public function update(Request $request, $id)
     {
         if (Auth::check()) {
-
-            return view('admin/user/update');
+            $input = $request->all();
+            $user = User::find($id);
+            $user->update($input);
+            return redirect('admin/users');
         }
 
         return redirect('admin/login');
@@ -78,8 +88,11 @@ class UserController extends Controller
     public function destroy()
     {
         if (Auth::check()) {
-
-            return view('admin/user/destroy');
+            User::where('id',$id)->delete();
+            $users = User::orderBy('id', 'asc')->get();
+            return view('admin/user/index', [
+                'users' => $users,
+            ]); 
         }
 
         return redirect('admin/login');

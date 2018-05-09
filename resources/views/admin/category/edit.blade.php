@@ -13,7 +13,7 @@
             {{ method_field('PATCH') }}
             <div class="form-group">
                 <label for="name_vn">Tên tiếng Việt</label>
-                <input type="text" class="form-control" id="name_vn" name="name_vn" value="{{$category->name_vn}}">
+                <input type="text" class="form-control" id="name_vn" name="name_vn" value="{{$category->name_vn}}" required="true">
             </div>
             <div class="form-group">
                 <label for="name_jp">Tên tiếng Nhật</label>

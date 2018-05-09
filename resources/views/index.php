@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="abc-fe" ng-cloak>
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,13 +9,16 @@
     <link type="text/css" rel="stylesheet" href="app/lib/materialize/dist/css/materialize.min.css" media="screen,projection">
 
     <link type="text/css" rel="stylesheet" href="css/small-medium.css">
+    <link type="text/css" rel="stylesheet" href="css/editor.css">
     <link type="text/css" rel="stylesheet" href="css/app.css" media="screen,projection">
 </head>
-<body ui-view>
+<body>
+    <main class="surface" ui-view></main>
 
     <!--luon dat jQuery truoc bootstrap vi bootstrap require den no-->
     <script src="app/lib/jquery/dist/jquery.min.js"></script>
     <script src="app/lib/angular/angular.min.js"></script>
+    <script src="app/lib/angular-sanitize.min.js"></script>
     <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="app/lib/angular-cookies/angular-cookies.js"></script>
     <script src="app/lib/oclazyload/dist/ocLazyLoad.min.js"></script>

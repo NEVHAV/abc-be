@@ -66,8 +66,10 @@ class ABCController extends Controller
 
     public function getLatestPosts($lang)
     {
-        $result = Post::orderBy('updated_at', 'desc')
-            ->where('language', $lang)
+        $result = Post::where('language', $lang)
+            ->where('state', 1)
+            ->orderBy('published_date', 'desc')
+            ->select('title', 'published_date', 'slug')
             ->limit(4)
             ->get();
         return response()->json(['result' => true, 'data' => $result]);

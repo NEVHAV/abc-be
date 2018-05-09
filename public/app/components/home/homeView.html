@@ -15,12 +15,16 @@
                     </div>
                     <div class="language menu-item">
                         Ngôn ngữ
-                        <a class="flag-language u-cursorPointer active" ng-click="changeLang('vn')">
+                        <a class="flag-language u-cursorPointer"
+                           ng-class="lang !== 'jp' ? 'active' : ''"
+                           ng-click="changeLang('vn')">
                             <img class="flag u-height15" src="/images/vn.svg"
                                  alt="Vietnam Flag">
 
                         </a>
-                        <a class="flag-language u-cursorPointer " ng-click="changeLang('jp')">
+                        <a class="flag-language u-cursorPointer"
+                           ng-class="lang === 'jp' ? 'active' : ''"
+                           ng-click="changeLang('jp')">
                             <img class="flag u-height15" src="/images/jp.svg"
                                  alt="Japan Flag">
                         </a>
@@ -47,12 +51,12 @@
                     <ul>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12"
                             ng-repeat="category in categories">
-                            <a href="#cate{{ category.id }}" class="menu-item">
+                            <a href="topic/{{ category.slug }}" class="menu-item">
                                 {{ category.name }}
                             </a>
                         </li>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12">
-                            <a href="/" class="menu-item active">
+                            <a href="/" class="menu-item">
                                 TRANG CHỦ
                             </a>
                         </li>
@@ -63,18 +67,18 @@
     </div>
 
     <!--body-->
-    <div class="body center-align">
+    <div class="body">
         <!--slider-->
         <div class="slider">
             <ul class="slides">
                 <li>
-                    <img src="ads/cover.jpg">
+                    <img ng-src="/images/ads/cover.jpg">
                 </li>
                 <li>
-                    <img src="ads/cover2.jpg">
+                    <img ng-src="/images/ads/cover2.jpg">
                 </li>
                 <li>
-                    <img src="ads/cover3.jpg">
+                    <img ng-src="/images/ads/cover3.jpg">
                 </li>
             </ul>
         </div>
@@ -84,102 +88,90 @@
             <div class="body-content u-flex">
                 <div class="content-left u-flex1">
                     <div class="u-maxWidth780">
-                        <!--show: false-->
-                        <div class="col s7" ng-hide="show()">
-                            <table class="borderless white">
-                                <tbody>
-                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id)">
-                                    <td class="row">
-                                        <div class="col s12">
-                                            <ul class="tabs u-borderBottomGrayLight">
-                                                <li class="tab"><a class="black-text category"
-                                                                   href="#cate{{ category.id }}">{{ category.name }}</a></li>
-                                                <li class="tab"
-                                                    ng-repeat="subcategory in subcategories[category.id]"><a
-                                                        class="black-text subcategory" href="#sub{{ subcategory.id }}"
-                                                        ng-click="getPost(category.id, subcategory.id)">{{
-                                                        subcategory.name }}</a></li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <!--post category-->
-                                            <div id="cate{{ category.id }}" class="row">
-                                                <div class="col s4">
-                                                    <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ catePosts[category.id]? catePosts[category.id].cover : '/images/no-cover.jpg' }}">
-                                                </div>
-                                                <div class="col s8" style="height: 12em; overflow: hidden">
-                                                    <p class="pointer post-title"
-                                                       ng-click="showPost(catePosts[category.id].id, catePosts[category.id].title, catePosts[category.id].id)"
-                                                       href="#">{{ catePosts[category.id].title }}</p>
-                                                    <p class="">{{ catePosts[category.id].content }}</p>
-                                                </div>
+                        <div class="u-marginBottom60"
+                             ng-repeat="category in data"
+                             ng-if="category.new_post !== null">
+                            <ul class="tabs u-borderBottomGrayLight">
+                                <li class="tab">
+                                    <a class="active u-textAlignLeft u-fontSize18 u-xs-fontSize14 u-padding0 u-textColorDarker u-fontWeightBold"
+                                       href="#{{ category.slug }}">
+                                        {{ category.name }}
+                                    </a>
+                                </li>
+                                <li class="tab"
+                                    ng-repeat="subCategory in category.subs"
+                                    ng-if="subCategory.new_post !== null">
+                                    <a class="u-padding0 u-marginRight15 u-textColorDarker u-fontSize14 u-xs-fontSize12"
+                                       href="#{{ subCategory.slug }}">{{ subCategory.name }}</a>
+                                </li>
+                            </ul>
+                            <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
+                                <div class="u-flex u-marginTop20">
+                                    <div>
+                                        <img class="u-xs-maxWidth250 u-maxHeight250"
+                                             src="{{ category.new_post.cover }}">
+                                    </div>
+                                    <div class="u-flex1 u-marginLeft50">
+                                        <div class="u-cursorPointer"
+                                             ng-click="showPost(category.new_post.slug)">
+                                            <div class="u-fontSize16 u-fontWeightBold u-marginTop0">
+                                                {{ category.new_post.title }}
                                             </div>
-                                            <!--post subcategory-->
-                                            <div id="sub{{ subcategory.id }}"
-                                                 ng-repeat="subcategory in subcategories[category.id]" class="row">
-                                                <div class="col s4">
-                                                    <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ posts[subcategory.id].cover }}">
-                                                </div>
-                                                <div class="col s8" style="height: 12em; overflow: hidden">
-                                                    <p class="pointer post-title"
-                                                       ng-click="showPost(posts[subcategory.id].id, posts[subcategory.id].title, subcategory.id)"
-                                                       href="#">{{ posts[subcategory.id].title }}</p>
-                                                    <p>{{ posts[subcategory.id].content }}</p>
-                                                </div>
-                                                <div class="col s4"></div>
-                                                <div class="col s8" style="padding-top: 1em">
-                                                    <a class="pointer left-align blue-text" href="#"
-                                                       ng-click="showSubmenu(subcategory.id, subcategory.name)">Xem
-                                                        thêm {{ subcategory.name }}</a>
-                                                </div>
+                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop10">
+                                                {{ category.new_post.content }}
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!--show: true-->
-                        <div class="col s7" ng-show="show()">
-                            <table class="borderless white">
-                                <tbody>
-                                <tr ng-repeat="category in categories" ng-init="getSubcategories(category.id)">
-                                    <td class="row">
-                                        <div class="col s12">
-                                            <ul class="tabs u-borderBottomGrayLight">
-                                                <li class="tab"><a class="black-text category"
-                                                                   href="#show{{ category.id }}"
-                                                                   ng-init="getPost(category.id, 0)"
-                                                                   ng-click="changeShow()">{{ category.name }}</a></li>
-                                                <li class="tab"
-                                                    ng-repeat="subcategory in subcategories[category.id]"><a
-                                                        class="black-text subcategory" href="#sub{{subcategory.id}}"
-                                                        ng-click="getPost(category.id, subcategory.id); changeShow()">{{
-                                                    subcategory.name }}</a></li>
-                                            </ul>
+                                        <div class="u-marginTop20" ng-if="category.posts.length > 0">
+                                            <div ng-repeat="post in category.posts">
+                                                <a href="/post/{{ post.slug }}"
+                                                   class="u-fontSize14 u-textColorDark u-uiTextMedium u-textUnderline">
+                                                    {{ post.title }}
+                                                </a>
+                                            </div>
+                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                               href="/topic/{{ category.slug }}">
+                                                <i class="fa fa-arrow-circle-right"></i>
+                                                Xem thêm
+                                            </a>
                                         </div>
-                                        <div>
-                                            <!--post category-->
-                                            <div id="show{{ category.id }}" class="row">
-                                                <div class="col s4">
-                                                    <img class="cover_img" style="width: 200px; height: 200px"
-                                                         src="{{ catePosts[category.id]? catePosts[category.id].cover : '/images/no-cover.jpg' }}">
-                                                </div>
-                                                <div class="col s8" style="height: 12em; overflow: hidden">
-                                                    <p class="pointer post-title"
-                                                       ng-click="showPost(catePosts[category.id].id, catePosts[category.id].title, catePosts[category.id].id)"
-                                                       href="#">{{ catePosts[category.id].title }}</p>
-                                                    <p>{{ catePosts[category.id].content }}</p>
-                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="subCategory in category.subs"
+                                 ng-if="subCategory.new_post !== null"
+                                 id="{{ subCategory.slug }}"
+                                 class="u-sizeFullWidth">
+                                <div class="u-flex u-marginTop20">
+                                    <div>
+                                        <img class="u-xs-maxWidth250 u-maxHeight250"
+                                             src="{{ subCategory.new_post.cover }}">
+                                    </div>
+                                    <div class="u-flex1 u-marginLeft50">
+                                        <div class="u-cursorPointer"
+                                             ng-click="showPost(subCategory.new_post.slug)">
+                                            <div class="u-fontSize16 u-fontWeightBold u-marginTop0">
+                                                {{ subCategory.new_post.title }}
+                                            </div>
+                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop10">
+                                                {{ subCategory.new_post.content }}
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        <div class="u-marginTop20" ng-if="subCategory.posts.length > 0">
+                                            <div ng-repeat="post in subCategory.posts">
+                                                <a href="/post/{{ post.slug }}"
+                                                   class="u-fontSize14 u-textColorDark u-uiTextMedium u-textUnderline">
+                                                    {{ post.title }}
+                                                </a>
+                                            </div>
+                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                               href="/topic/{{ subCategory.slug }}">
+                                                <i class="fa fa-arrow-circle-right"></i>
+                                                Xem thêm
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,19 +184,24 @@
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize16">TIN MỚI CẬP NHẬT</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter">TIN MỚI CẬP
+                                    NHẬT</h6>
                                 <hr style="width: 200px">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
                                     <tr ng-repeat="latestPost in latestPosts">
-                                        <th class="u-fontSize36 u-textAlignCenter" style="color: #3f51b5">0{{
+                                        <th class="u-fontSize50 u-textAlignRight" style="color: #3f51b5">0{{
                                             $index +
                                             1}}
                                         </th>
                                         <th>
-                                            <div class="u-fontSize16">{{ latestPost.title }}</div>
-                                            <div class="u-textColorDark u-fontWeightThin">{{
-                                                latestPost.updated_at }}
+                                            <a class="u-fontSize14 u-uiTextMedium u-textColorDarker"
+                                               href="/post/{{ latestPost.slug }}">
+                                                {{ latestPost.title }}
+                                            </a>
+                                            <div class="u-textColorDarker u-fontWeightThin">
+                                                <i class="fa fa-calendar-alt u-marginRight5"></i>
+                                                {{ latestPost.published_date }}
                                             </div>
                                         </th>
                                     </tr>
@@ -220,10 +217,12 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize16">HỖ TRỢ TRỰC TUYẾN</h6>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter">HỖ TRỢ TRỰC TUYẾN</div>
                                 <hr style="width: 200px">
-                                <h5 style="font-weight: bold">Hotline</h5>
-                                <h4 style="font-weight: bold; color: red">0912345678</h4>
+                                <div class="u-textAlignCenter u-fontWeightBold u-fontSize14">Hotline</div>
+                                <div class="u-textAlignCenter u-fontWeightBold u-fontSize28 u-textColor--brandRose">
+                                    0912345678
+                                </div>
                                 <hr style="width: 200px">
                                 <table class="borderless u-maxWidth300 u-marginAuto">
                                     <tbody>
