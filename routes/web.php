@@ -46,6 +46,8 @@ Route::resource('admin/users', 'Admin\UserController');
 
 Route::resource('admin/posts', 'Admin\PostController');
 
+Route::resource('admin/subcategories', 'Admin\SubCategoryController');
+
 Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
 
 Auth::routes();

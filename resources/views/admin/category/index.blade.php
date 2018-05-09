@@ -18,7 +18,7 @@
         <table id="category-dt" class="display" style="width:100%">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>STT</th>
             <th>Tên tiếng Việt</th>
             <th>Tên tiếng Nhật</th>
             <th></th>
@@ -33,12 +33,12 @@
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/categories/{{ $category->name_vn}}/edit">
+                    <a href="/admin/categories/{{ $category->id }}/edit">
                          {{ $category->name_vn }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/categories/{{ $category->name_jp}}/edit">
+                    <a href="/admin/categories/{{ $category->id }}/edit">
                          {{ $category->name_jp }}
                     </a>
                 </td>
@@ -50,7 +50,7 @@
                     <button class="btn btn-danger btn-xs btn-delete"
                                 data-toggle="modal"
                                 data-target="#modal-default"
-                                data-message="Bạn muốn xóa category<b>{{ $category->name_vn }}</b>?"
+                                data-message="Bạn muốn xóa category <b>{{ $category->name_vn }}</b>?"
                                 id="{{ $category->id }}"
                                 data-function="ADMIN.CATEGORY.delete({{ $category->id }})"
                                 onclick="ADMIN.confirmAndDelete({{ $category->id }})">
