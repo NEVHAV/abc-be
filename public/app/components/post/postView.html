@@ -1,4 +1,4 @@
-<title>{{ title }}</title>
+<title>{{ post.title }}</title>
 <main>
     <div class="header">
         <nav class="nav_1 u-height35">
@@ -15,12 +15,16 @@
                     </div>
                     <div class="language menu-item">
                         Ngôn ngữ
-                        <a class="flag-language u-cursorPointer active" ng-click="changeLang('vn')">
+                        <a class="flag-language u-cursorPointer"
+                           ng-class="lang !== 'jp' ? 'active' : ''"
+                           ng-click="changeLang('vn')">
                             <img class="flag u-height15" src="/images/vn.svg"
                                  alt="Vietnam Flag">
 
                         </a>
-                        <a class="flag-language u-cursorPointer " ng-click="changeLang('jp')">
+                        <a class="flag-language u-cursorPointer"
+                           ng-class="lang === 'jp' ? 'active' : ''"
+                           ng-click="changeLang('jp')">
                             <img class="flag u-height15" src="/images/jp.svg"
                                  alt="Japan Flag">
                         </a>
@@ -47,12 +51,12 @@
                     <ul>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12"
                             ng-repeat="category in categories">
-                            <a href="#cate{{ category.id_cate }}" class="menu-item">
+                            <a href="topic/{{ category.slug }}" class="menu-item">
                                 {{ category.name }}
                             </a>
                         </li>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12">
-                            <a href="/" class="menu-item active">
+                            <a href="/" class="menu-item">
                                 TRANG CHỦ
                             </a>
                         </li>
@@ -85,24 +89,25 @@
                 <div class="content-left u-flex1">
                     <div class="u-maxWidth780">
                         <!--post-->
-                        <div class="col s7">
-                <nav style="height: 50px; padding-top: 0; background-color: white; box-shadow: none">
-                    <div class="nav-wrapper">
-                        <div class="left-align">
-                            <a class="breadcrumb black-text" style="font-weight: bold; cursor: pointer" ui-sref="home" ui-sref-active="">{{ breadcrumbs.cate[0].name }}</a>
-                            <a class="breadcrumb grey-text" ng-click="showSubmenu(breadcrumbs.id_sub, breadcrumbs.subcate[0].name)" style="cursor: pointer">{{ breadcrumbs.subcate[0].name }}</a>
+                        <!--<nav style="height: 50px; padding-top: 0; background-color: white; box-shadow: none">-->
+                        <!--<div class="nav-wrapper">-->
+                        <!--<div class="left-align">-->
+                        <!--<a class="breadcrumb black-text" style="font-weight: bold; cursor: pointer" ui-sref="home" ui-sref-active="">{{ breadcrumbs.cate[0].name }}</a>-->
+                        <!--<a class="breadcrumb grey-text" ng-click="showSubmenu(breadcrumbs.id_sub, breadcrumbs.subcate[0].name)" style="cursor: pointer">{{ breadcrumbs.subcate[0].name }}</a>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</nav>-->
+                        <div class="u-marginTop30px u-textAlignLeft">
+                            <div class="u-fontSize28 u-fontWeightBold u-textColorDark">{{ post.title }}</div>
+                            <div class="u-marginBottom30 u-marginTop8">
+                                <p class="u-textColorDark u-fontSize12 u-marginTop0">
+                                    <i class="fa fa-calendar-alt u-marginRight5"></i>
+                                    {{ post.published_date }}
+                                </p>
+                            </div>
+                            <!--<img src="{{ post.cover }}" class="post-cover">-->
+                            <div class="post-content" ng-bind-html="post.content"></div>
                         </div>
-                    </div>
-                </nav>
-                <div class="card">
-                    <div class="card-content">
-                        <h5 class="title">{{ post.title }}</h5>
-                        <p class="time" style="color: grey">{{ post.updated_at }}</p>
-                        <img src="{{ post.cover }}" class="post-cover">
-                        <p style="text-align: justify">{{ post.content }}</p>
-                    </div>
-                </div>
-            </div>
                     </div>
                 </div>
 
@@ -114,19 +119,24 @@
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize16">TIN MỚI CẬP NHẬT</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter">TIN MỚI CẬP
+                                    NHẬT</h6>
                                 <hr style="width: 200px">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
                                     <tr ng-repeat="latestPost in latestPosts">
-                                        <th class="u-fontSize36 u-textAlignCenter" style="color: #3f51b5">0{{
+                                        <th class="u-fontSize50 u-textAlignRight" style="color: #3f51b5">0{{
                                             $index +
                                             1}}
                                         </th>
                                         <th>
-                                            <div class="u-fontSize16">{{ latestPost.title }}</div>
-                                            <div class="u-textColorDark u-fontWeightThin">{{
-                                                latestPost.updated_at }}
+                                            <a class="u-fontSize14 u-uiTextMedium u-textColorDarker"
+                                               href="/post/{{ latestPost.slug }}">
+                                                {{ latestPost.title }}
+                                            </a>
+                                            <div class="u-textColorDarker u-fontWeightThin">
+                                                <i class="fa fa-calendar-alt u-marginRight5"></i>
+                                                {{ latestPost.published_date }}
                                             </div>
                                         </th>
                                     </tr>
@@ -142,10 +152,12 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize16">HỖ TRỢ TRỰC TUYẾN</h6>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter">HỖ TRỢ TRỰC TUYẾN</div>
                                 <hr style="width: 200px">
-                                <h5 style="font-weight: bold">Hotline</h5>
-                                <h4 style="font-weight: bold; color: red">0912345678</h4>
+                                <div class="u-textAlignCenter u-fontWeightBold u-fontSize14">Hotline</div>
+                                <div class="u-textAlignCenter u-fontWeightBold u-fontSize28 u-textColor--brandRose">
+                                    0912345678
+                                </div>
                                 <hr style="width: 200px">
                                 <table class="borderless u-maxWidth300 u-marginAuto">
                                     <tbody>

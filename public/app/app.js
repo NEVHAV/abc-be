@@ -4,85 +4,59 @@
 angular.module('abc-fe', [
     'oc.lazyLoad',
     'ui.router',
-    'ngCookies'
+    'ngCookies',
+    'ngSanitize',
 ])
     .constant('API_URL', '/api/')
-    .value('test', {value: '0'})
-    .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
-        $urlRouterProvider.otherwise('/home');
-        $stateProvider
-            .state('home', {
-                url: '/home',
-                templateUrl: 'app/components/home/homeView.html',
-                controller: 'homeController',
-                resolve: {
-                    loadMyFiles: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load (
-                            {
-                                files: ['app/components/home/homeController.js']
-                            }
-                        )
-                    }
-                }
-            })
+    .value('test', { value: '0' })
+    .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+        function ($urlRouterProvider, $stateProvider, $locationProvider) {
+            $locationProvider.hashPrefix(''); // by default '!'
+            $locationProvider.html5Mode(true);
+            $urlRouterProvider.otherwise('/home');
+            $stateProvider
+                .state('home', {
+                    url: '/',
+                    templateUrl: 'app/components/home/homeView.html',
+                    controller: 'homeController',
+                    resolve: {
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(
+                                {
+                                    files: ['app/components/home/homeController.js'],
+                                },
+                            );
+                        },
+                    },
+                })
 
-            .state('post', {
-                abstract: true,
-                url: '/post',
-                templateUrl: 'app/components/post/postView.html',
-                controller: 'postController',
-                resolve: {
-                    loadMyFiles: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load (
-                            {
-                                files: ['app/components/post/postController.js']
-                            }
-                        )
-                    }
-                }
-            })
-            .state('post.detail', {
-                url: '/:title',
-                templateUrl: 'app/components/post/postView.html',
-                controller: 'postController',
-                resolve: {
-                    loadMyFiles: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load (
-                            {
-                                files: ['app/components/post/postController.js']
-                            }
-                        )
-                    }
-                }
-            })
+                .state('post', {
+                    url: '/post/:slug',
+                    templateUrl: 'app/components/post/postView.html',
+                    controller: 'postController',
+                    resolve: {
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(
+                                {
+                                    files: ['app/components/post/postController.js'],
+                                },
+                            );
+                        },
+                    },
+                })
 
-            .state('submenu', {
-                abstract: true,
-                url: '/submenu',
-                templateUrl: 'app/components/submenu/submenuView.html',
-                controller: 'submenuController',
-                resolve: {
-                    loadMyFiles: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load (
-                            {
-                                files: ['app/components/submenu/submenuController.js']
-                            }
-                        )
-                    }
-                }
-            })
-            .state('submenu.detail', {
-                url: '/:subcate',
-                templateUrl: 'app/components/submenu/submenuView.html',
-                controller: 'submenuController',
-                resolve: {
-                    loadMyFiles: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load (
-                            {
-                                files: ['app/components/submenu/submenuController.js']
-                            }
-                        )
-                    }
-                }
-            })
-    }]);
+                .state('topic', {
+                    url: '/topic/:slug',
+                    templateUrl: 'app/components/submenu/submenuView.html',
+                    controller: 'submenuController',
+                    resolve: {
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(
+                                {
+                                    files: ['app/components/submenu/submenuController.js'],
+                                },
+                            );
+                        },
+                    },
+                });
+        }]);

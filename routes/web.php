@@ -19,13 +19,21 @@ Route::get('home', function (){
     return view('index');
 });
 
+Route::get('post/{slug}', function (){
+    return view('index');
+});
+
+Route::get('topic/{slug}', function (){
+    return view('index');
+});
+
 Route::get('/', function () {
     return view('index');
 });
 
 Route::get('api/{lang}/categories', 'ABCController@getCategories');
 Route::get('api/{lang}/subcategories/{cate}', 'ABCController@getSubcategories');
-Route::get('api/{lang}/posts/{cate}/{sub?}', 'ABCController@getPosts');
+//Route::get('api/{lang}/posts/{cate}/{sub?}', 'ABCController@getPosts');
 Route::get('api/{lang}/latestPosts', 'ABCController@getLatestPosts');
 
 //postView
@@ -34,6 +42,12 @@ Route::get('api/{lang}/breadcrumbs/{subcate}', 'ABCController@getBreadcrumbs');
 
 //submenuView
 Route::get('api/{lang}/submenu/{subId}', 'ABCController@getSubmenu');
+
+Route::get('api/{lang}/posts/{slug}', 'PostController@show');
+Route::get('api/{lang}/topics/{slug}', 'TopicController@show');
+Route::get('api/{lang}/topics', 'TopicController@index');
+
+Route::get('api/{lang}/home', 'HomeController@index');
 
 
 Route::get('admin', 'Admin\AdminController@index');
