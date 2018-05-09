@@ -21,7 +21,7 @@
             <th>STT</th>
             <th>Tên tiếng Việt</th>
             <th>Tên tiếng Nhật</th>
-            <th></th>
+            <th>Hành động</th>
         </tr>
         </thead>
         <tbody>
@@ -65,7 +65,7 @@
             <th>Id</th>
             <th>Tên tiếng Việt</th>
             <th>Tên tiếng Nhật</th>
-            <th></th>
+            <th>Hành động</th>
         </tr>
         </tfoot>
     </table>

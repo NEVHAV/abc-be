@@ -23,7 +23,7 @@
             <th>Tên tiếng Nhật</th>
             <th>Tên Category tiếng Việt</th>
             <th>Tên Category tiếng Nhật</th>
-            <th></th>
+            <th>Hành động</th>
         </tr>
         </thead>
         <tbody>
@@ -79,7 +79,7 @@
             <th>Tên tiếng Nhật</th>
             <th>Tên Category tiếng Việt</th>
             <th>Tên Category tiếng Nhật</th>
-            <th></th>
+            <th>Hành động</th>
         </tr>
         </tfoot>
     </table>
