@@ -7,14 +7,14 @@ angular.module('abc-fe')
         $(document).ready(function () {
             $('.slider').slider({
                 height: 280,
-                indicators: true,
+                indicators: true
             });
         });
 
         setTimeout(function () {
             $(document).ready(function () {
                 $('.tabs').tabs({
-                    swipeable: false,
+                    swipeable: false
                 });
             });
         }, 1000);
@@ -51,7 +51,6 @@ angular.module('abc-fe')
         $scope.getSubcategories = function (cateId) {
             $http.get(API_URL + $scope.lang + '/' + 'subcategories/' + cateId).then(function (response) {
                 $scope.subcategories[cateId] = response.data.data;
-                console.log($scope.subcategories[cateId]);
             }, function (error) {
                 console.log('SubCategories error!');
             });
