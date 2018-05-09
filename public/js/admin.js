@@ -2,6 +2,8 @@ const ADMIN = {};
 ADMIN.POST = {};
 ADMIN.CATEGORY = {};
 ADMIN.SUBCATEGORY = {};
+ADMIN.ADVERTISEMENT={};
+
 ADMIN.init = function () {
     this.bindUIAction();
 };
@@ -128,6 +130,7 @@ ADMIN.confirmAndDelete = function (id) {
     let confirmFunc = caller.attr('data-function');
     let modal = $('#modal-default');
 
+
     modal
         .find('.modal-body')
         .find('p')
@@ -165,6 +168,19 @@ ADMIN.CATEGORY.delete = function (id) {
 
 ADMIN.SUBCATEGORY.delete = function (id) {
     let url = '/admin/subcategories/' + id;
+    $.ajax({
+        url: url,
+        type: 'delete',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        },
+    }).done((data) => {
+        window.location.reload();
+    });
+};
+
+ADMIN.ADVERTISEMENT.delete = function (id) {
+    let url = '/admin/advertisements/' + id;
     $.ajax({
         url: url,
         type: 'delete',
