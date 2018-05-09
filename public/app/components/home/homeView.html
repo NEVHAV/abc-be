@@ -68,13 +68,13 @@
         <div class="slider">
             <ul class="slides">
                 <li>
-                    <img ng-src="/images/ads/cover.jpg">
+                    <img src="ads/cover.jpg">
                 </li>
                 <li>
-                    <img ng-src="/images/ads/cover2.jpg">
+                    <img src="ads/cover2.jpg">
                 </li>
                 <li>
-                    <img ng-src="/images/ads/cover3.jpg">
+                    <img src="ads/cover3.jpg">
                 </li>
             </ul>
         </div>
@@ -93,14 +93,12 @@
                                         <div class="col s12">
                                             <ul class="tabs u-borderBottomGrayLight">
                                                 <li class="tab"><a class="black-text category"
-                                                                   href="#cate{{ category.id }}"
-                                                                   ng-click="changeShow()">{{
-                                                    category.name }}</a></li>
+                                                                   href="#cate{{ category.id }}">{{ category.name }}</a></li>
                                                 <li class="tab"
                                                     ng-repeat="subcategory in subcategories[category.id]"><a
-                                                        class="black-text subcategory" href="#sub{{subcategory.id}}"
-                                                        ng-click="getPost(category.id, subcategory.id); changeShow()">{{
-                                                    subcategory.name }}</a></li>
+                                                        class="black-text subcategory" href="#sub{{ subcategory.id }}"
+                                                        ng-click="getPost(category.id, subcategory.id)">{{
+                                                        subcategory.name }}</a></li>
                                             </ul>
                                         </div>
                                         <div>

@@ -48,7 +48,7 @@ class ABCController extends Controller
         if ($sub == null) {
             $result = Post::where('id_cate', $cate)
                 ->where('language', $lang)
-                ->orderBy('published_date', 'asc')
+                ->orderBy('updated_at', 'desc')
                 ->first();
             return response()->json(['result' => true, 'data' => $result]);
         } else {

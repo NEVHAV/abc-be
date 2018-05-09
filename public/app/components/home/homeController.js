@@ -51,6 +51,7 @@ angular.module('abc-fe')
         $scope.getSubcategories = function (cateId) {
             $http.get(API_URL + $scope.lang + '/' + 'subcategories/' + cateId).then(function (response) {
                 $scope.subcategories[cateId] = response.data.data;
+                console.log($scope.subcategories[cateId]);
             }, function (error) {
                 console.log('SubCategories error!');
             });
