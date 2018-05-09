@@ -62,6 +62,11 @@ header {
     background-color: #355876;
 }
 
+.slider ul.indicators {
+    bottom: 50px !important;
+    opacity: 0.6;
+}
+
 .brand-description {
     font-size: 13px !important;
 }
@@ -83,7 +88,6 @@ header {
 /*}*/
 
 .tab {
-    border-bottom: solid 1px #dedede;
     text-transform: none !important;
 }
 
@@ -127,11 +131,9 @@ header {
 
 .time {
     font-style: italic;
-    font-size: small;
-    color: #355876;
+    color: darkgray;
     text-align: left;
     padding-top: 0;
-    padding-bottom: 3em;
 }
 
 .post-cover {

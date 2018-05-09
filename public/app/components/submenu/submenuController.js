@@ -4,17 +4,16 @@
 angular.module('abc-fe')
     .controller ('submenuController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
         //materialize option
-        setTimeout(function () {
-            $(document).ready(function(){
-                $('.tabs').tabs({
-                    swipeable: false
-                });
+        $(document).ready(function () {
+            $('.slider').slider({
+                height: 280,
+                indicators: true,
             });
-        }, 1000);
+        });
 
         //language
         $scope.lang = $cookieStore.get('lang');
-        if ($scope.lang === null){
+        if ($scope.lang !== 'vn' && $scope.lang !== 'jp'){
             $scope.lang = 'vn';
         }
         $cookieStore.put('lang', $scope.lang);
@@ -28,38 +27,34 @@ angular.module('abc-fe')
             }
         };
 
-        $scope.subId = $cookieStore.get('subId');
-        $scope.subname = $cookieStore.get('subname');
-
-        $scope.title = 'ABC - ' + $scope.subname;
+        // $scope.subId = $cookieStore.get('subId');
+        // $scope.subname = $cookieStore.get('subname');
+        //
+        // $scope.title = 'ABC - ' + $scope.subname;
         $scope.phoneNumber = '(+84) 24-888-888';
 
         //get submenu
-        $http.get(API_URL + $scope.lang + '/' + 'submenu/' + $scope.subId).then(function (response) {
-            $scope.submenus = response.data.data;
+        $http.get(API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug).then(function (response) {
+            $scope.topic = response.data.data;
         }, function (error) {
             console.log('Submenus error!');
         });
 
         //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'categories').then(function (response) {
+        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
             $scope.categories = response.data.data;
         }, function (error) {
             console.log('Categories error!');
         });
 
-        //show post
-        $scope.showPost = function ($post) {
-            $cookieStore.put('post', $post);
-            $state.go('post.detail', {title: $post.title});
+        //show topic
+        $scope.showTopic = function ($slug) {
+            $state.go('topic', {slug: $slug});
         };
-
+        //
         //show post
-        $scope.showPost = function ($postId, $title, $subId) {
-            $cookieStore.put('postId', $postId);
-            $cookieStore.put('postTitle', $title);
-            $cookieStore.put('subId', $subId);
-            $state.go('post.detail', {title: $title});
+        $scope.showPost = function ($slug) {
+            $state.go('post', {slug: $slug});
         };
 
         // getLatestPosts
