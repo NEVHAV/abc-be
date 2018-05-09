@@ -13,13 +13,12 @@ angular.module('abc-fe')
 
         //language
         $scope.lang = $cookieStore.get('lang');
-        if ($scope.lang !== 'vn' && $scope.lang !== 'jp'){
+        if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
             $scope.lang = 'vn';
+            $cookieStore.put('lang', $scope.lang);
         }
-        $cookieStore.put('lang', $scope.lang);
-        console.log($scope.lang);
         $scope.changeLang = function (id_lang) {
-            if ($scope.lang !== id_lang){
+            if ($scope.lang !== id_lang) {
                 $scope.lang = id_lang;
                 console.log($scope.lang);
                 $cookieStore.put('lang', $scope.lang);
