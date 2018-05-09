@@ -13,7 +13,7 @@
             {{ method_field('PATCH') }}
             <div class="form-group">
                 <label for="url_vn">Url tiếng Việt</label>
-                <input type="text" class="form-control" id="url_vn" name="url_vn" value="{{$advertisement->url_vn}}">
+                <input type="text" class="form-control" id="url_vn" name="url_vn" value="{{$advertisement->url_vn}}" required="true">
             </div>
             <div class="form-group">
                 <label for="url_jp">Url tiếng Nhật</label>
