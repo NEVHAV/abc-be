@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="name_vn">Tên tiếng Việt</label>
                 <input type="text" class="form-control" id="name_vn" name=
-                "name_vn">
+                "name_vn" required="true">
             </div>
             <div class="form-group">
                 <label for="name_jp">Tên tiếng Nhật</label>
@@ -23,7 +23,7 @@
                 <label for="category">Tên category</label>
                 <select id="inputIDCate"
                         class="select2 u-sizeFullWidth"
-                        name="id_cate">
+                        name="id_cate" required="true">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name_vn }}</option>
                     @endforeach
