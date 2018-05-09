@@ -3,6 +3,7 @@ ADMIN.POST = {};
 ADMIN.CATEGORY = {};
 ADMIN.SUBCATEGORY = {};
 ADMIN.ADVERTISEMENT={};
+ADMIN.USER = {};
 
 ADMIN.init = function () {
     this.bindUIAction();
@@ -181,6 +182,19 @@ ADMIN.SUBCATEGORY.delete = function (id) {
 
 ADMIN.ADVERTISEMENT.delete = function (id) {
     let url = '/admin/advertisements/' + id;
+    $.ajax({
+        url: url,
+        type: 'delete',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        },
+    }).done((data) => {
+        window.location.reload();
+    });
+};
+
+ADMIN.USER.delete = function (id) {
+    let url = '/admin/users/' + id;
     $.ajax({
         url: url,
         type: 'delete',
