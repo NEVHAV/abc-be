@@ -26,9 +26,8 @@ angular.module('abc-fe')
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
             $scope.lang = 'vn';
+            $cookieStore.put('lang', $scope.lang);
         }
-        $cookieStore.put('lang', $scope.lang);
-        console.log($scope.lang);
         $scope.changeLang = function (id_lang) {
             if ($scope.lang !== id_lang) {
                 $scope.lang = id_lang;
@@ -71,10 +70,10 @@ angular.module('abc-fe')
         };
 
         //test
-        $scope.test2 = function () {
-            console.log(test.value);
-            test.value = 'value';
-            console.log(test.value);
-            $state.go('post', { cate: 1, subcate: 1 });
-        };
+        // $scope.test2 = function () {
+        //     console.log(test.value);
+        //     test.value = 'value';
+        //     console.log(test.value);
+        //     $state.go('post', { cate: 1, subcate: 1 });
+        // };
     });
