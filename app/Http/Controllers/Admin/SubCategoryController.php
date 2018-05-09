@@ -7,6 +7,7 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Helpers\ControllerHelper;
 use Auth;
 
 class SubCategoryController extends Controller
@@ -20,7 +21,7 @@ class SubCategoryController extends Controller
                                 ->select('subcategories.*','categories.name_vn as cate_vn','categories.name_jp as cate_jp')
                                 ->get();
             //$subcategories = Subcategory::orderBy('id', 'asc')->get();
-            return redirect('admin/subcategory/index', [
+            return view('admin/subcategory/index', [
                 'subcategories' => $subcategories,
             ]);
         }
@@ -33,7 +34,7 @@ class SubCategoryController extends Controller
     {
         if (Auth::check()) {
             $categories = Category::orderBy('id', 'asc')->get();
-            return redirect('admin/subcategory/create',[
+            return view('admin/subcategory/create',[
                 'categories' => $categories,
             ]);
         }
@@ -45,15 +46,12 @@ class SubCategoryController extends Controller
         if (Auth::check()) {      
             $input = $request->all();
             $subcategory = new Subcategory();
-            $create = Subcategory::create($input);
-            $subcategories = DB::table('subcategories')
-                                ->join('categories', 'subcategories.id_cate', '=', 'categories.id')
-                                ->select('subcategories.*','categories.name_vn as cate_vn','categories.name_jp as cate_jp')
-                                ->get();
-            // $subcategories = Subcategory::orderBy('id', 'asc')->get();
-            return view('admin/subcategory/index', [
-                'subcategories' => $subcategories,
-            ]);
+            $subcategory->name_vn=$input['name_vn'];
+            $subcategory->name_jp=$input['name_jp'];
+            $subcategory->id_cate=$input['id_cate'];
+            $subcategory->slug = ControllerHelper::slug($input['name_vn']);
+            $subcategory->save();
+            return redirect('admin/subcategories');
         }
         return redirect('admin/login');
     }
@@ -90,13 +88,7 @@ class SubCategoryController extends Controller
             $input = $request->all();
             $subcategory=Subcategory::find($id);
             $subcategory->update($input);
-            $subcategories = DB::table('subcategories')
-                    ->join('categories', 'subcategories.id_cate', '=', 'categories.id')
-                    ->select('subcategories.*','categories.name_vn as cate_vn','categories.name_jp as cate_jp')
-                    ->get();
-            return view('admin/subcategory/index', [
-                'subcategories' => $subcategories,
-            ]);
+            return redirect('admin/subcategories');
         }
     }
 

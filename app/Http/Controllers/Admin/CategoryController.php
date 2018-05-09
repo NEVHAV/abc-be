@@ -42,7 +42,6 @@ class CategoryController extends Controller
             $category->name_vn = $input['name_vn'];
             $category->name_jp = $input['name_jp'];
             $category->slug = ControllerHelper::slug($input['name_vn']);
-            
             $category->save();
 
             return redirect('/admin/categories');
@@ -77,10 +76,7 @@ class CategoryController extends Controller
             $input = $request->all();
             $category=Category::find($id);
             $category->update($input);
-            $categories = Category::orderBy('id', 'asc')->get();
-            return view('admin/category/index', [
-                'categories' => $categories,
-            ]);
+            return redirect('admin/categories');
         }
     }
 
