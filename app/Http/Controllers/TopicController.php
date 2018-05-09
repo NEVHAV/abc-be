@@ -39,7 +39,7 @@ class TopicController extends Controller
         if (is_null($lang)) {
             $lang = 'vn';
         }
-        
+
         $topic = Category::where('slug', $slug)->first();
         if (is_null($topic)) {
             $topic = Subcategory::where('slug', $slug)->first();
