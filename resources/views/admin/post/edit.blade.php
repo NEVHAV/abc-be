@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Tạo bài viết')
+@section('title', 'Sửa bài viết')
 
 @section('content_header')
-    <h1>Tạo bài viết</h1>
+    <h1>Sửa bài viết</h1>
 @stop
 
 @section('content-inner')
-    <div class="u-maxWidth740 u-marginAuto u-marginTop30">
+    <div class="u-maxWidth780 u-marginAuto u-marginTop30">
         <form action="/admin/posts/{{ $post->id }}" method="post"
               class="form-horizontal">
             {{ csrf_field() }}
@@ -104,7 +104,7 @@
             <div class="form-group">
                 <label for="post-editor" class="col-sm-2 control-label">Nội dung</label>
                 <div class="col-sm-10">
-                    <textarea id="post-editor" class="editable post-content" name="content">
+                    <textarea id="post-editor" class="editable post-content u-padding5" name="content">
                         {{ $post->content }}
                     </textarea>
                 </div>
@@ -148,7 +148,7 @@
             </div>
 
             <div class="box-footer u-backgroundTransparentBlackLightest u-marginBottom50">
-                <input type="submit" class="btn btn-success pull-right u-minWidth80" value="Lưu cập nhật">
+                <input type="submit" class="btn btn-success pull-right btn-block" value="Lưu cập nhật">
             </div>
         </form>
     </div>
