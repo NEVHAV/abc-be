@@ -6,7 +6,7 @@
     <h1>Tạo người dùng</h1>
 @stop
 
-@section('content')
+@section('content-inner')
     <div class="u-maxWidth450 u-marginAuto u-marginTop30">
         <form action="/admin/users" method="post">
             {{ csrf_field() }}
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Password</label>
-                <input type="text" class="form-control" id="password" name="password" required="true">
+                <input type="password" class="form-control" id="password" name="password" required="true">
             </div>
             <div class="form-group">
                 <label for="mode">Quyền hạn</label>

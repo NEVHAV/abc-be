@@ -98,10 +98,9 @@ class SubCategoryController extends Controller
         if (Auth::check()) {
             Subcategory::where('id',$id)->delete();
             Post::where('id_sub', $id)->delete();
-            $subcategories = Subcategory::orderBy('id', 'asc')->get();
-            return view('admin/subcategory/index', [
-                'subcategories' => $subcategories,
-            ]); 
+            return response()->json([
+                'status' => 'ok',
+            ]);
         }
          return redirect('admin/login');
     }

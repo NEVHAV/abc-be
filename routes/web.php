@@ -67,6 +67,3 @@ Route::resource('admin/advertisements', 'Admin\AdvertisementController');
 Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
