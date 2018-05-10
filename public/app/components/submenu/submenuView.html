@@ -14,7 +14,8 @@
                         |
                     </div>
                     <div class="language menu-item">
-                        Ngôn ngữ
+                        <a ng-if="lang == 'vn'">Ngôn ngữ</a>
+                        <a ng-if="lang == 'jp'">言語</a>
                         <a class="flag-language u-cursorPointer"
                            ng-class="lang !== 'jp' ? 'active' : ''"
                            ng-click="changeLang('vn')">
@@ -36,13 +37,12 @@
             <div class="nav-content u-flex u-maxWidth1200">
                 <div class="brand-container u-flex">
                     <div class="logo u-height65 u-marginRight8">
-                        <img class="u-width50 u-verticalAlignMiddle" src="/images/favicon.png">
+                        <img class="u-width50 u-verticalAlignMiddle" src="{{ info.logo_url }}">
                     </div>
                     <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
-                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">CÔNG TY TNHH
-                            KTM
+                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">{{ info.company_name }}
                         </div>
-                        <div class="brand-description u-lineHeight13 u-fontWeightThin">UY TÍN - TRÁCH NHIỆM - HIỆU QUẢ
+                        <div class="brand-description u-lineHeight13 u-fontWeightThin">{{ info.company_slogan }}
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,11 @@
                             </a>
                         </li>
                         <li class="u-marginLeft10 u-floatRight u-marginRightNegative12">
-                            <a href="/" class="menu-item">
+                            <a href="/" class="menu-item" ng-if="lang == 'vn'">
                                 TRANG CHỦ
+                            </a>
+                            <a href="/" class="menu-item" ng-if="lang == 'jp'">
+                                ホーム
                             </a>
                         </li>
                     </ul>
@@ -71,14 +74,8 @@
         <!--slider-->
         <div class="slider">
             <ul class="slides">
-                <li>
-                    <img ng-src="/images/ads/cover.jpg">
-                </li>
-                <li>
-                    <img ng-src="/images/ads/cover2.jpg">
-                </li>
-                <li>
-                    <img ng-src="/images/ads/cover3.jpg">
+                <li ng-repeat="ads in advertisement">
+                    <img ng-src="{{ ads.url }}">
                 </li>
             </ul>
         </div>
@@ -138,8 +135,8 @@
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter">TIN MỚI CẬP
-                                    NHẬT</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'vn'">TIN MỚI CẬP NHẬT</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'jp'">ニュースの更新</h6>
                                 <hr style="width: 200px">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
@@ -171,11 +168,12 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter">HỖ TRỢ TRỰC TUYẾN</div>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'vn'">HỖ TRỢ TRỰC TUYẾN</div>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'jp'">オンラインサポート</div>
                                 <hr style="width: 200px">
                                 <div class="u-textAlignCenter u-fontWeightBold u-fontSize14">Hotline</div>
                                 <div class="u-textAlignCenter u-fontWeightBold u-fontSize28 u-textColor--brandRose">
-                                    0912345678
+                                    {{ info.hotline }}
                                 </div>
                                 <hr style="width: 200px">
                                 <table class="borderless u-maxWidth300 u-marginAuto">
@@ -185,9 +183,9 @@
                                             <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
                                         </th>
                                         <th>
-                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">Hoàng Vân (Ms)</p>
-                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">0123456789</p>
-                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">hoangvan@gmail.com</p>
+                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">{{ info.supporter_name }}</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{ info.supporter_phone_number }}</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{ info.supporter_email }}</p>
                                         </th>
                                     </tr>
                                     </tbody>
@@ -204,22 +202,7 @@
     <!--footer-->
     <footer class="u-marginTop50">
         <div class="footer-content u-flex u-padding20 u-paddingBottom2 u-maxWidth1200 u-marginAuto u-textColorWhite">
-            <div class="left-content u-flex1 u-fontSize14">
-                Trường Trung cấp Kinh tế - Tài nguyên và Môi trường
-                <br>
-                CÔNG TY TRÁCH NHIỆM HỮU HẠN KTM
-                <br>
-                <br>
-                Địa chỉ: nhà E, trường Đại học Sân khấu - Điện ảnh, Mai Dịch, Cầu Giấy, Hà Nội
-                <br>
-                Điện thoại: {{ phoneNumber }} | Email: congtyktm@gmail.com | Website:
-                <a class="link u-textColorWhite" href="http://www.ktmgroup.com.vn"
-                   target="_blank">www.ktmgroup.com.vn</a>
-                <br>
-                <br>
-                GIẤY PHÉP HOẠT ĐỘNG DỊCH VỤ ĐƯA NGƯỜI LAO ĐỘNG ĐI LÀM VIỆC Ở NƯỚC NGOÀI SỐ 393/LĐTBXH-GP
-                <br>
-                GIẤY CHỨNG NHẬN HOẠT ĐỘNG DỊCH VỤ TƯ VẤN DU HỌC SỐ 5710/CN-SGD&ĐT
+            <div class="left-content u-flex1 u-fontSize14" ng-bind-html="info.footer">
             </div>
             <div class="u-width300">
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"

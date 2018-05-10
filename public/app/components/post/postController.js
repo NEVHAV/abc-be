@@ -3,14 +3,6 @@
  */
 angular.module('abc-fe')
     .controller('postController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
-        //materialize option
-        $(document).ready(function () {
-            $('.slider').slider({
-                height: 280,
-                indicators: true,
-            });
-        });
-
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -25,6 +17,27 @@ angular.module('abc-fe')
                 $state.reload();
             }
         };
+
+        //info
+        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+            $scope.info = response.data.data[0];
+        }, function (error) {
+            console.log('Info error!');
+        });
+
+        //advertisement
+        $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
+            // materialize option
+            $(document).ready(function () {
+                $('.slider').slider({
+                    height: 280,
+                    indicators: true,
+                });
+            });
+            $scope.advertisement = response.data.data;
+        }, function (error) {
+            console.log('Advertisement error!');
+        });
 
         // //header
         // $scope.postId = $cookieStore.get('postId');
