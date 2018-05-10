@@ -71,14 +71,8 @@
         <!--slider-->
         <div class="slider">
             <ul class="slides">
-                <li>
-                    <img ng-src="/images/ads/cover.jpg">
-                </li>
-                <li>
-                    <img ng-src="/images/ads/cover2.jpg">
-                </li>
-                <li>
-                    <img ng-src="/images/ads/cover3.jpg">
+                <li ng-repeat="ads in advertisement">
+                    <img ng-src="{{ ads.url }}">
                 </li>
             </ul>
         </div>
