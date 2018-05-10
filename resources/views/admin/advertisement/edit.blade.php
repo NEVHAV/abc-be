@@ -26,6 +26,7 @@
                                        name="files[]"
                                        class="fileupload"
                                        accept="image/*"
+                                       data-upload-url="/admin/api/uploadimage/ads"
                                        data-target="#url_vn"
                                        data-delete-button="#cover-remove-vn"
                                        data-preview="#cover-preview-vn">
@@ -59,10 +60,10 @@
                                        name="files[]"
                                        class="fileupload"
                                        accept="image/*"
+                                       data-upload-url="/admin/api/uploadimage/ads"
                                        data-target="#url_jp"
                                        data-delete-button="#cover-remove-jp"
-                                       data-preview="#cover-preview-jp"
-                                       value="{{ $advertisement->url_jp }}">
+                                       data-preview="#cover-preview-jp">
                             </span>
                             <button type="button"
                                     id="cover-remove-jp"

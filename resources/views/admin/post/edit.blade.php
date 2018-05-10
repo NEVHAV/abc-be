@@ -79,26 +79,25 @@
                     <input type="hidden" name="cover" id="inputCover" value="{{ $post->cover }}">
 
                     <div class="fileupload-buttonbar">
-                        <div class="">
-                            <!-- The fileinput-button span is used to style the file input field as button -->
-                            <span class="btn btn-default btn-flat fileinput-button">
+                        <!-- The fileinput-button span is used to style the file input field as button -->
+                        <span class="btn btn-default btn-flat fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span>Upload cover</span>
                                 <input type="file"
                                        name="files[]"
                                        class="fileupload"
+                                       data-upload-url="/admin/api/uploadimage/post"
                                        accept="image/*"
                                        data-target="#inputCover"
                                        data-delete-button="#cover-remove"
                                        data-preview="#cover-preview">
                             </span>
-                            <button type="button"
-                                    id="cover-remove"
-                                    data-delete-url="{{ $post->cover }}"
-                                    class="btn btn-warning btn-flat">
-                                Hủy bỏ
-                            </button>
-                        </div>
+                        <button type="button"
+                                id="cover-remove"
+                                data-delete-url="{{ $post->cover }}"
+                                class="btn btn-warning btn-flat">
+                            Hủy bỏ
+                        </button>
                     </div>
                     <div class="u-marginTop10">
                         <img src="{{ $post->cover }}" id="cover-preview" height="80">
