@@ -27,7 +27,7 @@ angular.module('abc-fe')
         }, function (error) {
             console.log('Info error!');
         });
-        
+
         //advertisement
         $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
             // materialize option
