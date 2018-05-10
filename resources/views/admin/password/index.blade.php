@@ -29,7 +29,7 @@
                 <input type="password" class="form-control" id="newPass1" name="newPass1" required="true">
             </div>
              <div class="form-group">
-                <label for="newPass2">Nhập mật khẩu cũ</label>
+                <label for="newPass2">Nhập lại mật khẩu mới</label>
                 <input type="password" class="form-control" id="newPass2" name="newPass2" required="true">
             </div>
             <button type="submit" class="btn btn-primary btn-block pull-right">Lưu cập nhật</button>

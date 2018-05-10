@@ -101,13 +101,8 @@ class UserController extends Controller
         if (Auth::check()) {
             if (Auth::user()->mode == 0) {
                 $input = $request->all();
-
                 $user = User::find($id);
-
                 $user->name = $input['name'];
-                if (!is_null($input['password'])) {
-                    $user->password = $input['password'];
-                }
                 $user->email = $input['email'];
                 $user->mode = $input['mode'];
                 $user->save;

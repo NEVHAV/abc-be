@@ -20,10 +20,7 @@
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" required="true">
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
+            
             <div class="form-group">
                 <label for="mode">Quyền hạn</label>
                 <select id="mode"
