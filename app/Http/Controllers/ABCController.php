@@ -110,4 +110,14 @@ class ABCController extends Controller
         return response()->json(['result' => true, 'data' => $result]);
     }
 
+    public function getAdvertisement($lang)
+    {
+        $result = Advertisement::select('url_'.$lang)
+            ->get();
+        foreach ($result as $data) {
+            $data['url'] = $data['url_'.$lang];
+        }
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
 }
