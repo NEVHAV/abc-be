@@ -25,7 +25,7 @@
                                        name="files[]"
                                        class="fileupload"
                                        accept="image/*"
-                                       data-upload-url="/admin/api/uploadimage/ads"
+                                       data-upload-url="/admin/api/uploadimage/slider"
                                        data-target="#url_vn"
                                        data-delete-button="#cover-remove-vn"
                                        data-preview="#cover-preview-vn">
@@ -57,7 +57,7 @@
                                        name="files[]"
                                        class="fileupload"
                                        accept="image/*"
-                                       data-upload-url="/admin/api/uploadimage/ads"
+                                       data-upload-url="/admin/api/uploadimage/slider"
                                        data-target="#url_jp"
                                        data-delete-button="#cover-remove-jp"
                                        data-preview="#cover-preview-jp">
