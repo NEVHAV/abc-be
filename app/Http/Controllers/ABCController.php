@@ -48,7 +48,7 @@ class ABCController extends Controller
         if ($sub == null) {
             $result = Post::where('id_cate', $cate)
                 ->where('language', $lang)
-                ->orderBy('published_date', 'asc')
+                ->orderBy('updated_at', 'desc')
                 ->first();
             return response()->json(['result' => true, 'data' => $result]);
         } else {
@@ -107,6 +107,16 @@ class ABCController extends Controller
         $result = Post::where('id_sub', $subId)
             ->where('language', $lang)
             ->get();
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
+    public function getAdvertisement($lang)
+    {
+        $result = Advertisement::select('url_'.$lang)
+            ->get();
+        foreach ($result as $data) {
+            $data['url'] = $data['url_'.$lang];
+        }
         return response()->json(['result' => true, 'data' => $result]);
     }
 

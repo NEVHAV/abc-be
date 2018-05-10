@@ -35,6 +35,7 @@ Route::get('api/{lang}/categories', 'ABCController@getCategories');
 Route::get('api/{lang}/subcategories/{cate}', 'ABCController@getSubcategories');
 //Route::get('api/{lang}/posts/{cate}/{sub?}', 'ABCController@getPosts');
 Route::get('api/{lang}/latestPosts', 'ABCController@getLatestPosts');
+Route::get('api/{lang}/advertisement', 'ABCController@getAdvertisement');
 
 //postView
 Route::get('api/{lang}/postDetail/{postId}', 'ABCController@getPostDetail');
@@ -69,5 +70,9 @@ Route::resource('admin/advertisements', 'Admin\AdvertisementController');
 Route::resource('admin/settings', 'Admin\PasswordController');
 
 Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
+
+Route::post('admin/api/uploadimage/{path?}', 'Admin\UploadImageController@store');
+
+Route::delete('admin/api/uploadimage/storage/{path?}/{name}', 'Admin\UploadImageController@destroy');
 
 Auth::routes();
