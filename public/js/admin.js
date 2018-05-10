@@ -2,7 +2,7 @@ const ADMIN = {};
 ADMIN.POST = {};
 ADMIN.CATEGORY = {};
 ADMIN.SUBCATEGORY = {};
-ADMIN.ADVERTISEMENT={};
+ADMIN.ADVERTISEMENT = {};
 ADMIN.USER = {};
 ADMIN.INFO = {};
 
@@ -101,7 +101,7 @@ ADMIN.POST.bindUIAction = function () {
         addons: {
             images: {
                 fileUploadOptions: {
-                    url: '/admin/api/uploadimage',
+                    url: '/admin/api/uploadimage/post',
                     dataType: 'json',
                 },
             },
@@ -238,48 +238,66 @@ ADMIN.btnGroupInput = function () {
 };
 
 ADMIN.bindFileUpload = function () {
-    let removeBtn = $('#cover-remove');
-    let preview = $('#cover-preview');
-    let name = $('#cover-name');
+    let fileUploads = $('.fileupload');
 
-    $('#fileupload').fileupload({
-        dataType: 'json',
-        url: '/admin/api/uploadimage',
-        autoUpload: true,
-        done: function (e, data) {
-            let result = data.result;
-            if (result.files && result.files[0]) {
-                $('#inputCover').val(result.files[0].url);
-            }
-            console.log(result);
-        },
-        progressall: function (e, data) {
-            let progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .bar').css(
-                'width',
-                progress + '%',
-            );
-        },
-        add: function (e, data) {
-            if (data.files && data.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.attr('src', e.target.result);
-                    preview.removeClass('hidden');
-                    name.text(data.files[0].name);
-                    removeBtn.removeClass('hidden');
-                };
-                reader.readAsDataURL(data.files[0]);
+    fileUploads.each(function () {
+        let fileupload = $(this);
 
-                data.submit();
-            }
-        },
-    });
+        let removeBtn = $(fileupload.attr('data-delete-button'));
+        let preview = $(fileupload.attr('data-preview'));
+        // let name = $('#cover-name');
+        let targetInput = $(fileupload.attr('data-target'));
 
-    removeBtn.on('click', () => {
-        preview.addClass('hidden');
-        name.text('');
-        removeBtn.addClass('hidden');
+        fileupload.fileupload({
+            dataType: 'json',
+            url: '/admin/api/uploadimage/post',
+            autoUpload: true,
+            done: function (e, data) {
+                let result = data.result;
+                if (result.files && result.files[0]) {
+                    targetInput.val(result.files[0].url);
+                    removeBtn.attr('data-delete-url', result.files[0].delete_url);
+                    fileupload.prop('disabled', true);
+                }
+            },
+            progressall: function (e, data) {
+                let progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .bar').css(
+                    'width',
+                    progress + '%',
+                );
+            },
+            add: function (e, data) {
+                if (data.files && data.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        preview.attr('src', e.target.result);
+                        preview.removeClass('hidden');
+                        // name.text(data.files[0].name);
+                        removeBtn.removeClass('hidden');
+                    };
+                    reader.readAsDataURL(data.files[0]);
+
+                    data.submit();
+                }
+            },
+        });
+
+        removeBtn.on('click', () => {
+            preview.addClass('hidden');
+            // name.text('');
+            removeBtn.addClass('hidden');
+            removeBtn.attr('data-delete-url', '');
+            targetInput.val('');
+            fileupload.prop('disabled', false);
+            
+            $.ajax({
+                url: removeBtn.attr('data-delete-url'),
+                type: 'delete',
+            }).done(data => {
+
+            });
+        });
     });
 };
 

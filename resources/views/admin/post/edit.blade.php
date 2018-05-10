@@ -56,7 +56,7 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                         <input type="text" name="published_date[date]" id="inputPublishedDate"
-                               class="form-control pull-right datepicker"  value="{{ $post->date }}">
+                               class="form-control pull-right datepicker" value="{{ $post->date }}">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -84,10 +84,17 @@
                             <span class="btn btn-default btn-flat fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span>Upload cover</span>
-                                <input type="file" name="files[]" id="fileupload">
+                                <input type="file"
+                                       name="files[]"
+                                       class="fileupload"
+                                       accept="image/*"
+                                       data-target="#inputCover"
+                                       data-delete-button="#cover-remove"
+                                       data-preview="#cover-preview">
                             </span>
                             <button type="button"
                                     id="cover-remove"
+                                    data-delete-url="{{ $post->cover }}"
                                     class="btn btn-warning btn-flat">
                                 Hủy bỏ
                             </button>

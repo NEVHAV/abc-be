@@ -4,33 +4,43 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UploadImageController extends Controller
 {
-    public function store(Request $request)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-//        $params = $request->all();
+        $this->middleware('auth');
+    }
 
-//        $this->validate($request, [
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//        ]);
+    public function store(Request $request, $path)
+    {
+//        $path = 'public/' . $path;
 
         $images = $request->all()['files'];
 
         $files = [];
 
         foreach ($images as $image) {
-            $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/posts');
-            $image->move($destinationPath, $input['imagename']);
+//            $input['imagename'] = substr(base_convert(time(), 10, 36) . md5(microtime()), 0, 16) . '.' . $image->getClientOriginalExtension();
+//            $destinationPath = public_path('/images/upload');
+//            $image->move($destinationPath, $input['imagename']);
+
+            $path = Storage::disk('public')->putFile($path, $image);
+            $publicPath = '/storage/' . $path;
 
             $file = [
-                'url' => '/images/posts/' . $input['imagename'],
-                'thumbnail_url' => '/images/posts/' . $input['imagename'],
-                'name' => $input['imagename'],
+                'url' => $publicPath,
+                'thumbnail_url' => $publicPath,
+                'name' => $publicPath,
                 'type' => "image/jpeg",
                 'size' => 0,
-                'delete_url' => "your_delete_url",
+                'delete_url' => '/admin/api/uploadimage' . $publicPath,
                 'delete_type' => "DELETE"
             ];
 
@@ -39,6 +49,17 @@ class UploadImageController extends Controller
 
         return response()->json([
             'files' => $files,
+        ]);
+    }
+
+    public function destroy($path, $name)
+    {
+//        $path = 'public/' . $path;
+        $result = Storage::disk('public')->delete($path . '/' . $name);
+
+        return response()->json([
+            'status' => 'ok',
+            'result' => $result,
         ]);
     }
 }
