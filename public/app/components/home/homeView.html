@@ -1,4 +1,4 @@
-<title>{{ title }}</title>
+<title>{{ info.company_name }}</title>
 <main>
     <div class="header">
         <nav class="nav_1 u-height35">
@@ -40,7 +40,8 @@
                         <img class="u-width50 u-verticalAlignMiddle" src="{{ info.logo_url }}">
                     </div>
                     <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
-                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">{{ info.company_name }}
+                        <div class="u-flex1 u-fontSize20 u-lineHeight18 u-fontWeightBold u-flexColumn">{{
+                            info.company_name }}
                         </div>
                         <div class="brand-description u-lineHeight13 u-fontWeightThin">{{ info.company_slogan }}
                         </div>
@@ -83,7 +84,7 @@
         <!--post + latest post + advertisement-->
         <div class="body-container u-maxWidth1200 u-marginAuto">
             <div class="body-content u-flex">
-                <div class="content-left u-flex1">
+                <div class="content-left u-flex1 home">
                     <div class="u-maxWidth780">
                         <div class="u-marginBottom60"
                              ng-repeat="category in data"
@@ -104,9 +105,8 @@
                             </ul>
                             <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
                                 <div class="u-flex u-marginTop20">
-                                    <div>
-                                        <img class="u-xs-maxWidth250 u-maxHeight250"
-                                             src="{{ category.new_post.cover }}">
+                                    <div class="post-cover u-flex0"
+                                         style="background-image: url({{ category.new_post.cover }});">
                                     </div>
                                     <div class="u-flex1 u-marginLeft50">
                                         <div class="u-cursorPointer"
@@ -144,10 +144,10 @@
                                  id="{{ subCategory.slug }}"
                                  class="u-sizeFullWidth">
                                 <div class="u-flex u-marginTop20">
-                                    <div>
-                                        <img class="u-xs-maxWidth250 u-maxHeight250"
-                                             src="{{ subCategory.new_post.cover }}">
+                                    <div class="post-cover u-flex0"
+                                         style="background-image: url({{ category.new_post.cover }});">
                                     </div>
+
                                     <div class="u-flex1 u-marginLeft50">
                                         <div class="u-cursorPointer"
                                              ng-click="showPost(subCategory.new_post.slug)">
@@ -191,8 +191,11 @@
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'vn'">TIN MỚI CẬP NHẬT</h6>
-                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'jp'">ニュースの更新</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'vn'">TIN
+                                    MỚI
+                                    CẬP NHẬT</h6>
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'jp'">
+                                    ニュースの更新</h6>
                                 <hr style="width: 200px">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
@@ -224,8 +227,13 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'vn'">HỖ TRỢ TRỰC TUYẾN</div>
-                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'jp'">オンラインサポート</div>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'vn'">HỖ
+                                    TRỢ
+                                    TRỰC TUYẾN
+                                </div>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'jp'">
+                                    オンラインサポート
+                                </div>
                                 <hr style="width: 200px">
                                 <div class="u-textAlignCenter u-fontWeightBold u-fontSize14">Hotline</div>
                                 <div class="u-textAlignCenter u-fontWeightBold u-fontSize28 u-textColor--brandRose">
@@ -239,9 +247,14 @@
                                             <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
                                         </th>
                                         <th>
-                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">{{ info.supporter_name }}</p>
-                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{ info.supporter_phone_number }}</p>
-                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{ info.supporter_email }}</p>
+                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">{{
+                                                info.supporter_name
+                                                }}</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{
+                                                info.supporter_phone_number }}</p>
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{
+                                                info.supporter_email
+                                                }}</p>
                                         </th>
                                     </tr>
                                     </tbody>

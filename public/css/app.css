@@ -96,8 +96,12 @@ header {
     background-color: black;
 }
 
-.cover_img {
-    margin-top: 20px;
+.home .post-cover {
+    width: 250px;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .post-title {
