@@ -66,6 +66,10 @@ class ABCController extends Controller
 
     public function getLatestPosts($lang)
     {
+        if (is_null($lang)) {
+            $lang = 'vn';
+        }
+
         $result = Post::where('language', $lang)
             ->where('state', 1)
             ->orderBy('published_date', 'desc')

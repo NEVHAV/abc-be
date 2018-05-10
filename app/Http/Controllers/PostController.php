@@ -11,6 +11,10 @@ class PostController extends Controller
 {
     public function show($lang, $slug)
     {
+        if (is_null($lang)) {
+            $lang = 'vn';
+        }
+
         $post = Post::where('slug', $slug)
             ->where('state', 1)
             ->select('title', 'id_sub', 'id_user', 'content', 'cover', 'published_date')

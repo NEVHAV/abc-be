@@ -7,17 +7,9 @@ angular.module('abc-fe')
         $(document).ready(function () {
             $('.slider').slider({
                 height: 280,
-                indicators: true
+                indicators: true,
             });
         });
-
-        setTimeout(function () {
-            $(document).ready(function () {
-                $('.tabs').tabs({
-                    swipeable: false
-                });
-            });
-        }, 100);
 
         $scope.title = 'ABC - Trang chủ';
         $scope.phoneNumber = '(+84) 24-888-888';
@@ -26,9 +18,8 @@ angular.module('abc-fe')
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
             $scope.lang = 'vn';
+            $cookieStore.put('lang', $scope.lang);
         }
-        $cookieStore.put('lang', $scope.lang);
-        console.log($scope.lang);
         $scope.changeLang = function (id_lang) {
             if ($scope.lang !== id_lang) {
                 $scope.lang = id_lang;
@@ -49,6 +40,11 @@ angular.module('abc-fe')
         //get data
         $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
             $scope.data = response.data.data;
+            $(document).ready(function () {
+                $('.tabs').tabs({
+                    swipeable: false,
+                });
+            });
         }, function (error) {
             console.log('Get data', error);
         });
@@ -62,19 +58,19 @@ angular.module('abc-fe')
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', {slug: $slug});
+            $state.go('topic', { slug: $slug });
         };
 
         //show post
         $scope.showPost = function ($slug) {
-            $state.go('post', {slug: $slug});
+            $state.go('post', { slug: $slug });
         };
 
         //test
-        $scope.test2 = function () {
-            console.log(test.value);
-            test.value = 'value';
-            console.log(test.value);
-            $state.go('post', { cate: 1, subcate: 1 });
-        };
+        // $scope.test2 = function () {
+        //     console.log(test.value);
+        //     test.value = 'value';
+        //     console.log(test.value);
+        //     $state.go('post', { cate: 1, subcate: 1 });
+        // };
     });

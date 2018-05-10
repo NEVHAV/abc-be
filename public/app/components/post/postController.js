@@ -2,7 +2,7 @@
  * Created by NEVHAV on 03/05/18.
  */
 angular.module('abc-fe')
-    .controller ('postController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
+    .controller('postController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
         //materialize option
         $(document).ready(function () {
             $('.slider').slider({
@@ -13,13 +13,14 @@ angular.module('abc-fe')
 
         //language
         $scope.lang = $cookieStore.get('lang');
-        if ($scope.lang === null){
+        if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
             $scope.lang = 'vn';
+            $cookieStore.put('lang', $scope.lang);
         }
-        $cookieStore.put('lang', $scope.lang);
         $scope.changeLang = function (id_lang) {
-            if ($scope.lang !== id_lang){
+            if ($scope.lang !== id_lang) {
                 $scope.lang = id_lang;
+                console.log($scope.lang);
                 $cookieStore.put('lang', $scope.lang);
                 $state.reload();
             }

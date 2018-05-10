@@ -11,6 +11,10 @@ class TopicController extends Controller
 {
     public function index($lang)
     {
+        if (is_null($lang)) {
+            $lang = 'vn';
+        }
+
         $topics = Category::orderBy('created_at', 'desc')
             ->select('id', 'name_' . $lang, 'slug')
             ->get();
@@ -32,6 +36,10 @@ class TopicController extends Controller
 
     public function show($lang, $slug)
     {
+        if (is_null($lang)) {
+            $lang = 'vn';
+        }
+
         $topic = Category::where('slug', $slug)->first();
         if (is_null($topic)) {
             $topic = Subcategory::where('slug', $slug)->first();
