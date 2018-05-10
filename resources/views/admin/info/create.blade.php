@@ -42,13 +42,13 @@
                 <div class="form-group">
                     <label for="post-editor" class="control-label">Footer tiếng Việt</label>
                     <div>
-                        <textarea name="footer_vn" required="true"></textarea>
+                        <textarea class="u-sizeFullWidth" rows="5" name="footer_vn" required="true"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="post-editor" class="control-label">Footer tiếng Nhật</label>
                     <div>
-                        <textarea name="footer_jp"></textarea>
+                        <textarea class="u-sizeFullWidth" rows="5" name="footer_jp"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
