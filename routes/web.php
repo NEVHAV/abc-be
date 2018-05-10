@@ -36,6 +36,7 @@ Route::get('api/{lang}/subcategories/{cate}', 'ABCController@getSubcategories');
 //Route::get('api/{lang}/posts/{cate}/{sub?}', 'ABCController@getPosts');
 Route::get('api/{lang}/latestPosts', 'ABCController@getLatestPosts');
 Route::get('api/{lang}/advertisement', 'ABCController@getAdvertisement');
+Route::get('api/{lang}/info', 'ABCController@getInfo');
 
 //postView
 Route::get('api/{lang}/postDetail/{postId}', 'ABCController@getPostDetail');

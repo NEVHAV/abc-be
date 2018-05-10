@@ -11,7 +11,7 @@ use App\Advertisement;
 use App\Category;
 use App\Post;
 use App\Subcategory;
-use App\User;
+use App\Info;
 use SebastianBergmann\Environment\Console;
 
 class ABCController extends Controller
@@ -116,6 +116,27 @@ class ABCController extends Controller
             ->get();
         foreach ($result as $data) {
             $data['url'] = $data['url_'.$lang];
+        }
+        return response()->json(['result' => true, 'data' => $result]);
+    }
+
+    public function getInfo ($lang)
+    {
+        $result = Info::select(
+            'phone_number',
+            'hotline',
+            'logo_url',
+            'company_name_'.$lang,
+            'company_slogan_'.$lang,
+            'footer_'.$lang,
+            'supporter_name',
+            'supporter_phone_number',
+            'supporter_email')
+            ->get();
+        foreach ($result as $data) {
+            $data['company_name'] = $data['company_name_'.$lang];
+            $data['company_slogan'] = $data['company_slogan_'.$lang];
+            $data['footer'] = $data['footer_'.$lang];
         }
         return response()->json(['result' => true, 'data' => $result]);
     }
