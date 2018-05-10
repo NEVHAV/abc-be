@@ -120,5 +120,4 @@ class ABCController extends Controller
         return response()->json(['result' => true, 'data' => $result]);
     }
 
-
 }
