@@ -27,6 +27,11 @@ class PasswordController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::check()) {
+            $data = $this->validate($request, [
+                'oldPass'=> 'required|string',
+                'newPass1' => 'required|string',
+                'newPass2' => 'required|string',
+            ]);
             if(!Hash::check($request['oldPass'], Auth::user()->password)){
                 $errors = new MessageBag();
 
@@ -58,10 +63,7 @@ class PasswordController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'mode' => 'required',
         ]);
     }
 }

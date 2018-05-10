@@ -43,7 +43,12 @@ class SubCategoryController extends Controller
 
     // POST /categories/store
     public function store(Request $request){
-        if (Auth::check()) {      
+        if (Auth::check()) {    
+            $input = $this->validate($request, [
+                'name_vn'=> 'required',
+                'id_cate' => 'required',
+                'slug' => 'required',
+            ]);    
             $input = $request->all();
             $subcategory = new Subcategory();
             $subcategory->name_vn=$input['name_vn'];
@@ -85,6 +90,11 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::check()) {
+            $input = $this->validate($request, [
+                'name_vn'=> 'required',
+                'id_cate' => 'required',
+                'slug' => 'required',
+            ]); 
             $input = $request->all();
             $subcategory=Subcategory::find($id);
             $subcategory->update($input);

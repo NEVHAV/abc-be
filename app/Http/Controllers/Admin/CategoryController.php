@@ -35,9 +35,12 @@ class CategoryController extends Controller
 
     // POST /categories/store
     public function store(Request $request){
-        if (Auth::check()) {      
+        if (Auth::check()) {  
+            $input = $this->validate($request, [
+                'name_vn'=> 'required',
+                'slug' => 'required',
+            ]);    
             $input = $request->all();
-            
             $category = new Category();
             $category->name_vn = $input['name_vn'];
             $category->name_jp = $input['name_jp'];
@@ -73,6 +76,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::check()) {
+            $input = $this->validate($request, [
+                'name_vn'=> 'required',
+                'slug' => 'required',
+            ]);  
             $input = $request->all();
             $category=Category::find($id);
             $category->update($input);
