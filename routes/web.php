@@ -60,6 +60,8 @@ Route::resource('admin/users', 'Admin\UserController');
 
 Route::resource('admin/posts', 'Admin\PostController');
 
+Route::resource('admin/company-info', 'Admin\InfoController');
+
 Route::resource('admin/subcategories', 'Admin\SubCategoryController');
 
 Route::resource('admin/advertisements', 'Admin\AdvertisementController');
