@@ -4,6 +4,7 @@ ADMIN.CATEGORY = {};
 ADMIN.SUBCATEGORY = {};
 ADMIN.ADVERTISEMENT={};
 ADMIN.USER = {};
+ADMIN.INFO = {};
 
 ADMIN.init = function () {
     this.bindUIAction();
@@ -143,6 +144,19 @@ ADMIN.confirmAndDelete = function (id) {
 
 ADMIN.POST.delete = function (id) {
     let url = '/admin/posts/' + id;
+    $.ajax({
+        url: url,
+        type: 'delete',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        },
+    }).done((data) => {
+        window.location.reload();
+    });
+};
+
+ADMIN.INFO.delete = function (id) {
+    let url = '/admin/company-info/' + id;
     $.ajax({
         url: url,
         type: 'delete',
