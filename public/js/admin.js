@@ -265,9 +265,11 @@ ADMIN.bindFileUpload = function () {
         // let name = $('#cover-name');
         let targetInput = $(fileupload.attr('data-target'));
 
+        let url = fileupload.attr('data-upload-url');
+
         fileupload.fileupload({
-            dataType: 'json',
-            url: '/admin/api/uploadimage/post',
+            type: 'POST',
+            url: url,
             autoUpload: true,
             done: function (e, data) {
                 let result = data.result;
@@ -304,15 +306,14 @@ ADMIN.bindFileUpload = function () {
             preview.addClass('hidden');
             // name.text('');
             removeBtn.addClass('hidden');
-            removeBtn.attr('data-delete-url', '');
             targetInput.val('');
             fileupload.prop('disabled', false);
-            
+
             $.ajax({
                 url: removeBtn.attr('data-delete-url'),
                 type: 'delete',
             }).done(data => {
-
+                removeBtn.attr('data-delete-url', '');
             });
         });
     });
