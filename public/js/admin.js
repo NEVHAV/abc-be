@@ -14,8 +14,9 @@ ADMIN.bindUIAction = function () {
     this.bindCategoryDataTable();
     this.bindUserDataTable();
     this.bindPostDataTable();
-
+    this.bindAdvertisementDataTable();
     this.bindFileUpload();
+    this.bindInfoDataTable();
 
     this.POST.bindUIAction();
     this.btnGroupInput();
@@ -37,6 +38,22 @@ ADMIN.bindUIAction = function () {
 ADMIN.bindCategoryDataTable = function () {
     $(document).ready(function () {
         $('#category-dt').DataTable({
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        });
+    });
+};
+
+ADMIN.bindAdvertisementDataTable = function () {
+    $(document).ready(function () {
+        $('#advertisement-dt').DataTable({
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        });
+    });
+};
+
+ADMIN.bindInfoDataTable = function () {
+    $(document).ready(function () {
+        $('#info-dt').DataTable({
             'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
         });
     });
