@@ -34,7 +34,7 @@ angular.module('abc-fe')
             $(document).ready(function () {
                 $('.slider').slider({
                     height: 280,
-                    indicators: true,
+                    indicators: true
                 });
             });
             $scope.advertisement = response.data.data;
