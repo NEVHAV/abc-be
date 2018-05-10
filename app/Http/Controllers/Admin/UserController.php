@@ -105,7 +105,7 @@ class UserController extends Controller
                 $user->name = $input['name'];
                 $user->email = $input['email'];
                 $user->mode = $input['mode'];
-                $user->save;
+                $user->save();
             }
             return redirect('admin/users');
         }
@@ -127,7 +127,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 'ERROR',
-            'message' => 'Ban phai dang nhap',
+            'message' => 'Bạn phải đăng nhập',
         ]);
     }
 
