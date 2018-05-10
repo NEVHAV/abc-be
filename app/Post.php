@@ -19,6 +19,7 @@ class Post extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'id_sub',
         'id_cate',
         'id_user',
@@ -28,5 +29,7 @@ class Post extends Authenticatable
         'language',
         'state',
         'published_date',
+        'created_at',
+        'updated_at'
     ];
 }
