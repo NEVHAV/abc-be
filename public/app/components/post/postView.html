@@ -72,15 +72,9 @@
     </div>
 
     <div class="header" ng-if="isMobile">
-        <nav class="nav_2 u-height50">
-            <a href="#" data-target="slide-out" class="sidenav-trigger">
-                <i class="fa fa-bars"></i>
-            </a>
-            <div class="nav-content u-flex u-xs-marginRight10">
+        <nav class="nav_1 u-height35">
+            <div class="nav-content u-flex u-paddingRight10">
                 <div class="left-content u-flex1">
-                    <div class="u-fontSize12 u-fontWeightBold">
-                        {{ info.company_name }}
-                    </div>
                 </div>
                 <div class="right-content">
                     <div class="phone-number u-inline">
@@ -91,6 +85,8 @@
                         |
                     </div>
                     <div class="language u-inline">
+                        <a ng-if="lang == 'vn'">Ngôn ngữ</a>
+                        <a ng-if="lang == 'jp'">言語</a>
                         <a class="flag-language u-cursorPointer"
                            ng-class="lang !== 'jp' ? 'active' : ''"
                            ng-click="changeLang('vn')">
@@ -107,6 +103,18 @@
                     </div>
                 </div>
             </div>
+        </nav>
+        <nav class="nav_2 u-height50">
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="fa fa-bars"></i>
+            </a>
+            <div class="nav-content u-flex u-xs-marginRight10">
+                <div class="left-content u-flex1">
+                    <div class="u-fontSize12 u-fontWeightBold">
+                        {{ info.company_name }}
+                    </div>
+                </div>
+            </div>
 
         </nav>
         <ul id="slide-out" class="sidenav">
@@ -117,8 +125,8 @@
                             allowTransparency="true" allow="encrypted-media"></iframe>
                 </div>
             </li>
-            <li class="sidenav-close">
-                <a href="/" class="" ng-if="lang == 'vn'">
+            <li class="">
+                <a href="/" class="sidenav-close" ng-if="lang == 'vn'">
                     TRANG CHỦ
                 </a>
                 <a href="/" class="sidenav-close" ng-if="lang == 'jp'">
