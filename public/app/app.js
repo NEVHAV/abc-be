@@ -13,7 +13,7 @@ angular.module('abc-fe', [
         function ($urlRouterProvider, $stateProvider, $locationProvider) {
             $locationProvider.hashPrefix(''); // by default '!'
             $locationProvider.html5Mode(true);
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/');
             $stateProvider
                 .state('home', {
                     url: '/',
