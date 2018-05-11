@@ -21,10 +21,6 @@ header {
     line-height: 35px;
 }
 
-.menu-item {
-    margin-left: 8px;
-}
-
 .flag-language {
     margin-left: 4px;
     display: inline;
@@ -49,6 +45,7 @@ header {
 
 .menu .menu-item {
     color: #c5d2e1;
+    padding: 0 10px !important;
 }
 
 .menu .menu-item.active {
