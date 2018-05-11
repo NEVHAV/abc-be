@@ -345,7 +345,9 @@
                 <div class="carousel carousel-slider">
                     <div class="carousel-fixed-item center">
                         <a class="btn waves-effect white u-textColorDarker"
-                           href="/topic/{{ category.slug }}">{{lang === 'vn' ? 'Xem thêm' : 'もっと見る' }}</a>
+                           href="/topic/{{ category.slug }}">
+                            {{lang === 'vn' ? 'Xem thêm ' + category.name : category.name + 'をもっと見る' }}
+                        </a>
                     </div>
                     <div class="carousel-item" href="#{{ category.slug }}">
                         <div class="post-cover"
