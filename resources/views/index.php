@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="app/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="app/lib/materialize/dist/css/materialize.min.css" media="screen,projection">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
     <link type="text/css" rel="stylesheet" href="css/small-medium.css">
     <link type="text/css" rel="stylesheet" href="css/editor.css">
@@ -24,7 +24,7 @@
     <script src="app/lib/oclazyload/dist/ocLazyLoad.min.js"></script>
 
     <!--main script-->
-    <script src="app/lib/materialize/dist/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="app/app.js"></script>
 
     <div id="fb-root"></div>
