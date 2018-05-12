@@ -3,9 +3,6 @@
  */
 angular.module('abc-fe')
     .controller('homeController', function ($scope, $http, $timeout, API_URL, $state, $cookieStore, $cacheFactory, test) {
-        $scope.title = 'ABC - Trang chủ';
-        $scope.phoneNumber = '(+84) 24-888-888';
-
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
