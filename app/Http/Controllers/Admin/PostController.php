@@ -143,6 +143,7 @@ class PostController extends Controller
             $post = Post::find($post_id);
 
             $post->title = $data['title'];
+//            $post->slug = ControllerHelper::slug($data['title']);
             $post->state = $data['state'];
 //            $post->id_user = $data['id_user'];
 

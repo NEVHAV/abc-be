@@ -163,3 +163,7 @@ header {
 /*height: auto;*/
 /*padding-bottom: 10px;*/
 /*}*/
+
+.post-content .medium-insert-buttons {
+    display: none !important;
+}

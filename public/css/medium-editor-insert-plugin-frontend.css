@@ -1,0 +1,80 @@
+.medium-insert-images {
+  text-align: center;
+}
+.medium-insert-images figure {
+  margin: 0;
+  display: block;
+}
+.medium-insert-images figure img {
+  max-width: 100%;
+  margin-top: 1em;
+  vertical-align: top;
+}
+.medium-insert-images figure:first-child img {
+  margin-top: 0;
+}
+.medium-insert-images.medium-insert-images-left {
+  max-width: 33.33%;
+  float: left;
+  margin: 0 30px 20px 0;
+}
+.medium-insert-images.medium-insert-images-right {
+  max-width: 33.33%;
+  float: right;
+  margin: 0 0 20px 30px;
+}
+.medium-insert-images.medium-insert-images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0.5em -0.5em;
+}
+.medium-insert-images.medium-insert-images-grid figure {
+  width: 33.33%;
+  display: inline-block;
+}
+.medium-insert-images.medium-insert-images-grid figure img {
+  max-width: calc(100% - 1em);
+  margin: 0.5em;
+}
+
+.medium-insert-embeds {
+  text-align: center;
+  margin: 1em 0;
+  position: relative;
+}
+.medium-insert-embeds iframe {
+  margin: 0 auto !important;
+}
+.medium-insert-embeds div {
+  margin: 0 auto !important;
+}
+.medium-insert-embeds.medium-insert-embeds-left {
+  width: 33.33%;
+  float: left;
+  margin: 0 30px 20px 0;
+}
+.medium-insert-embeds.medium-insert-embeds-right {
+  width: 33.33%;
+  float: right;
+  margin: 0 0 20px 30px;
+}
+
+.medium-insert-images figure, .medium-insert-embeds figure {
+  position: relative;
+}
+.medium-insert-images figure figcaption, .medium-insert-embeds figure figcaption {
+  position: relative;
+  z-index: 1;
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+  color: #ccc;
+  font-size: 0.8em;
+  font-style: italic;
+  outline: 0 solid transparent;
+}
+.medium-insert-images figure figcaption:focus, .medium-insert-embeds figure figcaption:focus {
+  outline: 0 solid transparent;
+}
