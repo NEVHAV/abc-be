@@ -10,6 +10,7 @@
 
     <link type="text/css" rel="stylesheet" href="css/small-medium.css">
     <link type="text/css" rel="stylesheet" href="css/editor.css">
+    <link type="text/css" rel="stylesheet" href="css/medium-editor-insert-plugin-frontend.css">
     <link type="text/css" rel="stylesheet" href="css/app.css" media="screen,projection">
 </head>
 <body>
