@@ -101,16 +101,11 @@ class UserController extends Controller
         if (Auth::check()) {
             if (Auth::user()->mode == 0) {
                 $input = $request->all();
-
                 $user = User::find($id);
-
                 $user->name = $input['name'];
-                if (!is_null($input['password'])) {
-                    $user->password = $input['password'];
-                }
                 $user->email = $input['email'];
                 $user->mode = $input['mode'];
-                $user->save;
+                $user->save();
             }
             return redirect('admin/users');
         }
@@ -132,7 +127,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 'ERROR',
-            'message' => 'Ban phai dang nhap',
+            'message' => 'Bạn phải đăng nhập',
         ]);
     }
 

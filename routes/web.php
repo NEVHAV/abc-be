@@ -68,7 +68,13 @@ Route::resource('admin/subcategories', 'Admin\SubCategoryController');
 
 Route::resource('admin/advertisements', 'Admin\AdvertisementController');
 
-Route::post('admin/api/uploadimage/{path?}', 'Admin\UploadImageController@store');
-Route::delete('admin/api/uploadimage/storage/{path?}/{name}', 'Admin\UploadImageController@destroy');
+Route::resource('admin/settings', 'Admin\PasswordController');
+
+//Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
+
+Route::post('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store');
+Route::patch('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store');
+
+Route::delete('admin/api/uploadimage/storage/{path}/{name}', 'Admin\UploadImageController@destroy');
 
 Auth::routes();

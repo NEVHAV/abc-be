@@ -42,13 +42,13 @@
                 <div class="form-group">
                     <label for="footer_vn" class="control-label">Footer tiếng Việt</label>
                     <div>
-                        <textarea id="post-editor" class="editable post-content u-padding5" name="footer_vn" value="{{$info->footer_vn}}" required="true"></textarea>
+                        <textarea class="u-sizeFullWidth" rows="5" name="footer_vn">{{$info->footer_vn}}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="footer_jp" class="control-label">Footer tiếng Nhật</label>
                     <div>
-                        <textarea id="post-editor" class="editable post-content u-padding5" name="footer_jp" value="{{$info->footer_jp}}"></textarea>
+                        <textarea class="u-sizeFullWidth" rows="5" name="footer_jp">{{$info->footer_jp}}</textarea>
                     </div>
                 </div>
                 <div class="form-group">

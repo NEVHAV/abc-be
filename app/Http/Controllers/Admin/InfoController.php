@@ -37,7 +37,19 @@ class InfoController extends Controller
 
     // POST /categories/store
     public function store(Request $request){
-        if (Auth::check()) {      
+        if (Auth::check()) {
+             $input = $this->validate($request, [
+                'company_name_vn'=> 'required',
+                'company_name_jp' => 'required',
+                'phone_number' => 'required',
+                'hotline' => 'required',
+                'logo_url' => 'required',
+                'company_slogan_vn' => 'required',
+                'footer_vn' => 'required',
+                'supporter_name' => 'required',
+                'supporter_phone_number' => 'required',
+                'supporter_email' => 'required',
+            ]);        
             $input = $request->all();
             $info = new Info();
             $info->company_name_vn = $input['company_name_vn'];
@@ -82,6 +94,18 @@ class InfoController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::check()) {
+              $input = $this->validate($request, [
+                'company_name_vn'=> 'required',
+                'company_name_jp' => 'required',
+                'phone_number' => 'required',
+                'hotline' => 'required',
+                'logo_url' => 'required',
+                'company_slogan_vn' => 'required',
+                'footer_vn' => 'required',
+                'supporter_name' => 'required',
+                'supporter_phone_number' => 'required',
+                'supporter_email' => 'required',
+            ]);       
             $input = $request->all();
             $info=Info::find($id);
             $info->update($input);

@@ -14,8 +14,9 @@ ADMIN.bindUIAction = function () {
     this.bindCategoryDataTable();
     this.bindUserDataTable();
     this.bindPostDataTable();
-
+    this.bindAdvertisementDataTable();
     this.bindFileUpload();
+    this.bindInfoDataTable();
 
     this.POST.bindUIAction();
     this.btnGroupInput();
@@ -37,6 +38,22 @@ ADMIN.bindUIAction = function () {
 ADMIN.bindCategoryDataTable = function () {
     $(document).ready(function () {
         $('#category-dt').DataTable({
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        });
+    });
+};
+
+ADMIN.bindAdvertisementDataTable = function () {
+    $(document).ready(function () {
+        $('#advertisement-dt').DataTable({
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        });
+    });
+};
+
+ADMIN.bindInfoDataTable = function () {
+    $(document).ready(function () {
+        $('#info-dt').DataTable({
             'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
         });
     });
@@ -248,9 +265,11 @@ ADMIN.bindFileUpload = function () {
         // let name = $('#cover-name');
         let targetInput = $(fileupload.attr('data-target'));
 
+        let url = fileupload.attr('data-upload-url');
+
         fileupload.fileupload({
-            dataType: 'json',
-            url: '/admin/api/uploadimage/post',
+            type: 'POST',
+            url: url,
             autoUpload: true,
             done: function (e, data) {
                 let result = data.result;
@@ -287,15 +306,14 @@ ADMIN.bindFileUpload = function () {
             preview.addClass('hidden');
             // name.text('');
             removeBtn.addClass('hidden');
-            removeBtn.attr('data-delete-url', '');
             targetInput.val('');
             fileupload.prop('disabled', false);
-            
+
             $.ajax({
                 url: removeBtn.attr('data-delete-url'),
                 type: 'delete',
             }).done(data => {
-
+                removeBtn.attr('data-delete-url', '');
             });
         });
     });

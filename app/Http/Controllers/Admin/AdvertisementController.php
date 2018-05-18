@@ -39,8 +39,10 @@ class AdvertisementController extends Controller
     public function store(Request $request)
     {
         if (Auth::check()) {
+            $input = $this->validate($request, [
+                'url_vn'=> 'required',
+            ]);
             $input = $request->all();
-
             $advertisement = new Advertisement();
             $advertisement->url_vn = $input['url_vn'];
             $advertisement->url_jp = $input['url_jp'];
@@ -76,6 +78,9 @@ class AdvertisementController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::check()) {
+            $input = $this->validate($request, [
+                'url_vn'=> 'required',
+            ]);
             $input = $request->all();
             $advertisement = Advertisement::find($id);
             $advertisement->update($input);
@@ -93,5 +98,12 @@ class AdvertisementController extends Controller
             ]);
         }
         return redirect('/admin/login');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'url_vn' => 'required|string|max:255',
+        ]);
     }
 }

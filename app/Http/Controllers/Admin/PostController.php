@@ -180,7 +180,7 @@ class PostController extends Controller
 
         return response()->json([
             'status' => 'error',
-            'message' => 'Ban phai dang nhap',
+            'message' => 'Bạn phải đăng nhập',
         ]);
     }
 }
