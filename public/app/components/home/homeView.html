@@ -178,7 +178,7 @@
                             <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
                                 <div class="u-flex u-marginTop20">
                                     <div class="post-cover u-flex0 u-xs-hide"
-                                         style="background-image: url({{ category.new_post.cover }});">
+                                         style="background-image: url({{ category.new_post.cover }})">
                                     </div>
                                     <div class="u-flex1 u-marginLeft50 u-xs-marginLeft0">
                                         <div class="u-cursorPointer"
@@ -217,7 +217,7 @@
                                  class="u-sizeFullWidth">
                                 <div class="u-flex u-marginTop20">
                                     <div class="post-cover u-flex0"
-                                         style="background-image: url({{ category.new_post.cover }});">
+                                         style="background-image: url({{ category.new_post.cover }})">
                                     </div>
 
                                     <div class="u-flex1 u-marginLeft50">
@@ -351,7 +351,7 @@
                     </div>
                     <div class="carousel-item" href="#{{ category.slug }}">
                         <div class="post-cover"
-                             style="background-image: url({{ category.new_post.cover }});">
+                             style="background-image: url({{ category.new_post.cover }})">
                         </div>
                         <div class="content u-padding10 u-absolute u-top0 u-left0">
                             <div class="u-top0 u-fontSize14 u-fontWeightBold u-borderBottomGrayLight u-marginBottom15">
@@ -376,7 +376,7 @@
                          ng-if="subCategory.new_post !== null"
                          href="#{{ subCategory.slug }}">
                         <div class="post-cover"
-                             style="background-image: url({{ subCategory.new_post.cover }});">
+                             style="background-image: url({{ subCategory.new_post.cover }})">
                         </div>
                         <div class="content u-padding10 u-absolute u-top0 u-left0">
                             <div class="u-top0 u-fontSize14 u-fontWeightBold u-borderBottomGrayLight u-marginBottom15">
@@ -438,7 +438,7 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="input-field col s6">
-                            <input name="nickname" ng-value="{{ nickname }}" required ng-model="postMess.user" id="nickname" type="text" class="validate">
+                            <input name="nickname" value="{{ nickname }}" required ng-model="postMess.user" id="nickname" type="text" class="validate">
                             <label class="active" for="nickname">Nickname</label>
                         </div>
                     </div>

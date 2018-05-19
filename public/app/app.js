@@ -5,8 +5,7 @@ angular.module('abc-fe', [
     'oc.lazyLoad',
     'ui.router',
     'ngCookies',
-    'ngSanitize',
-    'ngWebsocket'
+    'ngSanitize'
 ])
     .constant('API_URL', '/api/')
     .value('test', { value: '0' })

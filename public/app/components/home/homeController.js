@@ -2,7 +2,7 @@
  * Created by NEVHAV on 19/04/18.
  */
 angular.module('abc-fe')
-    .controller('homeController', function ($scope, $http, $timeout, API_URL, $state, $cookieStore, $cacheFactory, $websocket, $interval) {
+    .controller('homeController', function ($scope, $http, $timeout, API_URL, $state, $cookieStore, $cacheFactory, $interval) {
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -158,16 +158,4 @@ angular.module('abc-fe')
         });
 
         $interval($scope.getMessages,1000);
-
-        //websocket
-        // var ws = $websocket.$new({
-        //     url: 'ws://localhost:8080/'});
-        //
-        // ws.$on('$open', function () {
-        //     ws.$emit('hello', 'world');
-        // })
-        //     .$on('incoming event', function (message) {
-        //         console.log(message);
-        //     })
-
     });
