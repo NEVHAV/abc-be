@@ -414,4 +414,46 @@
             </div>
         </div>
     </footer>
+
+    <!--chat-->
+    <div id="live-chat" style="position: fixed; bottom: 0; right: 0; width: 350px">
+        <header class="clearfix" style="height: 40px">
+            <h4>Trò chuyện</h4>
+            <span class="chat-message-counter">Mới</span>
+        </header>
+
+        <div class="chat">
+            <div class="chat-history">
+                <div class="chat-message"  ng-repeat="mess in getMess">
+                    <div class="chat-message-content">
+                        <span class="chat-time">{{ mess.created_at }}</span>
+                        <h5 style="font-weight: bold; color: black">{{ mess.user }}</h5>
+                        <p>{{ mess.message}}</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <form style="height: 180px" name="chat">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field col s6">
+                            <input name="nickname" ng-value="{{ nickname }}" required ng-model="postMess.user" id="nickname" type="text" class="validate">
+                            <label class="active" for="nickname">Nickname</label>
+                        </div>
+                    </div>
+                    <span class="col s12" ng-show="chat.nickname.$touched && chat.nickname.$invalid">Bạn phải nhập nickname!</span>
+                </div>
+                <fieldset class="row">
+                    <input name="message" class="col s8" style="height: 20px; width: 200px" type="text" placeholder="Nhấn để nhập tin nhắn" ng-model="postMess.message">
+                    <div class="col s1>"></div>
+                    <div class="btn col s2 white blue-text" ng-click="postMessages(postMess)">Gửi</div>
+                    <div class="col s1>"></div>
+                    <span class="col s12" ng-show="chat.message.$touched && chat.message.$invalid">Bạn phải nhập tin nhắn!</span>
+                </fieldset>
+            </form>
+
+        </div> <!-- end chat -->
+
+    </div> <!-- end live-chat -->
 </main>

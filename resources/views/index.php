@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="css/small-medium.css">
     <link type="text/css" rel="stylesheet" href="css/editor.css">
     <link type="text/css" rel="stylesheet" href="css/app.css" media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="css/chat.css">
 </head>
 <body>
     <main class="surface" ui-view></main>
@@ -22,6 +23,10 @@
     <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="app/lib/angular-cookies/angular-cookies.js"></script>
     <script src="app/lib/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <!-- websocket -->
+    <script src="app/lib/ng-websocket/ng-websocket.js"></script>
+
+    <!-- pusher-angular -->
 
     <!--main script-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
