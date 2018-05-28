@@ -84,6 +84,7 @@
                                 <input type="file"
                                        name="files[]"
                                        class="fileupload"
+                                       data-upload-url="/admin/api/uploadimage/post"
                                        accept="image/*" + "|JPG|JPEG|PNG"
                                        data-target="#inputCover"
                                        data-delete-button="#cover-remove"
