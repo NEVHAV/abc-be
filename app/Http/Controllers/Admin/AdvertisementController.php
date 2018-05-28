@@ -46,7 +46,6 @@ class AdvertisementController extends Controller
             $advertisement = new Advertisement();
             $advertisement->url_vn = $input['url_vn'];
             $advertisement->url_jp = $input['url_jp'];
-            //   $advertisement->slug = ControllerHelper::slug($input['name_vn']);
             $advertisement->save();
 
             return redirect('/admin/advertisements');

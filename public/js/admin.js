@@ -220,7 +220,6 @@ ADMIN.ADVERTISEMENT.delete = function (id) {
             _token: $('meta[name="csrf-token"]').attr('content'),
         },
     }).done((data) => {
-        console.log(data);
         window.location.reload();
     });
 };
