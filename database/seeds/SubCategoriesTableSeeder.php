@@ -72,6 +72,20 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => Carbon::now()->toDateString(),
                 'updated_at' => Carbon::now()->toDateString(),
             ],
+            [
+                'id_cate' => 4,
+                'name_vn' => 'Nhật Bản',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
+            [
+                'id_cate' => 4,
+                'name_vn' => 'Đài Loan',
+                'name_jp' => '',
+                'created_at' => Carbon::now()->toDateString(),
+                'updated_at' => Carbon::now()->toDateString(),
+            ],
         ];
 
         $new_data = [];

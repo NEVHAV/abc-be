@@ -5,9 +5,11 @@ use App\Category;
 use App\Subcategory;
 use App\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Helpers\ControllerHelper;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -38,7 +40,6 @@ class CategoryController extends Controller
         if (Auth::check()) {  
             $input = $this->validate($request, [
                 'name_vn'=> 'required',
-                'slug' => 'required',
             ]);    
             $input = $request->all();
             $category = new Category();
@@ -46,7 +47,6 @@ class CategoryController extends Controller
             $category->name_jp = $input['name_jp'];
             $category->slug = ControllerHelper::slug($input['name_vn']);
             $category->save();
-
             return redirect('/admin/categories');
         }
         return redirect('/admin/login');
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     // GET /categories/{category}/edit
     public function edit($id)
     {
-          if (Auth::check()) {
+        if (Auth::check()) {
             $category=Category::find($id);
             return view('admin/category/edit', ['category'=>$category]);
         }
@@ -78,7 +78,6 @@ class CategoryController extends Controller
         if (Auth::check()) {
             $input = $this->validate($request, [
                 'name_vn'=> 'required',
-                'slug' => 'required',
             ]);  
             $input = $request->all();
             $category=Category::find($id);
