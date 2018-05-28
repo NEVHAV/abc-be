@@ -111,4 +111,10 @@ angular.module('abc-fe')
         //     console.log(test.value);
         //     $state.go('post', { cate: 1, subcate: 1 });
         // };
+
+        $scope.truncateContent = function (content) {
+            let arr = content.split(' ');
+            arr = arr.slice(0, 36);
+            return arr.join(' ') + '...';
+        }
     });

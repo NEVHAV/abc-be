@@ -37,7 +37,7 @@
             <div class="nav-content u-flex u-maxWidth1200">
                 <div class="brand-container u-flex">
                     <div class="logo u-height65 u-marginRight8">
-                        <img class="u-width50 u-verticalAlignMiddle u-xs-hide" src="{{ info.logo_url }}">
+                        <img class="u-width50 u-verticalAlignMiddle u-xs-hide" ng-src="{{ info.logo_url }}">
                     </div>
                     <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
                         <div class="u-flex1 u-fontSize20 u-xs-fontSize12 u-lineHeight18 u-fontWeightBold u-flexColumn">
@@ -154,10 +154,10 @@
         </div>
 
         <!--post + latest post + advertisement-->
-        <div class="body-container u-maxWidth1200 u-marginAuto">
+        <div class="body-container u-maxWidth1040 u-marginAuto">
             <div class="body-content u-flex">
                 <div class="content-left u-flex1 u-xs-padding10">
-                    <div class="u-maxWidth780">
+                    <div class="u-maxWidth700">
                         <!--post-->
                         <!--<nav style="height: 50px; padding-top: 0; background-color: white; box-shadow: none">-->
                         <!--<div class="nav-wrapper">-->
@@ -182,26 +182,27 @@
                 </div>
 
 
-                <div class="content-right u-width320" ng-if="!isMobile">
+                <div class="content-right u-width300 u-xs-hide">
                     <!--latest post + advertisement-->
                     <!--latest post-->
                     <div class="news-container">
                         <div style="background-color: #e8eaf6">
                             <div style="height: 10px; background-color: #3f51b5"></div>
                             <div class="black-text">
-                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'vn'">TIN MỚI
+                                <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'vn'">TIN
+                                    MỚI
                                     CẬP NHẬT</h6>
                                 <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'jp'">
                                     ニュースの更新</h6>
-                                <hr style="width: 200px">
+                                <hr style="width: 200px" class="u-marginBottom0">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
                                     <tr ng-repeat="latestPost in latestPosts">
-                                        <th class="u-fontSize50 u-textAlignRight" style="color: #3f51b5">0{{
+                                        <th class="u-fontSize40 u-textAlignRight u-padding10" style="color: #3f51b5">0{{
                                             $index +
                                             1}}
                                         </th>
-                                        <th>
+                                        <th class="u-padding10">
                                             <a class="u-fontSize14 u-uiTextMedium u-textColorDarker"
                                                href="/post/{{ latestPost.slug }}">
                                                 {{ latestPost.title }}
@@ -224,7 +225,9 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'vn'">HỖ TRỢ
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter u-marginTop10"
+                                     ng-if="lang == 'vn'">HỖ
+                                    TRỢ
                                     TRỰC TUYẾN
                                 </div>
                                 <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'jp'">
@@ -243,11 +246,13 @@
                                             <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
                                         </th>
                                         <th>
-                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">{{ info.supporter_name
+                                            <p class="u-fontSize16 u-marginBottom0 u-marginTop0">{{
+                                                info.supporter_name
                                                 }}</p>
                                             <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{
                                                 info.supporter_phone_number }}</p>
-                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{ info.supporter_email
+                                            <p class="u-margin0 u-fontSize11 u-fontWeightThin">{{
+                                                info.supporter_email
                                                 }}</p>
                                         </th>
                                     </tr>
@@ -264,13 +269,34 @@
 
     <!--footer-->
     <footer class="u-marginTop50 u-xs-marginTop0">
-        <div class="footer-content u-flex u-padding20 u-xs-padding5 u-paddingBottom2 u-maxWidth1200 u-xs-sizeFullWidth u-marginAuto u-textColorWhite">
-            <div class="left-content u-flex1 u-fontSize14 u-xs-fontSize12" ng-bind-html="info.footer">
-            </div>
-            <div class="u-width300" ng-if="!isMobile">
-                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                        width="300" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                        allowTransparency="true" allow="encrypted-media"></iframe>
+        <div class="footer-content u-textColorWhite">
+            <div class="u-maxWidth1200 u-marginAuto u-padding20 u-xs-padding5 u-paddingBottom2 u-xs-sizeFullWidth u-block">
+                <div class="left-content u-fontSize12 u-xs-fontSize12 u-width530 u-inlineBlock"
+                     ng-bind-html="info.footer">
+                </div>
+                <div class="u-width180 u-inlineBlock u-marginLeft50 u-verticalAlignTop">
+                    <ul>
+                        <li class="u-marginBottom5">
+                            <a href="/" class="u-textColorWhite" ng-if="lang == 'vn'">
+                                TRANG CHỦ
+                            </a>
+                            <a href="/" class="u-textColorWhite" ng-if="lang == 'jp'">
+                                ホーム
+                            </a>
+                        </li>
+                        <li class="u-marginBottom5"
+                            ng-repeat="category in categories">
+                            <a href="topic/{{ category.slug }}" class="u-textColorWhite">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="u-width340 u-inlineBlock u-floatRight" ng-if="!isMobile">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                            width="340" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                            allowTransparency="true" allow="encrypted-media"></iframe>
+                </div>
             </div>
         </div>
     </footer>

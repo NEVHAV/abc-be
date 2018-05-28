@@ -37,7 +37,7 @@
             <div class="nav-content u-flex u-maxWidth1200">
                 <div class="brand-container u-flex">
                     <div class="logo u-height65 u-marginRight8">
-                        <img class="u-width50 u-verticalAlignMiddle u-xs-hide" src="{{ info.logo_url }}">
+                        <img class="u-width50 u-verticalAlignMiddle u-xs-hide" ng-src="{{ info.logo_url }}">
                     </div>
                     <div class="u-flex u-flexColumnSpaceBetween u-justifyContentCenter u-height50 u-marginTop4">
                         <div class="u-flex1 u-fontSize20 u-xs-fontSize12 u-lineHeight18 u-fontWeightBold u-flexColumn">
@@ -154,16 +154,16 @@
         </div>
 
         <!--post + latest post + advertisement-->
-        <div class="body-container u-maxWidth1200 u-marginAuto" ng-if="!isMobile">
+        <div class="body-container u-maxWidth1040 u-marginAuto" ng-if="!isMobile">
             <div class="body-content u-flex">
                 <div class="content-left u-flex1 home u-xs-hide">
-                    <div class="u-maxWidth780">
+                    <div class="u-maxWidth700">
                         <div class="u-marginBottom60"
                              ng-repeat="category in data"
                              ng-if="category.new_post !== null">
                             <ul class="tabs u-borderBottomGrayLight">
                                 <li class="tab">
-                                    <a class="active u-textAlignLeft u-fontSize18 u-xs-fontSize14 u-padding0 u-textColorDarker u-fontWeightBold"
+                                    <a class="active u-textAlignLeft u-fontSize16 u-xs-fontSize14 u-padding0 u-textColorDarker u-fontWeightBold"
                                        href="#{{ category.slug }}">
                                         {{ category.name }}
                                     </a>
@@ -176,31 +176,30 @@
                                 </li>
                             </ul>
                             <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
-                                <div class="u-flex u-marginTop20">
+                                <div class="u-flex u-marginTop15">
                                     <div class="post-cover u-flex0 u-xs-hide"
                                          style="background-image: url({{ category.new_post.cover }});">
                                     </div>
-                                    <div class="u-flex1 u-marginLeft50 u-xs-marginLeft0">
+                                    <div class="u-flex1 u-marginLeft20 u-xs-marginLeft0">
                                         <div class="u-cursorPointer"
                                              ng-click="showPost(category.new_post.slug)">
-                                            <div class="u-fontSize16 u-fontWeightBold u-marginTop0">
+                                            <div class="u-fontSize14 u-fontWeightBold u-marginTop0">
                                                 {{ category.new_post.title }}
                                             </div>
-                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop10">
-                                                {{ category.new_post.content }}
+                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop4">
+                                                {{ truncateContent(category.new_post.content) }}
                                             </div>
                                         </div>
-                                        <div class="u-marginTop20" ng-if="category.posts.length > 0">
+                                        <div class="u-marginTop5" ng-if="category.posts.length > 0">
                                             <div ng-repeat="post in category.posts">
                                                 <a href="/post/{{ post.slug }}"
-                                                   class="u-fontSize14 u-textColorDark u-uiTextMedium u-textUnderline">
+                                                   class="u-fontSize12 u-textColorDark u-textUnderline">
                                                     {{ post.title }}
                                                 </a>
                                             </div>
-                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark u-textUnderline"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'vn'">
-                                                <i class="fa fa-arrow-circle-right"></i>
-                                                Xem thêm
+                                                Xem thêm {{ category.name }}
                                             </a>
                                             <a class="u-fontSize14 u-marginTop20 u-textColorDark"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'jp'">
@@ -215,32 +214,31 @@
                                  ng-if="subCategory.new_post !== null"
                                  id="{{ subCategory.slug }}"
                                  class="u-sizeFullWidth">
-                                <div class="u-flex u-marginTop20">
+                                <div class="u-flex u-marginTop15">
                                     <div class="post-cover u-flex0"
                                          style="background-image: url({{ category.new_post.cover }});">
                                     </div>
 
-                                    <div class="u-flex1 u-marginLeft50">
+                                    <div class="u-flex1 u-marginLeft20">
                                         <div class="u-cursorPointer"
                                              ng-click="showPost(subCategory.new_post.slug)">
-                                            <div class="u-fontSize16 u-fontWeightBold u-marginTop0">
+                                            <div class="u-fontSize14 u-fontWeightBold u-marginTop0">
                                                 {{ subCategory.new_post.title }}
                                             </div>
-                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop10">
+                                            <div class="u-fontSize14 u-fontWeightThin u-marginTop4">
                                                 {{ subCategory.new_post.content }}
                                             </div>
                                         </div>
-                                        <div class="u-marginTop20" ng-if="subCategory.posts.length > 0">
+                                        <div class="u-marginTop5" ng-if="subCategory.posts.length > 0">
                                             <div ng-repeat="post in subCategory.posts">
                                                 <a href="/post/{{ post.slug }}"
-                                                   class="u-fontSize14 u-textColorDark u-uiTextMedium u-textUnderline">
+                                                   class="u-fontSize12 u-textColorDark u-textUnderline">
                                                     {{ post.title }}
                                                 </a>
                                             </div>
-                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark u-textUnderline"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'vn'">
-                                                <i class="fa fa-arrow-circle-right"></i>
-                                                Xem thêm
+                                                Xem thêm {{ subCategory.name }}
                                             </a>
                                             <a class="u-fontSize14 u-marginTop20 u-textColorDark"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'jp'">
@@ -256,7 +254,7 @@
                 </div>
 
 
-                <div class="content-right u-width320 u-xs-hide">
+                <div class="content-right u-width300 u-xs-hide">
                     <!--latest post + advertisement-->
                     <!--latest post-->
                     <div class="news-container">
@@ -268,15 +266,15 @@
                                     CẬP NHẬT</h6>
                                 <h6 class="u-fontWeightBold u-fontSize14 u-textAlignCenter" ng-if="lang == 'jp'">
                                     ニュースの更新</h6>
-                                <hr style="width: 200px">
+                                <hr style="width: 200px" class="u-marginBottom0">
                                 <table class="borderless" style="background-color: #e8eaf6">
                                     <tbody>
                                     <tr ng-repeat="latestPost in latestPosts">
-                                        <th class="u-fontSize50 u-textAlignRight" style="color: #3f51b5">0{{
+                                        <th class="u-fontSize40 u-textAlignRight u-padding10" style="color: #3f51b5">0{{
                                             $index +
                                             1}}
                                         </th>
-                                        <th>
+                                        <th class="u-padding10">
                                             <a class="u-fontSize14 u-uiTextMedium u-textColorDarker"
                                                href="/post/{{ latestPost.slug }}">
                                                 {{ latestPost.title }}
@@ -299,7 +297,8 @@
                             <div style="height: 10px; background-color: red">
                             </div>
                             <div class="black-text">
-                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'vn'">HỖ
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter u-marginTop10"
+                                     ng-if="lang == 'vn'">HỖ
                                     TRỢ
                                     TRỰC TUYẾN
                                 </div>
@@ -404,13 +403,34 @@
 
     <!--footer-->
     <footer class="u-marginTop50 u-xs-marginTop0">
-        <div class="footer-content u-flex u-padding20 u-xs-padding5 u-paddingBottom2 u-maxWidth1200 u-xs-sizeFullWidth u-marginAuto u-textColorWhite">
-            <div class="left-content u-flex1 u-fontSize14 u-xs-fontSize12" ng-bind-html="info.footer">
-            </div>
-            <div class="u-width300" ng-if="!isMobile">
-                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                        width="300" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                        allowTransparency="true" allow="encrypted-media"></iframe>
+        <div class="footer-content u-textColorWhite">
+            <div class="u-maxWidth1200 u-marginAuto u-padding20 u-xs-padding5 u-paddingBottom2 u-xs-sizeFullWidth u-block">
+                <div class="left-content u-fontSize12 u-xs-fontSize12 u-width530 u-inlineBlock"
+                     ng-bind-html="info.footer">
+                </div>
+                <div class="u-width180 u-inlineBlock u-marginLeft50 u-verticalAlignTop">
+                    <ul>
+                        <li class="u-marginBottom5">
+                            <a href="/" class="u-textColorWhite" ng-if="lang == 'vn'">
+                                TRANG CHỦ
+                            </a>
+                            <a href="/" class="u-textColorWhite" ng-if="lang == 'jp'">
+                                ホーム
+                            </a>
+                        </li>
+                        <li class="u-marginBottom5"
+                            ng-repeat="category in categories">
+                            <a href="topic/{{ category.slug }}" class="u-textColorWhite">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="u-width340 u-inlineBlock u-floatRight" ng-if="!isMobile">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                            width="340" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                            allowTransparency="true" allow="encrypted-media"></iframe>
+                </div>
             </div>
         </div>
     </footer>

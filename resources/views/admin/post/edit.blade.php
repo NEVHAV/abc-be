@@ -87,7 +87,7 @@
                                        name="files[]"
                                        class="fileupload"
                                        data-upload-url="/admin/api/uploadimage/post"
-                                       accept="image/*"
+                                       accept="image/*" + "|JPG|JPEG|PNG"
                                        data-target="#inputCover"
                                        data-delete-button="#cover-remove"
                                        data-preview="#cover-preview">
