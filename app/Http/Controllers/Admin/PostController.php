@@ -7,10 +7,11 @@ use Auth;
 use App\Post;
 use App\User;
 use App\Subcategory;
+use App\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Helpers\ControllerHelper;
-
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -35,10 +36,12 @@ class PostController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            $sub_categories = Subcategory::orderBy('name_vn', 'asc')->get();
-
+            $categories = DB::table('categories')
+                            ->join('subcategories','categories.id','=','subcategories.id_cate')
+                            ->select('categories.name_vn as cate_name','subcategories.id as sub_id','subcategories.name_vn as sub_name')
+                            ->get();
             return view('admin/post/create', [
-                'sub_categories' => $sub_categories,
+                'categories' => $categories,
             ]);
         }
 
@@ -104,7 +107,10 @@ class PostController extends Controller
     public function edit(Request $request, $post_id)
     {
         if (Auth::check()) {
-            $sub_categories = Subcategory::orderBy('name_vn', 'asc')->get();
+            $sub_categories = DB::table('categories')
+                            ->join('subcategories','categories.id','=','subcategories.id_cate')
+                            ->select('categories.name_vn as cate_name','subcategories.id as sub_id','subcategories.name_vn as sub_name')
+                            ->get();
             $post = Post::find($post_id);
 
             if ($post->state == 1) {
