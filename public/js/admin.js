@@ -24,7 +24,7 @@ ADMIN.bindUIAction = function () {
     $('.select2').select2();
 
     $('.datepicker').datepicker({
-        format: 'd/m/Y',
+        format: 'dd/mm/yyyy',
     });
 
     $('.timepicker').timepicker({
@@ -140,6 +140,16 @@ ADMIN.POST.bindUIAction = function () {
 
         $('.datepicker').val(date);
         $('.timepicker').val(time);
+    });
+
+    $('#button-publish').on('click', function () {
+        $('#inputPublishedDate').prop('required', true);
+        $('#inputPublishedTime').prop('required', true);
+    });
+
+    $('.button-no-publish').on('click', function () {
+        $('#inputPublishedDate').prop('required', false);
+        $('#inputPublishedTime').prop('required', false);
     });
 };
 
