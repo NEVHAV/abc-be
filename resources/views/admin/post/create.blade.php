@@ -112,14 +112,15 @@
                 </div>
             </div>
 
+                
             <div class="form-group">
                 <label for="inputIDSub" class="col-sm-2 control-label">Sub Category</label>
                 <div class="col-sm-10">
                     <select id="inputIDSub"
                             class="select2 u-sizeFullWidth"
                             name="id_sub">
-                        @foreach($sub_categories as $sub_category)
-                            <option value="{{ $sub_category->id }}">{{ $sub_category->name_vn }}</option>
+                        @foreach($categories as $sub)
+                            <option value="{{ $sub->sub_id }}">{{ $sub->cate_name }} - {{$sub->sub_name}}</option>
                         @endforeach
                     </select>
                 </div>

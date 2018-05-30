@@ -123,9 +123,9 @@
                             class="select2 u-sizeFullWidth"
                             name="id_sub">
                         @foreach($sub_categories as $sub_category)
-                            <option value="{{ $sub_category->id }}"
-                                    {{ $sub_category->id == $post->id_sub ? 'selected="selected"' : '' }}>
-                                {{ $sub_category->name_vn }}
+                            <option value="{{ $sub_category->sub_id }}"
+                                    {{ $sub_category->sub_id == $post->id_sub ? 'selected="selected"' : '' }}>
+                                {{ $sub_category->cate_name }} - {{$sub_category->sub_name}}
                             </option>
                         @endforeach
                     </select>
