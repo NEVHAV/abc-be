@@ -37,9 +37,9 @@ class PostController extends Controller
     {
         if (Auth::check()) {
             $categories = DB::table('categories')
-                            ->join('subcategories','categories.id','=','subcategories.id_cate')
-                            ->select('categories.name_vn as cate_name','subcategories.id as sub_id','subcategories.name_vn as sub_name')
-                            ->get();
+                ->join('subcategories', 'categories.id', '=', 'subcategories.id_cate')
+                ->select('categories.name_vn as cate_name', 'subcategories.id as sub_id', 'subcategories.name_vn as sub_name')
+                ->get();
             return view('admin/post/create', [
                 'categories' => $categories,
             ]);
@@ -52,14 +52,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         if (Auth::check()) {
-            $data = $this->validate($request, [
+            $rule = [
                 'title' => 'required',
                 'state' => 'required',
                 'cover' => 'required',
                 'content' => 'required',
                 'language' => 'required',
                 'id_sub' => 'required',
-            ]);
+            ];
+            if ($request->input('state') == 1) {
+                $rule['published_date.date'] = 'required';
+                $rule['published_date.time'] = 'required';
+            }
+            $data = $this->validate($request, $rule);
 
             $data['published_date'] = join(' ', $request->input('published_date'));
 
@@ -108,9 +113,9 @@ class PostController extends Controller
     {
         if (Auth::check()) {
             $sub_categories = DB::table('categories')
-                            ->join('subcategories','categories.id','=','subcategories.id_cate')
-                            ->select('categories.name_vn as cate_name','subcategories.id as sub_id','subcategories.name_vn as sub_name')
-                            ->get();
+                ->join('subcategories', 'categories.id', '=', 'subcategories.id_cate')
+                ->select('categories.name_vn as cate_name', 'subcategories.id as sub_id', 'subcategories.name_vn as sub_name')
+                ->get();
             $post = Post::find($post_id);
 
             if ($post->state == 1) {
@@ -134,15 +139,19 @@ class PostController extends Controller
     public function update(Request $request, $post_id)
     {
         if (Auth::check()) {
-            $data = $this->validate($request, [
+            $rule = [
                 'title' => 'required',
                 'state' => 'required',
                 'cover' => 'required',
                 'content' => 'required',
                 'language' => 'required',
                 'id_sub' => 'required',
-//                'id_user' => 'required',
-            ]);
+            ];
+            if ($request->input('state') == 1) {
+                $rule['published_date.date'] = 'required';
+                $rule['published_date.time'] = 'required';
+            }
+            $data = $this->validate($request, $rule);
 
             $data['published_date'] = join(' ', $request->input('published_date'));
 
