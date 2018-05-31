@@ -135,8 +135,8 @@ ADMIN.POST.bindUIAction = function () {
 
     $('#btn-now').on('click', function () {
         let now = new Date();
-        let date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-        let time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        let date = `${(now.getDate() < 10 ? '0' : '') + now.getDate()}/${(now.getMonth() + 1 < 10 ? '0' : '') + (now.getMonth() + 1)}/${now.getFullYear()}`;
+        let time = `${(now.getHours() < 10 ? '0' : '') + now.getHours()}:${(now.getMinutes() < 10 ? '0' : '') + now.getMinutes()}:${(now.getSeconds() < 10 ? '0' : '') + now.getSeconds()}`;
 
         $('.datepicker').val(date);
         $('.timepicker').val(time);
