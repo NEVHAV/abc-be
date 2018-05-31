@@ -58,5 +58,20 @@ angular.module('abc-fe', [
                             );
                         },
                     },
+                })
+
+                .state('subTopic', {
+                    url: '/topic/:slug/:subTopic',
+                    templateUrl: 'app/components/submenu/submenuView.html',
+                    controller: 'submenuController',
+                    resolve: {
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(
+                                {
+                                    files: ['app/components/submenu/submenuController.js'],
+                                },
+                            );
+                        },
+                    },
                 });
         }]);

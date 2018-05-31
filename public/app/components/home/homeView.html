@@ -172,13 +172,13 @@
                                     ng-repeat="subCategory in category.subs"
                                     ng-if="subCategory.new_post !== null">
                                     <a class="u-padding0 u-marginRight15 u-textColorDarker u-fontSize14 u-xs-fontSize12"
-                                       href="#{{ subCategory.slug }}">{{ subCategory.name }}</a>
+                                       href="#{{ category.slug + '-' + subCategory.slug }}">{{ subCategory.name }}</a>
                                 </li>
                             </ul>
                             <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
                                 <div class="u-flex u-marginTop15">
                                     <div class="post-cover u-flex0 u-xs-hide"
-                                         style="background-image: url({{ category.new_post.cover }});">
+                                       style="background-image: url({{ category.new_post.cover }})">
                                     </div>
                                     <div class="u-flex1 u-marginLeft20 u-xs-marginLeft0">
                                         <div class="u-cursorPointer"
@@ -212,7 +212,7 @@
                             </div>
                             <div ng-repeat="subCategory in category.subs"
                                  ng-if="subCategory.new_post !== null"
-                                 id="{{ subCategory.slug }}"
+                                 id="{{ category.slug + '-' + subCategory.slug }}"
                                  class="u-sizeFullWidth">
                                 <div class="u-flex u-marginTop15">
                                     <div class="post-cover u-flex0"

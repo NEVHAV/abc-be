@@ -166,7 +166,7 @@
                             <div class="u-marginTop0 u-block" ng-if="topic.type === 'cate'">
                                 <div class="u-fontSize16 u-xs-fontSize14 u-marginRight25 u-inline u-cursorPointer link"
                                      ng-repeat="sub in topic.subs"
-                                     ng-click="showTopic(sub.slug)">
+                                     ng-click="showSubTopic(topic.slug, sub.slug)">
                                     {{ sub.name }}
                                 </div>
                             </div>

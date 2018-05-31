@@ -2,7 +2,7 @@
  * Created by NEVHAV on 07/05/18.
  */
 angular.module('abc-fe')
-    .controller ('submenuController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
+    .controller('submenuController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -18,7 +18,7 @@ angular.module('abc-fe')
             }
         };
 
-                // mobile check
+        // mobile check
         $scope.mobilecheck = function () {
             let check = false;
             (function (a) {
@@ -65,7 +65,13 @@ angular.module('abc-fe')
         $scope.phoneNumber = '(+84) 24-888-888';
 
         //get submenu
-        $http.get(API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug).then(function (response) {
+        let url;
+        if ($state.params.subTopic) {
+            url = API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug + '/' + $state.params.subTopic;
+        } else {
+            url = API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug;
+        }
+        $http.get(url).then(function (response) {
             $scope.topic = response.data.data;
         }, function (error) {
             console.log('Submenus error!');
@@ -80,12 +86,23 @@ angular.module('abc-fe')
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', {slug: $slug});
+            $state.go('topic', {
+                slug: $slug,
+                subTopic: '',
+            });
+        };
+
+        //show sub topic
+        $scope.showSubTopic = function ($slug, $subTopic) {
+            $state.go('subTopic', {
+                slug: $slug,
+                subTopic: $subTopic,
+            });
         };
         //
         //show post
         $scope.showPost = function ($slug) {
-            $state.go('post', {slug: $slug});
+            $state.go('post', { slug: $slug });
         };
 
         // getLatestPosts

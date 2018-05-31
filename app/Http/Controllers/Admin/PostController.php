@@ -71,7 +71,7 @@ class PostController extends Controller
             $post = new Post;
 
             $post->title = $data['title'];
-            $post->slug = ControllerHelper::slug($data['title']);
+            $post->slug = ControllerHelper::slugUnique($data['title']);
             $post->state = $data['state'];
             $post->id_user = Auth::user()->id;
 
