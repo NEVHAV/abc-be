@@ -34,22 +34,34 @@ class TopicController extends Controller
         ]);
     }
 
-    public function show($lang, $slug)
+    public function show($lang, $slug, $subTopic=NULL)
     {
         if (is_null($lang)) {
             $lang = 'vn';
         }
 
-        $topic = Category::where('slug', $slug)->first();
-        if (is_null($topic)) {
-            $topic = Subcategory::where('slug', $slug)->first();
+        $cate = Category::where('slug', $slug)->first();
 
-            if (is_null($topic)) {
+        if (is_null($cate)) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Category not found',
+            ]);
+        }
+
+        if (!is_null($subTopic)) {
+            $subCate = Subcategory::where('slug', $subTopic)
+                ->where('id_cate', $cate->id)
+                ->first();
+
+            if (is_null($subCate)) {
                 return response()->json([
                     'status' => 'ERROR',
-                    'message' => 'Topic not found',
+                    'message' => 'Subcategory not found',
                 ]);
             }
+
+            $topic = $subCate;
 
             $topic->type = 'subcate';
 
@@ -61,6 +73,7 @@ class TopicController extends Controller
                 ->limit(10)
                 ->get();
         } else {
+            $topic = $cate;
             $topic->type = 'cate';
 
             $topic->posts = Post::where('id_cate', $topic->id)

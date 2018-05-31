@@ -96,7 +96,10 @@ angular.module('abc-fe')
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', { slug: $slug });
+            $state.go('topic', {
+                slug: $slug,
+                subTopic: '',
+            });
         };
 
         //show post

@@ -23,7 +23,7 @@ Route::get('post/{slug}', function (){
     return view('index');
 });
 
-Route::get('topic/{slug}', function (){
+Route::get('topic/{slug}/{subTopic?}', function (){
     return view('index');
 });
 
@@ -46,7 +46,7 @@ Route::get('api/{lang}/breadcrumbs/{subcate}', 'ABCController@getBreadcrumbs');
 Route::get('api/{lang}/submenu/{subId}', 'ABCController@getSubmenu');
 
 Route::get('api/{lang}/posts/{slug}', 'PostController@show');
-Route::get('api/{lang}/topics/{slug}', 'TopicController@show');
+Route::get('api/{lang}/topics/{slug}/{subTopic?}', 'TopicController@show');
 Route::get('api/{lang}/topics', 'TopicController@index');
 
 Route::get('api/{lang}/home', 'HomeController@index');

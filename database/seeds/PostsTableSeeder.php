@@ -117,7 +117,7 @@ class PostsTableSeeder extends Seeder
 
         $new_data = [];
         foreach ($data as $datum) {
-            $datum['slug'] = ControllerHelper::slug($datum['title']);
+            $datum['slug'] = ControllerHelper::slugUnique($datum['title']);
             $datum['state'] = 1;
             array_push($new_data, $datum);
         }
