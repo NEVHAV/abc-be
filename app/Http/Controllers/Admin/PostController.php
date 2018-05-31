@@ -22,7 +22,8 @@ class PostController extends Controller
             $posts = Post::orderBy('updated_at', 'asc')->get();
             foreach ($posts as $post) {
                 $post['user'] = User::find($post->id_user);
-                $post['sub'] = Subcategory::find($post->id_sub);
+                $post['sub'] = Subcategory::find($post->id_sub); 
+                $post['cate'] = Category::find($post->sub->id_cate);            
             }
             return view('admin/post/index', [
                 'posts' => $posts,
@@ -30,7 +31,7 @@ class PostController extends Controller
         }
 
         return redirect('/admin/login');
-    }
+    } 
 
     // GET /posts/create
     public function create()

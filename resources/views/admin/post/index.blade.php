@@ -20,6 +20,7 @@
             <tr>
                 <th>Tên</th>
                 <th>Trạng thái</th>
+                <th>Category</th>
                 <th>Sub category</th>
                 <th>Tác giả</th>
                 <th>Ngày đăng</th>
@@ -36,6 +37,7 @@
                         </a>
                     </td>
                     <td>{{ $post->state  == 0 ? 'Bản nháp' : ($post->state == 1 ? 'Công khai' : 'Lưu trữ') }}</td>
+                    <td>{{ $post->cate->name_vn }}</td>
                     <td>{{ $post->sub->name_vn }}</td>
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->published_date }}</td>
@@ -62,6 +64,7 @@
             <tr>
                 <th>Tên</th>
                 <th>Trạng thái</th>
+                <td>Category</td>
                 <th>Sub category</th>
                 <th>Tác giả</th>
                 <th>Ngày đăng</th>
