@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index($lang)
     {
-        $topics = Category::orderBy('created_at', 'desc')
+        $topics = Category::orderBy('order', 'asc')
             ->select('id', 'name_' . $lang, 'slug')
             ->get();
 

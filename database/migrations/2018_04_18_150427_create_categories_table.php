@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug');
             $table->string('name_vn');
             $table->string('name_jp')->nullable();
+            $table->integer('order');
             $table->timestamps();
         });
     }
