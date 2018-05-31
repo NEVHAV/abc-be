@@ -47,12 +47,12 @@ angular.module('abc-fe')
         //advertisement
         $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
             // materialize option
-            $(document).ready(function () {
+            setTimeout(function () {
                 $('.slider').slider({
                     height: $scope.isMobile ? 100 : 280,
                     indicators: true,
                 });
-            });
+            }, 100);
             $scope.advertisement = response.data.data;
         }, function (error) {
             console.log('Advertisement error!');
@@ -77,11 +77,11 @@ angular.module('abc-fe')
                     });
                 }, 100);
             } else {
-                $(document).ready(function () {
+                setTimeout(function () {
                     $('.tabs').tabs({
                         swipeable: false,
                     });
-                });
+                }, 100);
             }
         }, function (error) {
             console.log('Get data', error);
@@ -116,5 +116,5 @@ angular.module('abc-fe')
             let arr = content.split(' ');
             arr = arr.slice(0, 36);
             return arr.join(' ') + '...';
-        }
+        };
     });
