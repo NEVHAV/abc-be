@@ -18,7 +18,7 @@ angular.module('abc-fe')
             }
         };
 
-                // mobile check
+        // mobile check
         $scope.mobilecheck = function () {
             let check = false;
             (function (a) {
@@ -37,12 +37,14 @@ angular.module('abc-fe')
             });
         }
 
-        //info
-        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-            $scope.info = response.data.data[0];
-        }, function (error) {
-            console.log('Info error!');
-        });
+        setTimeout(function () {
+            //info
+            $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                $scope.info = response.data.data[0];
+            }, function (error) {
+                console.log('Info error!');
+            });
+        }, 200);
 
         //advertisement
         $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
@@ -67,18 +69,22 @@ angular.module('abc-fe')
         $scope.phoneNumber = '(+84) 24-888-888';
 
         //get post detail
-        $http.get(API_URL + $scope.lang + '/' + 'posts/' + $state.params.slug).then(function (response) {
-            $scope.post = response.data.data;
-        }, function (error) {
-            console.log(error);
-        });
+        setTimeout(function () {
+            $http.get(API_URL + $scope.lang + '/' + 'posts/' + $state.params.slug).then(function (response) {
+                $scope.post = response.data.data;
+            }, function (error) {
+                console.log(error);
+            });
+        }, 200);
 
-        //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-            $scope.categories = response.data.data;
-        }, function (error) {
-            console.log('Categories error!');
-        });
+        setTimeout(function () {
+            //get categories
+            $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                $scope.categories = response.data.data;
+            }, function (error) {
+                console.log('Categories error!');
+            });
+        }, 500);
 
         //show submenu
         // $scope.showSubmenu = function ($subId, $subname) {
@@ -95,12 +101,14 @@ angular.module('abc-fe')
         //     $state.go('post.detail', {title: $title}, {reload: true});
         // };
         //
-        // getLatestPosts
-        $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-            $scope.latestPosts = response.data.data;
-        }, function (error) {
-            console.log('Latest posts error!');
-        });
+        setTimeout(function () {
+            // getLatestPosts
+            $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                $scope.latestPosts = response.data.data;
+            }, function (error) {
+                console.log('Latest posts error!');
+            });
+        }, 400);
 
         //getBreadcrumbs
         // $http.get(API_URL + $scope.lang + '/' + 'breadcrumbs/' + $scope.IdSub).then(function (response) {

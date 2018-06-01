@@ -37,16 +37,18 @@ angular.module('abc-fe')
             });
         }
 
-        //info
-        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-            $scope.info = response.data.data[0];
-        }, function (error) {
-            console.log('Info error!');
-        });
+        setTimeout(function () {
+            //info
+            $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                $scope.info = response.data.data[0];
+            }, function (error) {
+                console.log('Info error!');
+            });
+        }, 200);
 
         //advertisement
         $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
-            // materialize option
+            //materialize option
             setTimeout(function () {
                 $('.slider').slider({
                     height: $scope.isMobile ? 100 : 280,
@@ -58,41 +60,48 @@ angular.module('abc-fe')
             console.log('Advertisement error!');
         });
 
-        //content
-        //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-            $scope.categories = response.data.data;
-        }, function (error) {
-            console.log('Categories error!');
-        });
+        setTimeout(function () {
+            // getLatestPosts
+            $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                $scope.latestPosts = response.data.data;
+            }, function (error) {
+                console.log('Latest posts error!');
+            });
+        }, 400);
 
-        //get data
-        $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
-            $scope.data = response.data.data;
-            if ($scope.isMobile) {
-                setTimeout(function () {
-                    $('.carousel.carousel-slider').carousel({
-                        fullWidth: true,
-                        indicators: true,
-                    });
-                }, 100);
-            } else {
-                setTimeout(function () {
-                    $('.tabs').tabs({
-                        swipeable: false,
-                    });
-                }, 100);
-            }
-        }, function (error) {
-            console.log('Get data', error);
-        });
+        setTimeout(function () {
+            //get data
+            $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
+                $scope.data = response.data.data;
+                if ($scope.isMobile) {
+                    setTimeout(function () {
+                        $('.carousel.carousel-slider').carousel({
+                            fullWidth: true,
+                            indicators: true,
+                        });
+                    }, 100);
+                } else {
+                    setTimeout(function () {
+                        $('.tabs').tabs({
+                            swipeable: false,
+                        });
+                    }, 100);
+                }
+            }, function (error) {
+                console.log('Get data', error);
+            });
+        }, 200);
 
-        // getLatestPosts
-        $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-            $scope.latestPosts = response.data.data;
-        }, function (error) {
-            console.log('Latest posts error!');
-        });
+
+        setTimeout(function () {
+            //content
+            //get categories
+            $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                $scope.categories = response.data.data;
+            }, function (error) {
+                console.log('Categories error!');
+            });
+        }, 400);
 
         //show topic
         $scope.showTopic = function ($slug) {

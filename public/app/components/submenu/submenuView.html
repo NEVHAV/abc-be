@@ -49,20 +49,21 @@
                     </div>
                 </div>
 
-                <div class="menu u-flex1 u-block">
+                <div class="menu u-flex1 u-block u-flex">
+                    <div class="u-flex1"></div>
                     <ul>
-                        <li class="u-floatRight"
-                            ng-repeat="category in categories">
-                            <a href="topic/{{ category.slug }}" class="menu-item">
-                                {{ category.name }}
-                            </a>
-                        </li>
-                        <li class="u-floatRight">
+                        <li class="">
                             <a href="/" class="menu-item" ng-if="lang == 'vn'">
                                 TRANG CHỦ
                             </a>
                             <a href="/" class="menu-item" ng-if="lang == 'jp'">
                                 ホーム
+                            </a>
+                        </li>
+                        <li class=""
+                            ng-repeat="category in categories">
+                            <a href="topic/{{ category.slug }}" class="menu-item">
+                                {{ category.name }}
                             </a>
                         </li>
                     </ul>
@@ -289,7 +290,7 @@
     <!--footer-->
     <footer class="u-marginTop50 u-xs-marginTop0">
         <div class="footer-content u-textColorWhite">
-            <div class="u-maxWidth1200 u-marginAuto u-padding20 u-xs-padding5 u-paddingBottom2 u-xs-sizeFullWidth u-block">
+            <div class="u-maxWidth1200 u-minHeight250 u-marginAuto u-padding20 u-xs-padding5 u-paddingBottom2 u-xs-sizeFullWidth u-block">
                 <div class="left-content u-fontSize12 u-xs-fontSize12 u-width530 u-inlineBlock"
                      ng-bind-html="info.footer">
                 </div>
@@ -313,7 +314,7 @@
                 </div>
                 <div class="u-width340 u-inlineBlock u-floatRight" ng-if="!isMobile">
                     <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtyktm&tabs=message&width=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                            width="340" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                            width="340" height="180" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
                             allowTransparency="true" allow="encrypted-media"></iframe>
                 </div>
             </div>
