@@ -37,12 +37,14 @@ angular.module('abc-fe')
             });
         }
 
-        //info
-        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-            $scope.info = response.data.data[0];
-        }, function (error) {
-            console.log('Info error!');
-        });
+        setTimeout(function () {
+            //info
+            $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                $scope.info = response.data.data[0];
+            }, function (error) {
+                console.log('Info error!');
+            });
+        }, 300);
 
         //advertisement
         $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
@@ -71,18 +73,23 @@ angular.module('abc-fe')
         } else {
             url = API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug;
         }
-        $http.get(url).then(function (response) {
-            $scope.topic = response.data.data;
-        }, function (error) {
-            console.log('Submenus error!');
-        });
 
-        //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-            $scope.categories = response.data.data;
-        }, function (error) {
-            console.log('Categories error!');
-        });
+        setTimeout(function () {
+            $http.get(url).then(function (response) {
+                $scope.topic = response.data.data;
+            }, function (error) {
+                console.log('Submenus error!');
+            });
+        }, 300);
+
+        setTimeout(function () {
+            //get categories
+            $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                $scope.categories = response.data.data;
+            }, function (error) {
+                console.log('Categories error!');
+            });
+        }, 500);
 
         //show topic
         $scope.showTopic = function ($slug) {
@@ -105,10 +112,12 @@ angular.module('abc-fe')
             $state.go('post', { slug: $slug });
         };
 
-        // getLatestPosts
-        $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-            $scope.latestPosts = response.data.data;
-        }, function (error) {
-            console.log('Latest posts error!');
-        });
+        setTimeout(function () {
+            // getLatestPosts
+            $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                $scope.latestPosts = response.data.data;
+            }, function (error) {
+                console.log('Latest posts error!');
+            });
+        }, 500);
     });
