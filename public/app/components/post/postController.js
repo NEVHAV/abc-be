@@ -37,83 +37,126 @@ angular.module('abc-fe')
             });
         }
 
-        setTimeout(function () {
-            //info
-            $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-                $scope.info = response.data.data[0];
-            }, function (error) {
-                console.log('Info error!');
-            });
-        }, 200);
+        const getPost = function () {
+            let i = 0;
 
-        //advertisement
-        $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
-            // materialize option
-            $(document).ready(function () {
-                $('.slider').slider({
-                    height: $scope.isMobile ? 100 : 280,
-                    indicators: true,
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'posts/' + $state.params.slug).then(function (response) {
+                    $scope.post = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log(error);
+                    }
                 });
-            });
-            $scope.advertisement = response.data.data;
-        }, function (error) {
-            console.log('Advertisement error!');
-        });
+            };
 
-        // //header
-        // $scope.postId = $cookieStore.get('postId');
-        // $scope.title = $cookieStore.get('postTitle');
-        // $scope.IdSub = $cookieStore.get('subId');
-
-        // $scope.title = 'ABC - ' + $scope.title;
-        $scope.phoneNumber = '(+84) 24-888-888';
+            fetch();
+        };
 
         //get post detail
         setTimeout(function () {
-            $http.get(API_URL + $scope.lang + '/' + 'posts/' + $state.params.slug).then(function (response) {
-                $scope.post = response.data.data;
-            }, function (error) {
-                console.log(error);
-            });
+            getPost();
         }, 200);
 
+        const getBanner = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
+                    //materialize option
+                    setTimeout(function () {
+                        $('.slider').slider({
+                            height: $scope.isMobile ? 100 : 280,
+                            indicators: true,
+                        });
+                    }, 100);
+                    $scope.advertisement = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Advertisement error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        //advertisement
+        getBanner();
+
+        const getInfo = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                    $scope.info = response.data.data[0];
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Info error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
         setTimeout(function () {
-            //get categories
-            $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-                $scope.categories = response.data.data;
-            }, function (error) {
-                console.log('Categories error!');
-            });
+            getInfo();
+        }, 300);
+
+        const getTopics = function () {
+            let i = 0;
+
+            const fetch = function () {
+                //get categories
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                    $scope.categories = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Categories error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        const getLatestPost = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                    $scope.latestPosts = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Latest posts error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+
+        setTimeout(function () {
+            getTopics();
+            if (!$scope.isMobile) {
+                getLatestPost();
+            }
         }, 500);
-
-        //show submenu
-        // $scope.showSubmenu = function ($subId, $subname) {
-        //     $cookieStore.put('subId', $subId);
-        //     $cookieStore.put('subname', $subname);
-        //     $state.go('submenu.detail', {subcate: $subname});
-        // };
-
-        //show post
-        // $scope.showPost = function ($postId, $title, $subId) {
-        //     $cookieStore.put('postId', $postId);
-        //     $cookieStore.put('postTitle', $title);
-        //     $cookieStore.put('subId', $subId);
-        //     $state.go('post.detail', {title: $title}, {reload: true});
-        // };
-        //
-        setTimeout(function () {
-            // getLatestPosts
-            $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-                $scope.latestPosts = response.data.data;
-            }, function (error) {
-                console.log('Latest posts error!');
-            });
-        }, 400);
-
-        //getBreadcrumbs
-        // $http.get(API_URL + $scope.lang + '/' + 'breadcrumbs/' + $scope.IdSub).then(function (response) {
-        //     $scope.breadcrumbs = response.data.data;
-        // }, function (error) {
-        //     console.log('Breadbrumbs error!');
-        // });
     });

@@ -272,10 +272,10 @@
     <footer class="u-marginTop50 u-xs-marginTop0">
         <div class="footer-content u-textColorWhite">
             <div class="u-maxWidth1200 u-minHeight250 u-marginAuto u-padding20 u-xs-padding5 u-paddingBottom2 u-xs-sizeFullWidth u-block">
-                <div class="left-content u-fontSize12 u-xs-fontSize12 u-width530 u-inlineBlock"
+                <div class="left-content u-fontSize12 u-xs-fontSize12 u-width530 u-inlineBlock u-xs-sizeFullWidth"
                      ng-bind-html="info.footer">
                 </div>
-                <div class="u-width180 u-inlineBlock u-marginLeft50 u-verticalAlignTop">
+                <div class="u-width180 u-inlineBlock u-marginLeft50 u-verticalAlignTop" ng-if="!isMobile">
                     <ul>
                         <li class="u-marginBottom5">
                             <a href="/" class="u-textColorWhite" ng-if="lang == 'vn'">
