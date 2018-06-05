@@ -197,6 +197,8 @@ angular.module('abc-fe')
         $scope.truncateContent = function (content) {
             let arr = content.split(' ');
             arr = arr.slice(0, 36);
-            return arr.join(' ') + '...';
+            let new_content = arr.join(' ') + '...';
+            new_content = new_content.replace('&amp;', '&');
+            return new_content;
         };
     });
