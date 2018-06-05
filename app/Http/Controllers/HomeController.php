@@ -64,7 +64,7 @@ class HomeController extends Controller
                 ->select('slug', 'content', 'title' , 'cover')
                 ->first();
             if (!is_null($new_post)) {
-                $new_post->content = str_limit(strip_tags($new_post->content), 200);
+                $new_post->content = str_limit(strip_tags($new_post->content, "&"), 200);
             }
             $posts = Post::where('id_cate', $topic['id'])
                 ->where('language', $lang)

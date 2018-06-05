@@ -128,6 +128,14 @@ header {
     background-size: cover;
 }
 
+.topic .post-cover {
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .post-title {
     font-weight: bold;
     text-align: left;
