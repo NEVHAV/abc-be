@@ -12,6 +12,7 @@ ADMIN.init = function () {
 
 ADMIN.bindUIAction = function () {
     this.bindCategoryDataTable();
+    this.bindSubCategoryDataTable();
     this.bindUserDataTable();
     this.bindPostDataTable();
     this.bindAdvertisementDataTable();
@@ -38,6 +39,14 @@ ADMIN.bindUIAction = function () {
 ADMIN.bindCategoryDataTable = function () {
     $(document).ready(function () {
         $('#category-dt').DataTable({
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        });
+    });
+};
+
+ADMIN.bindSubCategoryDataTable = function () {
+    $(document).ready(function () {
+        $('#subcategory-dt').DataTable({
             'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'All']],
         });
     });

@@ -30,27 +30,27 @@
         @foreach($subcategories as $subcategory)
             <tr>
                 <td>
-                    <a href="/admin/subcategories/{{ $subcategory->id }}/show">
+                    <a href="/admin/subcategories/{{ $subcategory->id }}">
                         {{ $subcategory->id }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/subcategories/{{ $subcategory->id }}/show">
+                    <a href="/admin/subcategories/{{ $subcategory->id }}">
                          {{ $subcategory->name_vn }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/subcategories/{{ $subcategory->id }}/show">
+                    <a href="/admin/subcategories/{{ $subcategory->id }}">
                          {{ $subcategory->name_jp }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/subcategories/{{ $subcategory->id }}/show">
+                    <a href="/admin/subcategories/{{ $subcategory->id }}">
                          {{ $subcategory->cate_vn }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/subcategories/{{ $subcategory->id }}/show">
+                    <a href="/admin/subcategories/{{ $subcategory->id }}">
                          {{ $subcategory->cate_jp }}
                     </a>
                 </td>

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Helpers\ControllerHelper;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -57,6 +58,17 @@ class CategoryController extends Controller
     public function show($id)
     {
         if (Auth::check()) {
+            $category = Category::find($id);
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return view('admin/category/show',[
+                'category' => $category,
+                'posts' => $posts,
+                'user' => $user,
+            ]);
             return view('admin/category/show');
         }
     }
