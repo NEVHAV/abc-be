@@ -30,7 +30,6 @@ class SubCategoryController extends Controller
 
         return redirect('admin/login');
     }
-
     // GET /categories/create
     public function create(Request $request)
     {
@@ -67,7 +66,20 @@ class SubCategoryController extends Controller
     public function show($id)
     {
         if (Auth::check()) {
-            return view('admin/subcategory/show');
+            $subcategory = Subcategory::find($id);
+            $category = Category::find($subcategory->id_cate);
+                            // Log::info($category);
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_sub', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return view('admin/subcategory/show',[
+                'subcategory' => $subcategory,
+                'category' => $category,
+                'posts' => $posts,
+                'user' => $user,
+            ]);
         }
     }
 
