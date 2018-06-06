@@ -2,7 +2,7 @@
  * Created by NEVHAV on 03/05/18.
  */
 angular.module('abc-fe')
-    .controller('postController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
+    .controller('postController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, $sce) {
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -159,4 +159,8 @@ angular.module('abc-fe')
                 getLatestPost();
             }
         }, 500);
+
+        $scope.trustAsHtml = function (string) {
+            return $sce.trustAsHtml(string);
+        };
     });
