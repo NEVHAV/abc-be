@@ -70,6 +70,9 @@ Route::resource('admin/advertisements', 'Admin\AdvertisementController');
 
 Route::resource('admin/settings', 'Admin\PasswordController');
 
+Route::post('admin/categories/{id}/pinpost', 'Admin\CategoryController@pinPost');
+
+Route::post('admin/categories/{id}/unpinpost', 'Admin\CategoryController@unpinPost');
 //Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
 
 Route::post('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store');
