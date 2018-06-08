@@ -51,7 +51,7 @@
         </tfoot>
     </table>
 
-<h1 class="u-flex1">Các bài đăng trong sub category</h1>
+<h1 class="u-flex1">Các bài đăng trong category</h1>
     <div class="user-container">
         <table id="subcategory-dt" class="display" style="width:100%">
         <thead>
@@ -60,6 +60,7 @@
             <th>Tên bài đăng</th>
             <th>Người đăng</th>
             <th>Ngày đăng</th>
+            <th>Ghim bài viết</th>
         </tr>
         </thead>
         <tbody>
@@ -84,7 +85,26 @@
                     <a href="/admin/posts/{{ $post->id }}/edit">
                          {{ $post->published_date }}                     
                     </a>
-                </td>	
+                </td>
+                <td>
+                    @if($post->id == $category->pin)
+                        <form action="/admin/categories/{{$category->id}}/unpinpost" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="postId" value="{{$post->id}}">
+                            <button type="submit" style="color: gray">
+                               <span class="glyphicon glyphicon-pushpin"></span>
+                            </button> 
+                        </form>
+                    @else
+                        <form action="/admin/categories/{{$category->id}}/pinpost" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="postId" value="{{$post->id}}">
+                            <button type="submit">
+                               <span class="glyphicon glyphicon-pushpin"></span>
+                            </button> 
+                        </form>
+                    @endif
+                </td>
         	</tr>
         	@endforeach
         </tbody>
@@ -94,6 +114,7 @@
             <th>Tên bài đăng</th>
             <th>Người đăng</th>
             <th>Ngày đăng</th>
+            <th>Ghim bài viết</th>
         </tr>
         </tfoot>
     </table>

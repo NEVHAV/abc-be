@@ -111,4 +111,34 @@ class CategoryController extends Controller
         }
          return redirect('/admin/login');
     }
+
+    public function pinPost(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin = $request['postId'];
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
+    }
+
+    public function unpinPost(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin = 0;
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
+    }
 }
