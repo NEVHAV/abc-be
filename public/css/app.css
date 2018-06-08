@@ -176,20 +176,21 @@ header {
     display: none !important;
 }
 
-.pn-ProductNav {
+.pn-ProductNav, .pn-ProductNav_Contents {
     width: 100%;
     overflow: hidden;
 }
 
-.pn-ProductNav_Contents {
-    width: 200%;
+.pn-ProductNav-scroll {
+    /*width: 100%;*/
+    width: 100%;
     overflow-x: scroll;
     /*padding-right: 17px; !* Increase/decrease this value for cross-browser compatibility *!*/
     /*box-sizing: content-box; !* So the width will be 100% + 17px *!*/
 }
 
-.pn-ProductNav_Contents::-webkit-scrollbar {
-  display: none;
+.pn-ProductNav-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .pn-Advancer {
@@ -211,16 +212,19 @@ header {
 }
 
 .pn-Advancer_Left {
-  left: 0;
+    left: 0;
 }
+
 [data-overflowing="both"] .pn-Advancer_Left, [data-overflowing="left"] .pn-Advancer_Left {
-  opacity: 1;
+    opacity: 1;
 }
+
 .pn-Advancer_Right {
-  right: 0;
+    right: 0;
 }
+
 [data-overflowing="both"] .pn-Advancer_Right, [data-overflowing="right"] .pn-Advancer_Right {
-  opacity: 1;
+    opacity: 1;
 }
 
 .pn-Advancer_Icon {
