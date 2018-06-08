@@ -92,6 +92,24 @@ ADMIN.POST.bindUIAction = function () {
             text: 'Type your text',
             hideOnClick: true,
         },
+        toolbar: {
+            buttons: [
+                'bold',
+                'italic',
+                'underline',
+                'anchor',
+                'h1',
+                'h2',
+                'h3',
+                'quote',
+                'justifyLeft',
+                'justifyCenter',
+                'justifyRight',
+                'justifyFull',
+                'orderedlist',
+                'unorderedlist',
+            ],
+        },
         keyboardCommands: {
             /* This example includes the default options for keyboardCommands,
                if nothing is passed this is what it used */

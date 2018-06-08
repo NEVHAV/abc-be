@@ -177,7 +177,7 @@
                                 </p>
                             </div>
                             <!--<img src="{{ post.cover }}" class="post-cover">-->
-                            <div class="post-content" ng-bind-html="post.content"></div>
+                            <div class="post-content" data-ng-bind-html="trustAsHtml(post.content)"></div>
                         </div>
                     </div>
                 </div>

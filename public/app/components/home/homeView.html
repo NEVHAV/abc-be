@@ -162,20 +162,37 @@
                         <div class="u-marginBottom60"
                              ng-repeat="category in data"
                              ng-if="category.new_post !== null">
-                            <ul class="tabs u-borderBottomGrayLight">
-                                <li class="tab">
-                                    <a class="active u-textAlignLeft u-fontSize16 u-xs-fontSize14 u-padding0 u-textColorDarker u-fontWeightBold"
-                                       href="#{{ category.slug }}">
-                                        {{ category.name }}
-                                    </a>
-                                </li>
-                                <li class="tab"
-                                    ng-repeat="subCategory in category.subs"
-                                    ng-if="subCategory.new_post !== null">
-                                    <a class="u-padding0 u-marginRight15 u-textColorDarker u-fontSize14 u-xs-fontSize12"
-                                       href="#{{ category.slug + '-' + subCategory.slug }}">{{ subCategory.name }}</a>
-                                </li>
-                            </ul>
+                            <div class="pn-ProductNav u-relative">
+                                <div class="pn-ProductNav-scroll">
+                                    <ul class="tabs u-borderBottomGrayLight pn-ProductNav_Contents">
+                                        <li class="tab">
+                                            <a class="active u-textAlignLeft u-fontSize16 u-xs-fontSize14 u-padding0 u-textColorDarker u-fontWeightBold"
+                                               href="#{{ category.slug }}">
+                                                {{ category.name }}
+                                            </a>
+                                        </li>
+                                        <li class="tab"
+                                            ng-repeat="subCategory in category.subs"
+                                            ng-if="subCategory.new_post !== null">
+                                            <a class="u-padding0 u-marginRight15 u-textColorDarker u-fontSize14 u-xs-fontSize12"
+                                               href="#{{ category.slug + '-' + subCategory.slug }}">{{ subCategory.name
+                                                }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="pn-Advancer pn-Advancer_Left" type="button">
+                                    <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 551 1024">
+                                        <path d="M445.44 38.183L-2.53 512l447.97 473.817 85.857-81.173-409.6-433.23v81.172l409.6-433.23L445.44 38.18z" />
+                                    </svg>
+                                </button>
+                                <button class="pn-Advancer pn-Advancer_Right" type="button">
+                                    <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 551 1024">
+                                        <path d="M105.56 985.817L553.53 512 105.56 38.183l-85.857 81.173 409.6 433.23v-81.172l-409.6 433.23 85.856 81.174z" />
+                                    </svg>
+                                </button>
+                            </div>
                             <div id="{{ category.slug }}" class="u-maxSizeFullWidth">
                                 <div class="u-flex u-marginTop15">
                                     <div class="post-cover u-flex0 u-xs-hide"

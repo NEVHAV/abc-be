@@ -53,6 +53,7 @@ angular.module('abc-fe')
                         }, 100);
                     } else {
                         setTimeout(function () {
+                            MAIN.init();
                             $('.tabs').tabs({
                                 swipeable: false,
                             });
@@ -83,7 +84,7 @@ angular.module('abc-fe')
                     //materialize option
                     setTimeout(function () {
                         $('.slider').slider({
-                            height: $scope.isMobile ? 100 : 280,
+                            height: $scope.isMobile ? 100 : 320,
                             indicators: true,
                         });
                     }, 100);
@@ -197,8 +198,6 @@ angular.module('abc-fe')
         $scope.truncateContent = function (content) {
             let arr = content.split(' ');
             arr = arr.slice(0, 36);
-            let new_content = arr.join(' ') + '...';
-            new_content = new_content.replace('&amp;', '&');
-            return new_content;
+            return arr.join(' ') + '...';
         };
     });

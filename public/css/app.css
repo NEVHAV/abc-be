@@ -175,3 +175,60 @@ header {
 .post-content .medium-insert-buttons {
     display: none !important;
 }
+
+.pn-ProductNav, .pn-ProductNav_Contents {
+    width: 100%;
+    overflow: hidden;
+}
+
+.pn-ProductNav-scroll {
+    /*width: 100%;*/
+    width: 100%;
+    overflow-x: scroll;
+    /*padding-right: 17px; !* Increase/decrease this value for cross-browser compatibility *!*/
+    /*box-sizing: content-box; !* So the width will be 100% + 17px *!*/
+}
+
+.pn-ProductNav-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.pn-Advancer {
+    /* Reset the button */
+    appearance: none;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    /* Now style it as needed */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+.pn-Advancer:focus {
+    outline: 0;
+    background: none !important;
+}
+
+.pn-Advancer_Left {
+    left: 0;
+}
+
+[data-overflowing="both"] .pn-Advancer_Left, [data-overflowing="left"] .pn-Advancer_Left {
+    opacity: 1;
+}
+
+.pn-Advancer_Right {
+    right: 0;
+}
+
+[data-overflowing="both"] .pn-Advancer_Right, [data-overflowing="right"] .pn-Advancer_Right {
+    opacity: 1;
+}
+
+.pn-Advancer_Icon {
+    width: 20px;
+    height: 44px;
+    fill: #bbb;
+}
