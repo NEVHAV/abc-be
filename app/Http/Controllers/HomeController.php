@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index($lang)
     {
         $topics = Category::orderBy('order', 'asc')
-            ->select('id', 'name_' . $lang, 'slug')
+            ->select('id', 'name_' . $lang, 'slug', 'pin')
             ->get();
 
         $data = [];
@@ -57,12 +57,18 @@ class HomeController extends Controller
                 ]);
             }
 
-            $new_post = Post::where('id_cate', $topic['id'])
-                ->where('language', $lang)
-                ->where('state', 1)
-                ->orderBy('published_date', 'desc')
-                ->select('slug', 'content', 'title', 'cover')
-                ->first();
+            $pin = Post::find($topic['pin']);
+
+            if (is_null($pin)) {
+                $new_post = Post::where('id_cate', $topic['id'])
+                    ->where('language', $lang)
+                    ->where('state', 1)
+                    ->orderBy('published_date', 'desc')
+                    ->select('slug', 'content', 'title', 'cover')
+                    ->first();
+            } else {
+                $new_post = $pin;
+            }
             if (!is_null($new_post)) {
                 $content = $new_post->content;
                 $content = str_replace('.</p>', "</p>", $content);
@@ -94,7 +100,8 @@ class HomeController extends Controller
                 'slug' => $topic['slug'],
                 'subs' => $subs_data,
                 'new_post' => $new_post,
-                'posts' => $posts
+                'posts' => $posts,
+//                'pin' => $pin
             ]);
         }
 

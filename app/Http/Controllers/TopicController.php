@@ -6,6 +6,7 @@ use App\Category;
 use App\Post;
 use App\Subcategory;
 use Illuminate\Http\Request;
+use App\Http\Helpers\ControllerHelper;
 
 class TopicController extends Controller
 {
@@ -34,7 +35,7 @@ class TopicController extends Controller
         ]);
     }
 
-    public function show($lang, $slug, $subTopic=NULL)
+    public function show($lang, $slug, $subTopic = NULL)
     {
         if (is_null($lang)) {
             $lang = 'vn';
@@ -90,8 +91,20 @@ class TopicController extends Controller
         }
 
         $posts = [];
+
+        $pin = Post::find($topic->pin);
+
+        if (!is_null($pin)) {
+            $pin['content'] = ControllerHelper::removeHtmlTag($pin['content']);
+
+            array_push($posts, $pin);
+        }
+
         foreach ($topic->posts as $post) {
-            $post['content'] = str_limit(strip_tags($post['content']), 260);
+            if (!is_null($pin) && $post->slug == $pin->slug) {
+                continue;
+            }
+            $post['content'] = ControllerHelper::removeHtmlTag($post['content']);
             array_push($posts, $post);
         }
 

@@ -63,11 +63,13 @@ class CategoryController extends Controller
                             ->select('*')
                             ->where('id_cate', $id)
                             ->get();
+            $pin = Post::find($category['pin']);
             $user = Auth::user()->name;
             return view('admin/category/show',[
                 'category' => $category,
                 'posts' => $posts,
                 'user' => $user,
+                'pin' => $pin,
             ]);
             return view('admin/category/show');
         }
