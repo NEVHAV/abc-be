@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index($lang)
     {
-        $topics = Category::orderBy('created_at', 'desc')
+        $topics = Category::orderBy('order', 'asc')
             ->select('id', 'name_' . $lang, 'slug')
             ->get();
 
@@ -61,10 +61,24 @@ class HomeController extends Controller
                 ->where('language', $lang)
                 ->where('state', 1)
                 ->orderBy('published_date', 'desc')
-                ->select('slug', 'content', 'title' , 'cover')
+                ->select('slug', 'content', 'title', 'cover')
                 ->first();
             if (!is_null($new_post)) {
-                $new_post->content = str_limit(strip_tags($new_post->content), 200);
+                $content = $new_post->content;
+                $content = str_replace('.</p>', "</p>", $content);
+                $content = str_replace('</p>', ".</p>", $content);
+                $content = strip_tags($content);
+
+                $content = str_replace('&nbsp;', '', $content);
+                $content = str_replace('&amp;', '&', $content);
+                $content = str_replace('&lt;', '<', $content);
+                $content = str_replace('&gt;', '>', $content);
+                $content = str_replace('&quot;', '"', $content);
+                $content = str_replace('&#39;', "'", $content);
+                $content = str_replace('.', ". ", $content);
+
+                $content = trim($content);
+                $new_post->content = str_limit($content, 200);
             }
             $posts = Post::where('id_cate', $topic['id'])
                 ->where('language', $lang)

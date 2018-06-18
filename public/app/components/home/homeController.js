@@ -2,7 +2,7 @@
  * Created by NEVHAV on 19/04/18.
  */
 angular.module('abc-fe')
-    .controller('homeController', function ($scope, $http, $timeout, API_URL, $state, $cookieStore, $cacheFactory, $interval) {
+    .controller('homeController', function ($scope, $http, $timeout, API_URL, $state, $cookieStore, $cacheFactory, test) {
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -20,7 +20,7 @@ angular.module('abc-fe')
 
         // mobile check
         $scope.mobilecheck = function () {
-            var check = false;
+            let check = false;
             (function (a) {
                 if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
             })(navigator.userAgent || navigator.vendor || window.opera);
@@ -37,66 +37,149 @@ angular.module('abc-fe')
             });
         }
 
-        //info
-        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-            $scope.info = response.data.data[0];
-        }, function (error) {
-            console.log('Info error!');
-        });
+        const getData = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
+                    $scope.data = response.data.data;
+                    if ($scope.isMobile) {
+                        setTimeout(function () {
+                            $('.carousel.carousel-slider').carousel({
+                                fullWidth: true,
+                                indicators: true,
+                            });
+                        }, 100);
+                    } else {
+                        setTimeout(function () {
+                            MAIN.init();
+                            $('.tabs').tabs({
+                                swipeable: false,
+                            });
+                        }, 100);
+                    }
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Get data', error);
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        setTimeout(function () {
+            getData();
+        }, 300);
+
+        const getBanner = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
+                    //materialize option
+                    setTimeout(function () {
+                        $('.slider').slider({
+                            height: $scope.isMobile ? 100 : 320,
+                            indicators: true,
+                        });
+                    }, 100);
+                    $scope.advertisement = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Advertisement error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
 
         //advertisement
-        $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
-            // materialize option
-            $(document).ready(function () {
-                $('.slider').slider({
-                    height: $scope.isMobile ? 100 : 280,
-                    indicators: true,
-                });
-            });
-            $scope.advertisement = response.data.data;
-        }, function (error) {
-            console.log('Advertisement error!');
-        });
+        getBanner();
 
-        //content
-        //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-            $scope.categories = response.data.data;
-        }, function (error) {
-            console.log('Categories error!');
-        });
+        const getInfo = function () {
+            let i = 0;
 
-        //get data
-        $http.get(API_URL + $scope.lang + '/' + 'home').then(function (response) {
-            $scope.data = response.data.data;
-            if ($scope.isMobile) {
-                setTimeout(function () {
-                    $('.carousel.carousel-slider').carousel({
-                        fullWidth: true,
-                        indicators: true,
-                    });
-                }, 100);
-            } else {
-                $(document).ready(function () {
-                    $('.tabs').tabs({
-                        swipeable: false,
-                    });
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                    $scope.info = response.data.data[0];
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Info error!');
+                    }
                 });
+            };
+
+            fetch();
+        };
+
+        setTimeout(function () {
+            getInfo();
+        }, 300);
+
+        const getTopics = function () {
+            let i = 0;
+
+            const fetch = function () {
+                //get categories
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                    $scope.categories = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Categories error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        const getLatestPost = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                    $scope.latestPosts = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Latest posts error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+
+        setTimeout(function () {
+            getTopics();
+            if (!$scope.isMobile) {
+                getLatestPost();
             }
-        }, function (error) {
-            console.log('Get data', error);
-        });
-
-        // getLatestPosts
-        $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-            $scope.latestPosts = response.data.data;
-        }, function (error) {
-            console.log('Latest posts error!');
-        });
+        }, 500);
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', { slug: $slug });
+            $state.go('topic', {
+                slug: $slug,
+                subTopic: '',
+            });
         };
 
         //show post
@@ -104,58 +187,17 @@ angular.module('abc-fe')
             $state.go('post', { slug: $slug });
         };
 
-        //chat
-        // var messages;
-        // Echo.private('chat')
-        //     .listen('MessageSent', function (data) {
-        //         this.messages = data.message;
-        //     });
+        //test
+        // $scope.test2 = function () {
+        //     console.log(test.value);
+        //     test.value = 'value';
+        //     console.log(test.value);
+        //     $state.go('post', { cate: 1, subcate: 1 });
+        // };
 
-        $('#live-chat header').on('click', function() {
-            $('.chat').slideToggle(300, 'swing');
-            $('.chat-message-counter').fadeToggle(300, 'swing');
-        });
-
-        $(document).ready(function() {
-            M.updateTextFields();
-        });
-
-        $http.get('http://127.0.0.1:8000/messages').then(function (response) {
-            $scope.getMess = response.data;
-        }, function (error) {
-            console.log('messages error!');
-        });
-
-        $scope.getMessages = function () {
-            $http.get('http://127.0.0.1:8000/messages').then(function (response) {
-                $scope.getMess = response.data;
-            }, function (error) {
-                console.log('messages error!');
-            });
+        $scope.truncateContent = function (content) {
+            let arr = content.split(' ');
+            arr = arr.slice(0, 36);
+            return arr.join(' ') + '...';
         };
-
-        $scope.newSendMess = '';
-        $scope.nickname = $cookieStore.get('user');
-        if ($scope.nickname === null) {
-            $scope.nickname = 'guest';
-        }
-
-        $scope.postMessages = function () {
-           $http.post('http://127.0.0.1:8000/messages', $scope.postMess).then(function (response) {
-               $scope.newSendMess = $scope.postMess;
-               if ($scope.postMess.user !== null) {
-                   $cookieStore.put('user', $scope.postMess.user);
-               }
-           }, function (error) {
-               console.log('Send error!');
-           })
-        };
-        
-        $scope.$watch('newSendMess', function () {
-            $scope.getMessages();
-            $scope.newSendMess = '';
-            $scope.postMess.message = '';
-        });
-
-        $interval($scope.getMessages,1000);
     });

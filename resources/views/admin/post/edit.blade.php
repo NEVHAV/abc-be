@@ -17,29 +17,30 @@
                 <label for="inputTitle" class="col-sm-2 control-label">Tiêu đề</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control"
-                           id="inputTitle" name="title" value="{{ $post->title }}">
+                           id="inputTitle" name="title" value="{{ $post->title }}" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputState" class="col-sm-2 control-label">Trạng thái</label>
-                <input type="number" hidden id="inputState" name="state" value="{{ $post->state }}">
+                <input type="number" hidden id="inputState" name="state" value="{{ $post->state }}" required>
                 <div class="col-sm-10">
                     <div class="btn-group-toggle btn-group-with-input">
                         <button type="button"
-                                class="btn btn-flat btn-border {{ $post->state == 0 ? 'active' : '' }}"
+                                class="btn btn-flat btn-border {{ $post->state == 0 ? 'active' : '' }} button-no-publish"
                                 data-target="#inputState"
                                 value="0">
                             Bản nháp
                         </button>
                         <button type="button"
                                 class="btn btn-flat btn-border {{ $post->state == 1 ? 'active' : '' }}"
+                                id="button-publish"
                                 data-target="#inputState"
                                 value="1">
                             Công khai
                         </button>
                         <button type="button"
-                                class="btn btn-flat btn-border  {{ $post->state == 2 ? 'active' : '' }}"
+                                class="btn btn-flat btn-border  {{ $post->state == 2 ? 'active' : '' }} button-no-publish"
                                 data-target="#inputState"
                                 value="2">
                             Lưu trữ
@@ -76,7 +77,7 @@
             <div class="form-group">
                 <label for="inputCover" class="col-sm-2 control-label">Cover</label>
                 <div class="col-sm-10">
-                    <input type="hidden" name="cover" id="inputCover" value="{{ $post->cover }}">
+                    <input type="hidden" name="cover" id="inputCover" value="{{ $post->cover }}" required>
 
                     <div class="fileupload-buttonbar">
                         <!-- The fileinput-button span is used to style the file input field as button -->
@@ -87,7 +88,7 @@
                                        name="files[]"
                                        class="fileupload"
                                        data-upload-url="/admin/api/uploadimage/post"
-                                       accept="image/*"
+                                       accept="image/*|JPG|JPEG|PNG"
                                        data-target="#inputCover"
                                        data-delete-button="#cover-remove"
                                        data-preview="#cover-preview">
@@ -123,9 +124,9 @@
                             class="select2 u-sizeFullWidth"
                             name="id_sub">
                         @foreach($sub_categories as $sub_category)
-                            <option value="{{ $sub_category->id }}"
-                                    {{ $sub_category->id == $post->id_sub ? 'selected="selected"' : '' }}>
-                                {{ $sub_category->name_vn }}
+                            <option value="{{ $sub_category->sub_id }}"
+                                    {{ $sub_category->sub_id == $post->id_sub ? 'selected="selected"' : '' }}>
+                                {{ $sub_category->cate_name }} - {{$sub_category->sub_name}}
                             </option>
                         @endforeach
                     </select>
@@ -134,7 +135,7 @@
 
             <div class="form-group">
                 <label for="inputLanguage" class="col-sm-2 control-label">Ngôn ngữ</label>
-                <input type="text" hidden id="inputLanguage" name="language" value="{{ $post->language }}">
+                <input type="text" hidden id="inputLanguage" name="language" value="{{ $post->language }}" required>
                 <div class="col-sm-10">
                     <div class="btn-group-toggle btn-group-with-input">
                         <button type="button"

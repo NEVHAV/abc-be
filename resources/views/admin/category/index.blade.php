@@ -28,23 +28,23 @@
         @foreach($categories as $category)
             <tr>
                 <td>
-                    <a href="/admin/categories/{{ $category->id }}/edit">
+                    <a href="/admin/categories/{{ $category->id }}">
                         {{ $category->id }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/categories/{{ $category->id }}/edit">
+                    <a href="/admin/categories/{{ $category->id }}">
                          {{ $category->name_vn }}
                     </a>
                 </td>
                 <td>
-                    <a href="/admin/categories/{{ $category->id }}/edit">
+                    <a href="/admin/categories/{{ $category->id }}">
                          {{ $category->name_jp }}
                     </a>
                 </td>
                 <td>
                     <a class="btn btn-warning btn-xs btn-detail"
-                           href="/admin/categories/{{ $category->id }}/edit">
+                           href="/admin/categories/{{ $category->id }}">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                     <button class="btn btn-danger btn-xs btn-delete"

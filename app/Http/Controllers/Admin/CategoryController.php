@@ -5,9 +5,12 @@ use App\Category;
 use App\Subcategory;
 use App\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Helpers\ControllerHelper;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -38,7 +41,6 @@ class CategoryController extends Controller
         if (Auth::check()) {  
             $input = $this->validate($request, [
                 'name_vn'=> 'required',
-                'slug' => 'required',
             ]);    
             $input = $request->all();
             $category = new Category();
@@ -46,7 +48,6 @@ class CategoryController extends Controller
             $category->name_jp = $input['name_jp'];
             $category->slug = ControllerHelper::slug($input['name_vn']);
             $category->save();
-
             return redirect('/admin/categories');
         }
         return redirect('/admin/login');
@@ -57,6 +58,17 @@ class CategoryController extends Controller
     public function show($id)
     {
         if (Auth::check()) {
+            $category = Category::find($id);
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return view('admin/category/show',[
+                'category' => $category,
+                'posts' => $posts,
+                'user' => $user,
+            ]);
             return view('admin/category/show');
         }
     }
@@ -64,7 +76,7 @@ class CategoryController extends Controller
     // GET /categories/{category}/edit
     public function edit($id)
     {
-          if (Auth::check()) {
+        if (Auth::check()) {
             $category=Category::find($id);
             return view('admin/category/edit', ['category'=>$category]);
         }
@@ -78,7 +90,6 @@ class CategoryController extends Controller
         if (Auth::check()) {
             $input = $this->validate($request, [
                 'name_vn'=> 'required',
-                'slug' => 'required',
             ]);  
             $input = $request->all();
             $category=Category::find($id);
@@ -99,5 +110,35 @@ class CategoryController extends Controller
             ]);
         }
          return redirect('/admin/login');
+    }
+
+    public function pinPost(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin = $request['postId'];
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
+    }
+
+    public function unpinPost(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin = 0;
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
     }
 }

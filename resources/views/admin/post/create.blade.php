@@ -15,29 +15,30 @@
             <div class="form-group">
                 <label for="inputTitle" class="col-sm-2 control-label">Tiêu đề</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitle" name="title">
+                    <input type="text" class="form-control" id="inputTitle" name="title" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputState" class="col-sm-2 control-label">Trạng thái</label>
-                <input type="number" hidden id="inputState" name="state">
+                <input type="number" hidden id="inputState" name="state" required>
                 <div class="col-sm-10">
                     <div class="btn-group-toggle btn-group-with-input">
                         <button type="button"
-                                class="btn btn-flat btn-border active"
+                                class="btn btn-flat btn-border active button-no-publish"
                                 data-target="#inputState"
                                 value="0">
                             Bản nháp
                         </button>
                         <button type="button"
                                 class="btn btn-flat btn-border"
+                                id="button-publish"
                                 data-target="#inputState"
                                 value="1">
                             Công khai
                         </button>
                         <button type="button"
-                                class="btn btn-flat btn-border"
+                                class="btn btn-flat btn-border button-no-publish"
                                 data-target="#inputState"
                                 value="2">
                             Lưu trữ
@@ -62,7 +63,8 @@
                         <div class="input-group-addon">
                             <i class="fa fa-clock-o"></i>
                         </div>
-                        <input type="text" name="published_date[time]" class="form-control timepicker">
+                        <input type="text" name="published_date[time]" id="inputPublishedTime"
+                               class="form-control timepicker">
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -73,7 +75,7 @@
             <div class="form-group">
                 <label for="inputCover" class="col-sm-2 control-label">Cover</label>
                 <div class="col-sm-10">
-                    <input type="hidden" name="cover" id="inputCover">
+                    <input type="hidden" name="cover" id="inputCover" required>
 
                     <div class="fileupload-buttonbar">
                         <div class="">
@@ -84,7 +86,8 @@
                                 <input type="file"
                                        name="files[]"
                                        class="fileupload"
-                                       accept="image/*"
+                                       data-upload-url="/admin/api/uploadimage/post"
+                                       accept="image/*|JPG|JPEG|PNG"
                                        data-target="#inputCover"
                                        data-delete-button="#cover-remove"
                                        data-preview="#cover-preview">
@@ -110,15 +113,15 @@
                     <textarea id="post-editor" class="editable post-content u-padding5" name="content"></textarea>
                 </div>
             </div>
-
+                
             <div class="form-group">
                 <label for="inputIDSub" class="col-sm-2 control-label">Sub Category</label>
                 <div class="col-sm-10">
                     <select id="inputIDSub"
                             class="select2 u-sizeFullWidth"
                             name="id_sub">
-                        @foreach($sub_categories as $sub_category)
-                            <option value="{{ $sub_category->id }}">{{ $sub_category->name_vn }}</option>
+                        @foreach($categories as $sub)
+                            <option value="{{ $sub->sub_id }}">{{ $sub->cate_name }} - {{$sub->sub_name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -126,7 +129,7 @@
 
             <div class="form-group">
                 <label for="inputLanguage" class="col-sm-2 control-label">Ngôn ngữ</label>
-                <input type="text" hidden id="inputLanguage" name="language" value="vn">
+                <input type="text" hidden id="inputLanguage" name="language" value="vn"  required>
                 <div class="col-sm-10">
                     <div class="btn-group-toggle btn-group-with-input">
                         <button type="button"

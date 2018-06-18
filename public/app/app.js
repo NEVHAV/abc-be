@@ -5,17 +5,10 @@ angular.module('abc-fe', [
     'oc.lazyLoad',
     'ui.router',
     'ngCookies',
-    'ngSanitize'
+    'ngSanitize',
 ])
     .constant('API_URL', '/api/')
     .value('test', { value: '0' })
-    // .config(['$pusherProvider', function ($pusherProvider) {
-    //     $pusherProvider.setApiKey('23ba442d12a08b8bf208');
-    //     $pusherProvider.option({
-    //         debug: true,
-    //         cluster: 'ap1'
-    //     });
-    // }])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
         function ($urlRouterProvider, $stateProvider, $locationProvider) {
             $locationProvider.hashPrefix(''); // by default '!'
@@ -30,11 +23,11 @@ angular.module('abc-fe', [
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load(
                                 {
-                                    files: ['app/components/home/homeController.js']
-                                }
+                                    files: ['app/components/home/homeController.js'],
+                                },
                             );
-                        }
-                    }
+                        },
+                    },
                 })
 
                 .state('post', {
@@ -46,10 +39,10 @@ angular.module('abc-fe', [
                             return $ocLazyLoad.load(
                                 {
                                     files: ['app/components/post/postController.js'],
-                                }
+                                },
                             );
-                        }
-                    }
+                        },
+                    },
                 })
 
                 .state('topic', {
@@ -60,10 +53,25 @@ angular.module('abc-fe', [
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load(
                                 {
-                                    files: ['app/components/submenu/submenuController.js']
-                                }
+                                    files: ['app/components/submenu/submenuController.js'],
+                                },
                             );
-                        }
-                    }
+                        },
+                    },
+                })
+
+                .state('subTopic', {
+                    url: '/topic/:slug/:subTopic',
+                    templateUrl: 'app/components/submenu/submenuView.html',
+                    controller: 'submenuController',
+                    resolve: {
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(
+                                {
+                                    files: ['app/components/submenu/submenuController.js'],
+                                },
+                            );
+                        },
+                    },
                 });
         }]);

@@ -2,7 +2,7 @@
  * Created by NEVHAV on 07/05/18.
  */
 angular.module('abc-fe')
-    .controller ('submenuController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
+    .controller('submenuController', function ($scope, $http, $timeout, $state, $stateParams, API_URL, $cookieStore, test) {
         //language
         $scope.lang = $cookieStore.get('lang');
         if ($scope.lang !== 'vn' && $scope.lang !== 'jp') {
@@ -18,7 +18,7 @@ angular.module('abc-fe')
             }
         };
 
-                // mobile check
+        // mobile check
         $scope.mobilecheck = function () {
             var check = false;
             (function (a) {
@@ -37,61 +37,154 @@ angular.module('abc-fe')
             });
         }
 
-        //info
-        $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
-            $scope.info = response.data.data[0];
-        }, function (error) {
-            console.log('Info error!');
-        });
+        //get submenu
+        let url;
+        if ($state.params.subTopic) {
+            url = API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug + '/' + $state.params.subTopic;
+        } else {
+            url = API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug;
+        }
+
+        const getTopic = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(url).then(function (response) {
+                    $scope.topic = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Submenus error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        setTimeout(function () {
+            getTopic();
+        }, 300);
+
+        const getBanner = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
+                    //materialize option
+                    setTimeout(function () {
+                        $('.slider').slider({
+                            height: $scope.isMobile ? 100 : 280,
+                            indicators: true,
+                        });
+                    }, 100);
+                    $scope.advertisement = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Advertisement error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
 
         //advertisement
-        $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
-            // materialize option
-            $(document).ready(function () {
-                $('.slider').slider({
-                    height: $scope.isMobile ? 100 : 280,
-                    indicators: true,
+        getBanner();
+
+        const getInfo = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'info').then(function (response) {
+                    $scope.info = response.data.data[0];
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Info error!');
+                    }
                 });
-            });
-            $scope.advertisement = response.data.data;
-        }, function (error) {
-            console.log('Advertisement error!');
-        });
+            };
 
-        // $scope.subId = $cookieStore.get('subId');
-        // $scope.subname = $cookieStore.get('subname');
-        //
-        // $scope.title = 'ABC - ' + $scope.subname;
-        $scope.phoneNumber = '(+84) 24-888-888';
+            fetch();
+        };
 
-        //get submenu
-        $http.get(API_URL + $scope.lang + '/' + 'topics/' + $state.params.slug).then(function (response) {
-            $scope.topic = response.data.data;
-        }, function (error) {
-            console.log('Submenus error!');
-        });
+        setTimeout(function () {
+            getInfo();
+        }, 300);
 
-        //get categories
-        $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
-            $scope.categories = response.data.data;
-        }, function (error) {
-            console.log('Categories error!');
-        });
+        const getTopics = function () {
+            let i = 0;
+
+            const fetch = function () {
+                //get categories
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'topics').then(function (response) {
+                    $scope.categories = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Categories error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+        const getLatestPost = function () {
+            let i = 0;
+
+            const fetch = function () {
+                i += 1;
+                $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
+                    $scope.latestPosts = response.data.data;
+                }, function (error) {
+                    if (i < 3) {
+                        fetch();
+                    } else {
+                        console.log('Latest posts error!');
+                    }
+                });
+            };
+
+            fetch();
+        };
+
+
+        setTimeout(function () {
+            getTopics();
+            if (!$scope.isMobile) {
+                getLatestPost();
+            }
+        }, 500);
 
         //show topic
         $scope.showTopic = function ($slug) {
-            $state.go('topic', {slug: $slug});
+            $state.go('topic', {
+                slug: $slug,
+                subTopic: '',
+            });
+        };
+
+        //show sub topic
+        $scope.showSubTopic = function ($slug, $subTopic) {
+            $state.go('subTopic', {
+                slug: $slug,
+                subTopic: $subTopic,
+            });
         };
         //
         //show post
         $scope.showPost = function ($slug) {
-            $state.go('post', {slug: $slug});
+            $state.go('post', { slug: $slug });
         };
-
-        // getLatestPosts
-        $http.get(API_URL + $scope.lang + '/' + 'latestPosts/').then(function (response) {
-            $scope.latestPosts = response.data.data;
-        }, function (error) {
-            console.log('Latest posts error!');
-        });
     });

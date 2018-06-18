@@ -7,10 +7,11 @@ use Auth;
 use App\Post;
 use App\User;
 use App\Subcategory;
+use App\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Helpers\ControllerHelper;
-
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -21,7 +22,8 @@ class PostController extends Controller
             $posts = Post::orderBy('updated_at', 'asc')->get();
             foreach ($posts as $post) {
                 $post['user'] = User::find($post->id_user);
-                $post['sub'] = Subcategory::find($post->id_sub);
+                $post['sub'] = Subcategory::find($post->id_sub); 
+                $post['cate'] = Category::find($post->sub->id_cate);            
             }
             return view('admin/post/index', [
                 'posts' => $posts,
@@ -29,16 +31,18 @@ class PostController extends Controller
         }
 
         return redirect('/admin/login');
-    }
+    } 
 
     // GET /posts/create
     public function create()
     {
         if (Auth::check()) {
-            $sub_categories = Subcategory::orderBy('name_vn', 'asc')->get();
-
+            $categories = DB::table('categories')
+                ->join('subcategories', 'categories.id', '=', 'subcategories.id_cate')
+                ->select('categories.name_vn as cate_name', 'subcategories.id as sub_id', 'subcategories.name_vn as sub_name')
+                ->get();
             return view('admin/post/create', [
-                'sub_categories' => $sub_categories,
+                'categories' => $categories,
             ]);
         }
 
@@ -49,21 +53,26 @@ class PostController extends Controller
     public function store(Request $request)
     {
         if (Auth::check()) {
-            $data = $this->validate($request, [
+            $rule = [
                 'title' => 'required',
                 'state' => 'required',
                 'cover' => 'required',
                 'content' => 'required',
                 'language' => 'required',
                 'id_sub' => 'required',
-            ]);
+            ];
+            if ($request->input('state') == 1) {
+                $rule['published_date.date'] = 'required';
+                $rule['published_date.time'] = 'required';
+            }
+            $data = $this->validate($request, $rule);
 
             $data['published_date'] = join(' ', $request->input('published_date'));
 
             $post = new Post;
 
             $post->title = $data['title'];
-            $post->slug = ControllerHelper::slug($data['title']);
+            $post->slug = ControllerHelper::slugUnique($data['title']);
             $post->state = $data['state'];
             $post->id_user = Auth::user()->id;
 
@@ -104,7 +113,10 @@ class PostController extends Controller
     public function edit(Request $request, $post_id)
     {
         if (Auth::check()) {
-            $sub_categories = Subcategory::orderBy('name_vn', 'asc')->get();
+            $sub_categories = DB::table('categories')
+                ->join('subcategories', 'categories.id', '=', 'subcategories.id_cate')
+                ->select('categories.name_vn as cate_name', 'subcategories.id as sub_id', 'subcategories.name_vn as sub_name')
+                ->get();
             $post = Post::find($post_id);
 
             if ($post->state == 1) {
@@ -128,21 +140,26 @@ class PostController extends Controller
     public function update(Request $request, $post_id)
     {
         if (Auth::check()) {
-            $data = $this->validate($request, [
+            $rule = [
                 'title' => 'required',
                 'state' => 'required',
                 'cover' => 'required',
                 'content' => 'required',
                 'language' => 'required',
                 'id_sub' => 'required',
-//                'id_user' => 'required',
-            ]);
+            ];
+            if ($request->input('state') == 1) {
+                $rule['published_date.date'] = 'required';
+                $rule['published_date.time'] = 'required';
+            }
+            $data = $this->validate($request, $rule);
 
             $data['published_date'] = join(' ', $request->input('published_date'));
 
             $post = Post::find($post_id);
 
             $post->title = $data['title'];
+//            $post->slug = ControllerHelper::slug($data['title']);
             $post->state = $data['state'];
 //            $post->id_user = $data['id_user'];
 

@@ -14,7 +14,12 @@ class ControllerHelper
 {
     public static function slug($name)
     {
-        $utime = Carbon::now()->timestamp;
-        return str_slug($name, '-') . '-' . $utime;
+        return str_slug($name, '-');
+    }
+
+    public static function slugUnique($name)
+    {
+        $expand = substr(base_convert(time(), 10, 36) . md5(microtime()), 0, 8);
+        return str_slug($name, '-') . '-' . $expand;
     }
 }
