@@ -81,3 +81,7 @@ Route::patch('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store'
 Route::delete('admin/api/uploadimage/storage/{path}/{name}', 'Admin\UploadImageController@destroy');
 
 Auth::routes();
+
+//chat
+Route::get('messages', 'ChatsController@getMessages');
+Route::post('messages', 'ChatsController@postMessages');

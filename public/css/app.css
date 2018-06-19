@@ -17,7 +17,7 @@ header {
 }
 
 .nav_1 {
-    background-color: #253d52;
+    background-color: #28a745;
     line-height: 35px;
 }
 
@@ -36,7 +36,15 @@ header {
 }
 
 .nav_2 {
-    background-color: #355876;
+    background-color: white;
+}
+
+.nav_3 {
+    background-color: #28a745;
+}
+
+.menu {
+
 }
 
 .nav-content {
@@ -44,7 +52,8 @@ header {
 }
 
 .menu .menu-item {
-    color: #c5d2e1;
+    /*color: #c5d2e1;*/
+    color: white;
     padding: 0 10px !important;
 }
 
@@ -53,7 +62,7 @@ header {
 }
 
 .footer-content {
-    background-color: #355876;
+    background-color: #28a745;
 }
 
 .slider ul.indicators {

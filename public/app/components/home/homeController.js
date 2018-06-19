@@ -77,7 +77,6 @@ angular.module('abc-fe')
 
         const getBanner = function () {
             let i = 0;
-
             const fetch = function () {
                 i += 1;
                 $http.get(API_URL + $scope.lang + '/' + 'advertisement').then(function (response) {
