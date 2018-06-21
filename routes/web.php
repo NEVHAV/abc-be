@@ -75,6 +75,10 @@ Route::post('admin/categories/{id}/pinpost', 'Admin\CategoryController@pinPost')
 Route::post('admin/categories/{id}/unpinpost', 'Admin\CategoryController@unpinPost');
 //Route::post('admin/api/uploadimage', 'Admin\UploadImageController@store');
 
+Route::post('admin/categories/{id}/pinpostjp', 'Admin\CategoryController@pinPostJp');
+
+Route::post('admin/categories/{id}/unpinpostjp', 'Admin\CategoryController@unpinPostJp');
+
 Route::post('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store');
 Route::patch('admin/api/uploadimage/{path}', 'Admin\UploadImageController@store');
 
