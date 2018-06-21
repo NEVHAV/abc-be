@@ -63,13 +63,15 @@ class CategoryController extends Controller
                             ->select('*')
                             ->where('id_cate', $id)
                             ->get();
-            $pin = Post::find($category['pin']);
+            $pin_vn = Post::find($category['pin_vn']);
+            $pin_jp = Post::find($category['pin_jp']);
             $user = Auth::user()->name;
             return view('admin/category/show',[
                 'category' => $category,
                 'posts' => $posts,
                 'user' => $user,
-                'pin' => $pin,
+                'pin_vn' => $pin_vn,
+                'pin_jp' => $pin_jp,
             ]);
             return view('admin/category/show');
         }
@@ -117,7 +119,7 @@ class CategoryController extends Controller
     public function pinPost(Request $request, $id){
         if (Auth::check()) {
             $category = Category::find($id);
-            $category->pin = $request['postId'];
+            $category->pin_vn = $request['postId'];
             $category->save();
             $posts = DB::table('posts')
                             ->select('*')
@@ -132,7 +134,37 @@ class CategoryController extends Controller
     public function unpinPost(Request $request, $id){
         if (Auth::check()) {
             $category = Category::find($id);
-            $category->pin = 0;
+            $category->pin_vn = 0;
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
+    }
+
+    public function pinPostJp(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin_jp = $request['postId'];
+            $category->save();
+            $posts = DB::table('posts')
+                            ->select('*')
+                            ->where('id_cate', $id)
+                            ->get();
+            $user = Auth::user()->name;
+            return redirect('/admin/categories/' . $id);
+        }
+        return redirect('/admin/login');
+    }
+
+    public function unpinPostJp(Request $request, $id){
+        if (Auth::check()) {
+            $category = Category::find($id);
+            $category->pin_jp = 0;
             $category->save();
             $posts = DB::table('posts')
                             ->select('*')

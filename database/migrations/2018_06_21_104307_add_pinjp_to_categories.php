@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPinToCategories extends Migration
+class AddPinjpToCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,7 @@ class AddPinToCategories extends Migration
         $table->integer('pin_vn');
         $table->integer('pin_jp');
         $table->dropColumn('pin');
-
-    });
+        });
     }
 
     /**
@@ -28,10 +27,11 @@ class AddPinToCategories extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function($table) {
+        //
+         Schema::table('categories', function($table) {
             $table->dropColumn('pin_vn');
             $table->dropColumn('pin_jp');
             $table->integer('pin');
-        });
+        }); 
     }
 }

@@ -17,20 +17,36 @@
     <div class="user-container">
         <div>Tên tiếng Việt: {{ $category->name_vn }}</div>
         <div>Tên tiếng Nhật: {{ $category->name_jp }}</div>
-        <div>Bài được ghim:
-            @if($pin)
+        <div>Bài được ghim tiếng Việt:
+            @if($pin_vn)
                 <span>
-                    <a href="/admin/posts/{{ $pin->id }}/edit" target="_blank">{{ $pin->title }}</a>
+                    <a href="/admin/posts/{{ $pin_vn->id }}/edit" target="_blank">{{ $pin_vn->title }}</a>
                     <form action="/admin/categories/{{$category->id}}/unpinpost" method="post" class="inline">
                         {{ csrf_field() }}
-                        <input type="hidden" name="postId" value="{{$pin->id}}">
+                        <input type="hidden" name="postId" value="{{$pin_vn->id}}">
                         <button type="submit" class="btn btn-flat btn-warning btn-sm">
-                            Bỏ ghim
+                            Bỏ ghim tiếng Việt
                         </button>
                     </form>
                 </span>
             @else
-                Chưa có bài viết được ghim
+                Chưa có bài viết tiếng Việt được ghim
+            @endif
+        </div>
+        <div>Bài được ghim tiếng Nhật:
+            @if($pin_jp)
+                <span>
+                    <a href="/admin/posts/{{ $pin_jp->id }}/edit" target="_blank">{{ $pin_jp->title }}</a>
+                    <form action="/admin/categories/{{$category->id}}/unpinpostjp" method="post" class="inline">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="postId" value="{{$pin_jp->id}}">
+                        <button type="submit" class="btn btn-flat btn-warning btn-sm">
+                            Bỏ ghim tiếng Nhật
+                        </button>
+                    </form>
+                </span>
+            @else
+                Chưa có bài viết tiếng Nhật được ghim
             @endif
         </div>
 
@@ -43,7 +59,8 @@
                     <th>Tên bài đăng</th>
                     <th>Người đăng</th>
                     <th>Ngày đăng</th>
-                    <th>Ghim bài viết</th>
+                    <th>Ghim bài viết tiếng Việt</th>
+                    <th>Ghim bài viết tiếng Nhật</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,24 +86,42 @@
                                 {{ $post->published_date }}
                             </a>
                         </td>
+                        <td> @if($post->id == $category->pin_vn)
+                            <form action="/admin/categories/{{$category->id}}/unpinpost" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="postId" value="{{$post->id}}">
+                                <button type="submit" class="btn btn-flat btn-warning">
+                                    Bỏ ghim tiếng Việt
+                                </button>
+                            </form>
+                        @else
+                            <form action="/admin/categories/{{$category->id}}/pinpost" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="postId" value="{{$post->id}}">
+                                <button type="submit" class="btn btn-flat btn-success">
+                                    Ghim tiếng Việt
+                                </button>
+                            </form>
+                        @endif
+                        </td>
                         <td>
-                            @if($post->id == $category->pin)
-                                <form action="/admin/categories/{{$category->id}}/unpinpost" method="post">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="postId" value="{{$post->id}}">
-                                    <button type="submit" class="btn btn-flat btn-warning">
-                                        Bỏ ghim
-                                    </button>
-                                </form>
-                            @else
-                                <form action="/admin/categories/{{$category->id}}/pinpost" method="post">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="postId" value="{{$post->id}}">
-                                    <button type="submit" class="btn btn-flat btn-success">
-                                        Ghim
-                                    </button>
-                                </form>
-                            @endif
+                        @if($post->id == $category->pin_jp)
+                            <form action="/admin/categories/{{$category->id}}/unpinpostjp" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="postId" value="{{$post->id}}">
+                                <button type="submit" class="btn btn-flat btn-warning">
+                                    Bỏ ghim tiếng Nhật
+                                </button>
+                            </form>
+                        @else
+                            <form action="/admin/categories/{{$category->id}}/pinpostjp" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="postId" value="{{$post->id}}">
+                                <button type="submit" class="btn btn-flat btn-success">
+                                    Ghim tiếng Nhật
+                                </button>
+                            </form>
+                        @endif
                         </td>
                     </tr>
                 @endforeach
@@ -97,7 +132,8 @@
                     <th>Tên bài đăng</th>
                     <th>Người đăng</th>
                     <th>Ngày đăng</th>
-                    <th>Ghim bài viết</th>
+                    <th>Ghim bài viết tiếng Việt</th>
+                    <th>Ghim bài viết tiếng Nhật</th>
                 </tr>
                 </tfoot>
             </table>
