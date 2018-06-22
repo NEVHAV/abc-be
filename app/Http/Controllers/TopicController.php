@@ -92,7 +92,7 @@ class TopicController extends Controller
 
         $posts = [];
 
-        $pin = Post::find($topic->pin);
+        $pin = Post::find($topic['pin_' . $lang]);
 
         if (!is_null($pin)) {
             $pin['content'] = ControllerHelper::removeHtmlTag($pin['content']);
