@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index($lang)
     {
         $topics = Category::orderBy('order', 'asc')
-            ->select('id', 'name_' . $lang, 'slug', 'pin')
+            ->select('id', 'name_' . $lang, 'slug', 'pin_' . $lang)
             ->get();
 
         $data = [];
@@ -57,7 +57,7 @@ class HomeController extends Controller
                 ]);
             }
 
-            $pin = Post::find($topic['pin']);
+            $pin = Post::find($topic['pin_' . $lang]);
 
             if (is_null($pin)) {
                 $new_post = Post::where('id_cate', $topic['id'])
