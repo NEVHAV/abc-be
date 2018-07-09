@@ -86,7 +86,7 @@
                                 {{ $post->published_date }}
                             </a>
                         </td>
-                        <td> @if($post->id == $category->pin_vn)
+                        <td> @if($post->id == $category['pin_vn'])
                             <form action="/admin/categories/{{$category->id}}/unpinpost" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="postId" value="{{$post->id}}">
@@ -105,7 +105,7 @@
                         @endif
                         </td>
                         <td>
-                        @if($post->id == $category->pin_jp)
+                        @if($post->id == $category['pin_jp'])
                             <form action="/admin/categories/{{$category->id}}/unpinpostjp" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="postId" value="{{$post->id}}">
