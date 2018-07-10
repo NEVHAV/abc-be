@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/css/editor.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link href="{{ asset('css/chat.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 @stop
@@ -77,5 +78,8 @@
     <script src="/js/medium-editor.min.js"></script>
     <script src="/js/medium-editor-insert-plugin.min.js"></script>
     <script src="/js/admin.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
+    
 @stop
 
