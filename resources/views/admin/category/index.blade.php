@@ -44,7 +44,7 @@
                 </td>
                 <td>
                     <a class="btn btn-warning btn-xs btn-detail"
-                           href="/admin/categories/{{ $category->id }}">
+                           href="/admin/categories/{{ $category->id }}/edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                     <button class="btn btn-danger btn-xs btn-delete"
