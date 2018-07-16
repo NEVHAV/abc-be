@@ -19,13 +19,7 @@
          </div>
       </div>
       <hr />
-      <div class="row" style="margin-left: 20px">
-        <div class="large-12 columns">
-          <label>Name</label>
-          <br>
-            <input type="text" id='nameInput' placeholder='Name' />
-        </div>
-      </div>
+      
       <div class="row" style="margin-left: 20px">
         <div class="large-12 columns">
           <label>Message</label>
