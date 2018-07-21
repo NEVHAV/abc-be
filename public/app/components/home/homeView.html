@@ -216,17 +216,17 @@
                                         <div class="u-marginTop5" ng-if="category.posts.length > 0">
                                             <div ng-repeat="post in category.posts">
                                                 <a href="/post/{{ post.slug }}"
-                                                   class="u-fontSize12 u-textColorDark u-textUnderline">
+                                                   class="u-fontSize12 u-textColorDark">
+                                                    <i class="fas fa-arrow-right"></i>
                                                     {{ post.title }}
                                                 </a>
                                             </div>
-                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark u-textUnderline"
+                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'vn'">
-                                                Xem thêm {{ category.name }}
+                                                <span class="u-textColorRed">Xem thêm</span> {{ category.name }}
                                             </a>
-                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                            <a class="u-fontSize14 u-marginTop20 u-textColorRed"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'jp'">
-                                                <i class="fa fa-arrow-circle-right"></i>
                                                 もっと見る
                                             </a>
                                         </div>
@@ -255,17 +255,17 @@
                                         <div class="u-marginTop5" ng-if="subCategory.posts.length > 0">
                                             <div ng-repeat="post in subCategory.posts">
                                                 <a href="/post/{{ post.slug }}"
-                                                   class="u-fontSize12 u-textColorDark u-textUnderline">
+                                                   class="u-fontSize12 u-textColorDark">
+                                                    <i class="fas fa-arrow-right"></i>
                                                     {{ post.title }}
                                                 </a>
                                             </div>
-                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark u-textUnderline"
+                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'vn'">
-                                                Xem thêm {{ subCategory.name }}
+                                                <span class="u-textColorRed">Xem thêm</span> {{ subCategory.name }}
                                             </a>
-                                            <a class="u-fontSize14 u-marginTop20 u-textColorDark"
+                                            <a class="u-fontSize14 u-marginTop20 u-textColorRed"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'jp'">
-                                                <i class="fa fa-arrow-circle-right"></i>
                                                 もっと見る
                                             </a>
                                         </div>
@@ -352,6 +352,46 @@
                                         </th>
                                     </tr>
                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="u-marginTop50 u-background--brandSky">
+                        <div>
+                            <div style="height: 10px; background-color: blue">
+                            </div>
+                            <div class="black-text">
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter u-marginTop10"
+                                     ng-if="lang == 'vn'">LIÊN KẾT NGOÀI
+                                </div>
+                                <div class="u-fontWeightBold u-fontSize16 u-textAlignCenter" ng-if="lang == 'jp'">
+                                    リンク
+                                </div>
+                                <hr style="width: 200px">
+                                <table class="borderless u-maxWidth300 u-marginAuto">
+                                    <thead>
+                                    <tr>
+                                        <a href="http://www.molisa.gov.vn/" target="_blank">
+                                            <img style="width: 300px; height: auto" src="/images/bo_lao_dong.png">
+                                        </a>
+                                    </tr>
+                                    <tr>
+                                        <a href="http://www.dolab.gov.vn/" target="_blank">
+                                            <img style="width: 300px; height: auto" src="/images/cuc_lao_dong.png">
+                                        </a>
+                                    </tr>
+                                    <tr>
+                                        <a href="https://solaodong.hanoi.gov.vn" target="_blank">
+                                            <img style="width: 300px; height: auto" src="/images/so_lao_dong.png">
+                                        </a>
+                                    </tr>
+                                    <tr>
+                                        <a href="http://hanoi.edu.vn/" target="_blank">
+                                            <img style="width: 300px; height: auto" src="/images/so_giao_duc.jpg">
+                                        </a>
+                                    </tr>
+                                    </thead>
                                 </table>
                             </div>
                         </div>
