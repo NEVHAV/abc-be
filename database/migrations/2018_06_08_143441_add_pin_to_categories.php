@@ -26,12 +26,4 @@ class AddPinToCategories extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::table('categories', function($table) {
-            $table->dropColumn('pin_vn');
-            $table->dropColumn('pin_jp');
-            $table->integer('pin');
-        });
-    }
 }

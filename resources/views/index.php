@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="css/editor.css">
     <link type="text/css" rel="stylesheet" href="css/medium-editor-insert-plugin-frontend.css">
     <link type="text/css" rel="stylesheet" href="css/app.css" media="screen,projection">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <main class="surface" ui-view></main>

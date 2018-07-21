@@ -216,13 +216,14 @@
                                         <div class="u-marginTop5" ng-if="category.posts.length > 0">
                                             <div ng-repeat="post in category.posts">
                                                 <a href="/post/{{ post.slug }}"
-                                                   class="u-fontSize12 u-textColorDark u-textUnderline">
+                                                   class="u-fontSize12 u-textColorDark">
+                                                    <i class="material-icons" style="vertical-align: sub">arrow_forward</i>
                                                     {{ post.title }}
                                                 </a>
                                             </div>
-                                            <a class="u-fontSize12 u-marginTop20 u-textColorDark u-textUnderline"
+                                            <a class="u-fontSize12 u-marginTop20 u-textColorRed">Xem thêm</a><a class="u-fontSize12 u-marginTop20 u-textColorDark "
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'vn'">
-                                                Xem thêm {{ category.name }}
+                                                {{ category.name }}
                                             </a>
                                             <a class="u-fontSize14 u-marginTop20 u-textColorDark"
                                                href="/topic/{{ category.slug }}" ng-if="lang == 'jp'">
@@ -335,7 +336,7 @@
                                 </div>
                                 <hr style="width: 200px">
                                 <table class="borderless u-maxWidth300 u-marginAuto">
-                                    <tbody>
+                                    <thead>
                                     <tr>
                                         <th class="u-width100 u-textAlignCenter">
                                             <i class="fa fa-user-circle fa-5x u-textColorDark"></i>
@@ -351,7 +352,31 @@
                                                 }}</p>
                                         </th>
                                     </tr>
-                                    </tbody>
+                                    </thead>
+                                </table>
+                                <table class="borderless u-maxWidth300 u-marginAuto">
+                                    <thead>
+                                        <tr>
+                                            <a href="http://www.molisa.gov.vn/" target="_blank">
+                                                <img style="width: 300px; height: auto" src="/images/bo_lao_dong.png">
+                                            </a>
+                                        </tr>
+                                        <tr>
+                                            <a href="http://www.dolab.gov.vn/" target="_blank">
+                                                <img style="width: 300px; height: auto" src="/images/cuc_lao_dong.png">
+                                            </a>
+                                        </tr>
+                                        <tr>
+                                            <a href="https://solaodong.hanoi.gov.vn" target="_blank">
+                                                <img style="width: 300px; height: auto" src="/images/so_lao_dong.png">
+                                            </a>
+                                        </tr>
+                                        <tr>
+                                            <a href="http://hanoi.edu.vn/" target="_blank">
+                                                <img style="width: 300px; height: auto" src="/images/so_giao_duc.jpg">
+                                            </a>
+                                        </tr>
+                                    </thead>
                                 </table>
                             </div>
                         </div>

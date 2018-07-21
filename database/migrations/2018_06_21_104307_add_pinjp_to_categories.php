@@ -32,6 +32,6 @@ class AddPinjpToCategories extends Migration
             $table->dropColumn('pin_vn');
             $table->dropColumn('pin_jp');
             $table->integer('pin');
-        }); 
+        });
     }
 }
