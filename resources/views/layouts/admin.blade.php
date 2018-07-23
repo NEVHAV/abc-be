@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/medium-editor/medium-editor.min.css">
     <link rel="stylesheet" href="/css/medium-editor/themes/default.css">
     <link rel="stylesheet" href="/css/medium-editor-insert-plugin.min.css">
+    <link rel="stylesheet" href="/css/medium-editor-tables.css">
     <link rel="stylesheet" href="/css/select2.min.css">
     <link rel="stylesheet" href="/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
@@ -77,6 +78,7 @@
     <script src="/js/bootstrap-datepicker.min.js"></script>
     <script src="/js/medium-editor.min.js"></script>
     <script src="/js/medium-editor-insert-plugin.min.js"></script>
+    <script type="text/javascript" src="/js/medium-editor-tables.js"></script>
     <script src="/js/admin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
     <script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
