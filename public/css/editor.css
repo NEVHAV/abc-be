@@ -5,8 +5,8 @@
 }
 
 .post-content {
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
     word-wrap: break-word;
 }
 
@@ -53,7 +53,7 @@
     color: #686868;
 }
 
-.post-content h2 h3 h4 {
+.post-content h2, .post-content h3, .post-content h4 {
     color: rgba(0, 0, 0, .84);
 }
 
@@ -80,6 +80,20 @@
     margin-left: -1.63px;
     line-height: 1.22;
     letter-spacing: -.012em;
+}
+
+.post-content table h1, .post-content table h2, .post-content table h3,
+.post-content table h4, .post-content table, .post-content table p {
+    --x-height-multiplier: 0.375;
+    --baseline-multiplier: 0.17;
+    /*letter-spacing: .01rem;*/
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 18px !important;
+    line-height: 1.58 !important;
+    letter-spacing: -.003em !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .post-content ol, .post-content ul {
@@ -168,7 +182,7 @@ pre + pre {
     -webkit-font-feature-settings: "liga" on, "lnum" on !important;
     font-size: 16px !important;
     line-height: 1.4 !important;
-    color: rgba(0, 0, 0, .68) !important;
+    color: rgba(0, 0, 0, .8) !important;
     letter-spacing: 0 !important;
     margin-top: -25px !important;
     margin-bottom: 30px !important;

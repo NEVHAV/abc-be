@@ -70,7 +70,7 @@ angular.module('abc-fe')
                     //materialize option
                     setTimeout(function () {
                         $('.slider').slider({
-                            height: $scope.isMobile ? 100 : 280,
+                            height: $scope.isMobile ? 100 : 320,
                             indicators: true,
                         });
                     }, 100);

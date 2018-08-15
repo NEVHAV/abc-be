@@ -298,21 +298,28 @@
                                 <hr style="width: 200px">
                                 <div class="borderless u-maxWidth300 u-overflowHidden u-marginAuto">
                                     <a href="http://www.molisa.gov.vn/" target="_blank">
-                                        <img style="height: 45px; width: 350px; overflow: hidden"
+                                        <img style="height: 60px; width: 350px; overflow: hidden"
                                              src="/images/bo_lao_dong.png">
                                     </a>
                                     <a href="http://www.dolab.gov.vn/" target="_blank">
-                                        <img style="height: 45px; width: 350px; overflow: hidden"
+                                        <img style="height: 60px; width: 350px; overflow: hidden"
                                              src="/images/cuc_lao_dong.png">
                                     </a>
                                     <a href="https://solaodong.hanoi.gov.vn" target="_blank">
-                                        <img style="height: 45px; width: 315px; overflow: hidden"
+                                        <img style="height: 60px; width: 315px; overflow: hidden"
                                              src="/images/so_lao_dong.png">
                                     </a>
                                     <a href="http://hanoi.edu.vn/" target="_blank">
-                                        <img style="height: 45px; width: 300px; overflow: hidden"
+                                        <img style="height: 60px; width: 300px; overflow: hidden"
                                              src="/images/so_giao_duc.jpg">
                                     </a>
+                                </div>
+                                <div class="slider u-height300">
+                                    <ul class="slides">
+                                        <li ng-repeat="ads in advertisement">
+                                            <img ng-src="{{ ads.url }}">
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

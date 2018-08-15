@@ -109,6 +109,7 @@ ADMIN.POST.bindUIAction = function () {
         'orderedlist',
         'unorderedlist',
         'table',
+        'removeFormat',
       ],
     },
     keyboardCommands: {
